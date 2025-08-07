@@ -18,34 +18,34 @@ const Footer = () => {
               Besondres Deutch
             </span>
           </a>
-          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+          <ul className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
+              <a href="#" className="hover:underline">
                 Головна
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Персональні заняття 
+              <a href="#" className="hover:underline">
+                Персональні заняття
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
+              <a href="#" className="hover:underline">
                 Групові заняття
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
+              <a href="#" className="hover:underline">
                 Про нас
               </a>
             </li>
-
-            <li className="me-4 md:me-6">
+            
+            <li className="flex-1">
               <a
                 href="https://t.me/your_support_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-x-2 rounded-md bg-blue-100 px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-200 transition"
+                className="flex items-center gap-x-2 rounded-md bg-blue-100 px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-200 transition justify-center md:justify-start"
               >
                 {/* Іконка Telegram */}
                 <svg
@@ -65,10 +65,10 @@ const Footer = () => {
               </a>
             </li>
 
-            <li>
+            <li className="flex-1">
               <a
                 href="#"
-                className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition"
+                className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition justify-center md:justify-start"
               >
                 Подати Заявку
               </a>
@@ -81,7 +81,7 @@ const Footer = () => {
           <a href="https://flowbite.com/" className="hover:underline">
             Besondres Deutch™
           </a>
-          . All Rights Reserved. 
+          . All Rights Reserved.
         </span>
       </div>
     </footer>
