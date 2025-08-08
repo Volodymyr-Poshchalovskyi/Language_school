@@ -6,6 +6,7 @@ import PricingSection from "../components/PricingSection";
 import StatisticsSection from "../components/StatisticsSection";
 import SocialMedia from "../components/SocialMedia";
 import FAQComponent from "../components/FAQComponent";
+import SupportSection from "../components/SupportSection";
 
 
 
@@ -23,6 +24,7 @@ function MainPage() {
     <StatisticsSection/>
     <SocialMedia/>
     <FAQComponent/>
+    <SupportSection/>
     </div> );
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from '../assets/image1.png'; // Перевір правильність шляху
 
+
+
 const CTA = () => {
   return (
     <section className="bg-white py-12 px-6 mt-18">

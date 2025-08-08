@@ -3,8 +3,8 @@ import { FaUser, FaUserFriends } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 
 const LearningOptions = () => {
-  const [refPersonal, inViewPersonal] = useInView({ threshold: 0.3 }); // triggerOnce видалено
-  const [refPaired, inViewPaired] = useInView({ threshold: 0.3 }); // triggerOnce видалено
+  const [refPersonal, inViewPersonal] = useInView({ threshold: 0.3 });
+  const [refPaired, inViewPaired] = useInView({ threshold: 0.3 });
 
   return (
     <section className="bg-white py-20 px-6">
@@ -13,15 +13,16 @@ const LearningOptions = () => {
           Обери свій формат навчання
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center">
+        {/* Виправлений контейнер з overflow-hidden */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center overflow-hidden">
 
           {/* Індивідуальні заняття - Зліва на десктопі */}
           <div
             ref={refPersonal}
             className={`bg-gray-100 p-8 rounded-lg shadow-md transition-all duration-700 transform ${
               inViewPersonal
-                ? 'translate-x-0 opacity-100 delay-100' // Анімація при появі
-                : '-translate-x-20 opacity-0' // Реверсна анімація при зникненні
+                ? 'translate-x-0 opacity-100 delay-100'
+                : '-translate-x-20 opacity-0'
             }`}
           >
             <div className="flex justify-center mb-4">
@@ -46,8 +47,8 @@ const LearningOptions = () => {
             ref={refPaired}
             className={`bg-gray-100 p-8 rounded-lg shadow-md transition-all duration-700 transform ${
               inViewPaired
-                ? 'translate-x-0 opacity-100 delay-300' // Анімація при появі
-                : 'translate-x-20 opacity-0' // Реверсна анімація при зникненні
+                ? 'translate-x-0 opacity-100 delay-300'
+                : 'translate-x-20 opacity-0'
             }`}
           >
             <div className="flex justify-center mb-4">
