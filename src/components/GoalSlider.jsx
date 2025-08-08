@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaHome, FaBriefcase, FaBook, FaChevronLeft, FaChevronRight, FaGraduationCap } from 'react-icons/fa';
 
+
+// TODO: fix mobile slider
+
+
 // Дані для слайдів залишаються без змін
 const slides = [
   {
