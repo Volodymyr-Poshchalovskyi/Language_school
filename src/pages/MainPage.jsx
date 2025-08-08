@@ -1,6 +1,28 @@
+import CTA from "../components/CTA";
+import GoalSlider from "../components/GoalSlider";
+import AboutSection from "../components/AboutSection";
+import LearningOptions from "../components/LearningOptions";    
+import PricingSection from "../components/PricingSection";
+import StatisticsSection from "../components/StatisticsSection";
+import SocialMedia from "../components/SocialMedia";
+import FAQComponent from "../components/FAQComponent";
+
+
+
+
+
+
+
 function MainPage() {
     return ( <div>
-        main
+    <CTA/>
+    <GoalSlider/>
+    <AboutSection/>
+    <LearningOptions/>
+    <PricingSection/>
+    <StatisticsSection/>
+    <SocialMedia/>
+    <FAQComponent/>
     </div> );
 }
 
