@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { supabase } from '../supabaseClient'; // Імпортуємо наш клієнт
 
 // === Внутрішній компонент модального вікна ===
 function Modal({ isOpen, onClose, children }) {
@@ -68,16 +69,29 @@ function CallBackWidget() {
     setModalOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (phoneNumber.replace(/\D/g, '').length < 5) {
-      setError('Введіть коректний номер телефону');
-      return;
-    }
-    console.log('Замовлення дзвінка на номер:', phoneNumber);
+ // --- ЗМІНЕНО: Оновлена функція handleSubmit ---
+const handleSubmit = async (e) => { // Робимо функцію асинхронною
+  e.preventDefault();
+  if (phoneNumber.replace(/\D/g, '').length < 5) {
+    setError('Введіть коректний номер телефону');
+    return;
+  }
+
+  // Відправляємо дані в таблицю 'callbacks' на Supabase
+  const { data, error: supabaseError } = await supabase // Важливо: перейменовуємо error, щоб не було конфлікту
+    .from('CallBacks') // Назва вашої таблиці для дзвінків
+    .insert([{ phone: phoneNumber }]);
+
+  // Обробляємо результат
+  if (supabaseError) {
+    console.error('Помилка замовлення дзвінка:', supabaseError);
+    alert('На жаль, сталася помилка. Спробуйте ще раз.');
+  } else {
+    console.log('Дзвінок успішно замовлено:', data);
     setError('');
     setSubmitted(true);
-  };
+  }
+};
 
   const animationStyles = `
     @keyframes scale-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { supabase } from '../supabaseClient';
 
 // === Компонент стилів ===
 const PageStyles = () => (
@@ -107,19 +108,44 @@ function ApplicationPage() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formErrors = validate();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      setErrorToastVisible(true);
-      setTimeout(() => setErrorToastVisible(false), 3000);
-      return;
-    }
-    console.log('Дані заявки:', formData);
+// --- ЗМІНЕНО: Оновлена функція handleSubmit ---
+const handleSubmit = async (e) => { // 1. Робимо функцію асинхронною (async)
+  e.preventDefault();
+  const formErrors = validate();
+  if (Object.keys(formErrors).length > 0) {
+    setErrors(formErrors);
+    setErrorToastVisible(true);
+    setTimeout(() => setErrorToastVisible(false), 3000);
+    return;
+  }
+
+  // 2. Відправляємо дані в таблицю 'applications' на Supabase
+  const { data, error } = await supabase
+    .from('Applications') // Назва вашої таблиці
+    .insert([
+      { 
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        lessonFormat: formData.lessonFormat,
+        messenger: formData.messenger
+      }
+    ])
+    .select(); // Додаємо .select(), щоб Supabase повернув вставлені дані
+
+  // 3. Обробляємо результат
+  if (error) {
+    // Якщо є помилка від Supabase, показуємо її в консолі та сповіщаємо користувача
+    console.error('Помилка при відправці в Supabase:', error);
+    alert('На жаль, сталася помилка. Спробуйте, будь ласка, ще раз.');
+  } else {
+    // Якщо все успішно
+    console.log('Дані успішно відправлено:', data);
     setSuccessModalOpen(true);
     setErrors({});
-  };
+  }
+};
 
   const closeModalAndReset = () => {
     setSuccessModalOpen(false);
