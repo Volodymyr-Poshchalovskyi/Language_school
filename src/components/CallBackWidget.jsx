@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { supabase } from '../supabaseClient'; // Імпортуємо наш клієнт
+import { supabase } from '../supabaseClient'; // Переконайтесь, що цей шлях до файлу правильний
 
 // === Внутрішній компонент модального вікна ===
 function Modal({ isOpen, onClose, children }) {
@@ -7,7 +7,8 @@ function Modal({ isOpen, onClose, children }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -69,29 +70,33 @@ function CallBackWidget() {
     setModalOpen(false);
   };
 
- // --- ЗМІНЕНО: Оновлена функція handleSubmit ---
-const handleSubmit = async (e) => { // Робимо функцію асинхронною
-  e.preventDefault();
-  if (phoneNumber.replace(/\D/g, '').length < 5) {
-    setError('Введіть коректний номер телефону');
-    return;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (phoneNumber.replace(/\D/g, '').length < 5) {
+      setError('Введіть коректний номер телефону');
+      return;
+    }
 
-  // Відправляємо дані в таблицю 'callbacks' на Supabase
-  const { data, error: supabaseError } = await supabase // Важливо: перейменовуємо error, щоб не було конфлікту
-    .from('CallBacks') // Назва вашої таблиці для дзвінків
-    .insert([{ phone: phoneNumber }]);
+    console.log('1. Починаю відправку...');
 
-  // Обробляємо результат
-  if (supabaseError) {
-    console.error('Помилка замовлення дзвінка:', supabaseError);
-    alert('На жаль, сталася помилка. Спробуйте ще раз.');
-  } else {
-    console.log('Дзвінок успішно замовлено:', data);
-    setError('');
-    setSubmitted(true);
-  }
-};
+    const { data, error: supabaseError } = await supabase
+      .from('CallBacks') // Правильна назва таблиці
+      .insert([{ phone: phoneNumber }])
+      .select();
+
+    console.log('2. Відправка завершена.');
+    console.log('   - Повернуті дані (data):', data);
+    console.log('   - Повернута помилка (error):', supabaseError);
+
+    if (supabaseError) {
+      console.error('ПОМИЛКА SUPABASE:', supabaseError);
+      alert('На жаль, сталася помилка. Спробуйте ще раз.');
+    } else {
+      console.log('3. Успіх! Показую модальне вікно.');
+      setError('');
+      setSubmitted(true);
+    }
+  };
 
   const animationStyles = `
     @keyframes scale-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -113,11 +118,8 @@ const handleSubmit = async (e) => { // Робимо функцію асинхр�
     <>
       <style>{animationStyles}</style>
 
-      {/* Імітація розмитого фону */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-30 bg-black/20 backdrop-blur-md animate-fade-in" onClick={handleCloseModal}>
-          {/* Цей прозорий div займає весь екран і перехоплює кліки для закриття */}
-        </div>
+        <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-md animate-fade-in" onClick={handleCloseModal} />
       )}
 
       <button
