@@ -1,17 +1,21 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image1 from '../assets/image1.png'; // Перевірте правильність шляху
-import Image2 from '../assets/image1.png'; // Перевірте правильність шляху
-import Image3 from '../assets/image1.png'; // Перевірте правильність шляху
 import Image4 from '../assets/image1.png'; // Перевірте правильність шляху
 import Image5 from '../assets/image1.png'; // Перевірте правильність шляху
+// Додайте зображення для відгуків або використовуйте ініціали
+import Avatar1 from '../assets/image1.png'; // Приклад шляху до аватара
+import Avatar2 from '../assets/image1.png'; // Приклад шляху до аватара
+import Avatar3 from '../assets/image1.png'; // Приклад шляху до аватара
+
 
 const AboutPage = () => {
   // Хуки для кожної секції, анімація спрацьовує лише один раз
-  const [refSection1, inViewSection1] = useInView({ threshold: 0.3, triggerOnce: false });
-  const [refSection2, inViewSection2] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [refSection1, inViewSection1] = useInView({ threshold: 0.3, triggerOnce: true });
   const [refSection3, inViewSection3] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [refReviews, inViewReviews] = useInView({ threshold: 0.2, triggerOnce: true }); // Хук для секції відгуків
   const [refSection4, inViewSection4] = useInView({ threshold: 0.3, triggerOnce: true });
+
 
   return (
     <section className="bg-white py-20 px-6 overflow-hidden">
@@ -46,37 +50,9 @@ const AboutPage = () => {
           </div>
         </div>
 
-        {/* Секція 2: Команда та асиметричні фото */}
-        <div ref={refSection2} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-          <div className="text-left md:order-2">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Наші викладачі
-            </h2>
-            <p className="text-lg text-gray-600">
-              Наші викладачі — це досвідчені професіонали, які використовують інноваційні методики. Ми пропонуємо індивідуальний підхід, гнучкий графік та безліч додаткових матеріалів, щоб навчання було максимально комфортним та продуктивним.
-            </p>
-          </div>
-          <div className="relative md:h-[400px] md:order-1">
-            <img
-              src={Image2}
-              alt="Команда викладачів"
-              className={`w-2/3 md:w-3/4 h-auto rounded-3xl shadow-lg absolute top-0 left-0 z-10 transform rotate-3 transition duration-700 hover:scale-110 hover:rotate-0 ${
-                inViewSection2 ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
-              }`}
-            />
-            <img
-              src={Image3}
-              alt="Групові заняття"
-              className={`w-2/3 md:w-3/4 h-auto rounded-3xl shadow-lg absolute bottom-0 right-0 transform -rotate-6 transition duration-700 delay-200 hover:scale-110 hover:rotate-0 ${
-                inViewSection2 ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
-              }`}
-            />
-          </div>
-        </div>
-
-        {/* Секція 3: Відгуки та одиночне фото */}
+        {/* Секція 3: Наш підхід */}
         <div ref={refSection3} className="flex flex-col md:flex-row items-center gap-12 mb-20">
-          <div className="md:w-1/2 text-left">
+         <div className="md:w-1/2 text-left">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Наш підхід
             </h2>
@@ -100,7 +76,49 @@ const AboutPage = () => {
             />
           </div>
         </div>
-        
+
+        {/* Секція: Відгуки */}
+        <div ref={refReviews} className="text-center mb-20">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">
+            Що кажуть про нас
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Відгук 1 */}
+            <div className={`bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <p className="text-gray-600 italic mb-6">"Неймовірний досвід! Викладачі дуже терплячі та професійні. Я нарешті зрозумів складні теми, які довго не міг опанувати."</p>
+              <div className="flex items-center justify-center">
+                <img src={Avatar1} alt="Аватар студента" className="w-12 h-12 rounded-full mr-4"/>
+                <div>
+                  <p className="font-bold text-gray-900">Олена Петренко</p>
+                  <p className="text-sm text-gray-500">Студент курсу "Веб-розробка"</p>
+                </div>
+              </div>
+            </div>
+            {/* Відгук 2 */}
+            <div className={`bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-200 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <p className="text-gray-600 italic mb-6">"Гнучкий графік дозволив поєднувати навчання з роботою. Дуже задоволений результатом і отриманими знаннями. Рекомендую!"</p>
+              <div className="flex items-center justify-center">
+                <img src={Avatar2} alt="Аватар студента" className="w-12 h-12 rounded-full mr-4"/>
+                <div>
+                  <p className="font-bold text-gray-900">Максим Іваненко</p>
+                  <p className="text-sm text-gray-500">Студент курсу "Python для аналітики"</p>
+                </div>
+              </div>
+            </div>
+            {/* Відгук 3 */}
+            <div className={`bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-400 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <p className="text-gray-600 italic mb-6">"Найкраща інвестиція у власну освіту. Підтримка на кожному етапі та дружня атмосфера зробили процес навчання дуже приємним."</p>
+              <div className="flex items-center justify-center">
+                <img src={Avatar3} alt="Аватар студента" className="w-12 h-12 rounded-full mr-4"/>
+                <div>
+                  <p className="font-bold text-gray-900">Анна Ковальчук</p>
+                  <p className="text-sm text-gray-500">Студент курсу "UI/UX Дизайн"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Секція 4: Історія школи */}
         <div ref={refSection4} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative md:h-[400px]">

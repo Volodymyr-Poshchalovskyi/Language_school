@@ -74,7 +74,7 @@ export default function Header() {
               <ChevronDownIcon aria-hidden="true" className="w-5 h-5 flex-none text-gray-400" />
             </PopoverButton>
 
-            <PopoverPanel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+            <PopoverPanel className="absolute left-1/2 z-60 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
               <div className="p-4">
                 {products.map((item) => (
                   <div
@@ -105,7 +105,7 @@ export default function Header() {
         {/* Desktop: підтримка та подати заявку справа */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           <a
-            href="https://t.me/your_support_link"
+            href="https://t.me/ashveme"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-x-2 rounded-md bg-blue-100 px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-200 transition"
