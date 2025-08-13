@@ -174,7 +174,8 @@ const handleSubmit = async (e) => {
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       <PageStyles />
       
-      <div className="w-full max-w-lg bg-white p-8 rounded-xl shadow-lg z-10">
+      {/* --- КЛАС ДОДАНО ТУТ --- */}
+      <div className="avoid-emoji w-full max-w-lg bg-white p-8 rounded-xl shadow-lg z-10">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Заявка на пробний урок</h1>
           <p className="text-gray-500 mt-2">Заповніть форму, і наш менеджер зв'яжеться з вами.</p>

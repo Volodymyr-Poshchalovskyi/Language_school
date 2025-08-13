@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Outlet, useLocation } from 'react-router-dom'; // 1. Додаємо useLocation
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import ProgresBar from './ProgressBar';
@@ -10,12 +10,12 @@ import { EmojiFall } from './EmojiFall';
 
 export default function Layout() {
     const mainContentRef = useRef(null);
-    const location = useLocation(); // 2. Отримуємо поточну локацію (URL)
+    const location = useLocation();
 
     return (
         <div className="layout" style={{ position: 'relative' }}>
-            {/* 3. Додаємо prop 'key' до компонента анімації */}
-            <EmojiFall key={location.pathname} stopRef={mainContentRef} />
+            {/* Передаємо pathname як звичайний пропс для внутрішньої логіки */}
+            <EmojiFall stopRef={mainContentRef} pathname={location.pathname} />
 
             <ScrollToTop />
             <ProgresBar />

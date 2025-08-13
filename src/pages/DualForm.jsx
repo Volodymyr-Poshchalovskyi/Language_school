@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // 1. Імпортуємо Link
+import { Link } from 'react-router-dom';
 
 function DualForm() {
   return (
     <div className="bg-purple-50 py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
 
-        <div className="text-center mb-12">
+        {/* --- КЛАС ДОДАНО ТУТ --- */}
+        <div className="avoid-emoji text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
             Уроки в Парі
           </h1>
@@ -15,7 +16,8 @@ function DualForm() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        {/* --- КЛАС ДОДАНО ТУТ --- */}
+        <div className="avoid-emoji bg-white rounded-2xl shadow-xl p-8 md:p-12">
           
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-gray-800 mb-3">Що таке урок в парі?</h2>
@@ -60,8 +62,8 @@ function DualForm() {
           </div>
         </div>
 
-        <div className="mt-12 text-center">
-            {/* 2. Замінюємо <a> на <Link> з параметром */}
+        {/* --- КЛАС ДОДАНО ТУТ --- */}
+        <div className="avoid-emoji mt-12 text-center">
             <Link 
               to="/application?format=dual"
               className="inline-block bg-purple-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-purple-700 transition-transform transform hover:scale-105"

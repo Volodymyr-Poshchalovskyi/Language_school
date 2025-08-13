@@ -6,7 +6,7 @@ function SingleForm() {
     <div className="bg-gray-50 py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
 
-        <div className="text-center mb-12">
+        <div className="avoid-emoji text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
             Індивідуальні Уроки
           </h1>
@@ -15,7 +15,7 @@ function SingleForm() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <div className="avoid-emoji bg-white rounded-2xl shadow-xl p-8 md:p-12">
           
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-gray-800 mb-3">Що таке індивідуальний урок?</h2>
@@ -59,7 +59,7 @@ function SingleForm() {
           </div>
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="avoid-emoji mt-12 text-center">
             {/* 2. Замінюємо <a> на <Link> з параметром */}
             <Link 
               to="/application?format=single"

@@ -1,31 +1,65 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-const emojis = ['😊', '😂', '😍', '😎', '🤩', '🚀', '💖', '😜'];
-const emojiData = Array.from({ length: 25 }).map((_, i) => ({
-  id: i,
-  char: emojis[i % emojis.length],
-}));
+// Створюємо глобальний кеш для зберігання позицій смайликів для кожної сторінки
+if (typeof window.emojiPositionCache === 'undefined') {
+  window.emojiPositionCache = {};
+}
 
-export const EmojiFall = ({ stopRef }) => {
+const EMOJI_OPTIONS = ['😊', '😂', '😍', '🥳', '😎', '🤩', '🚀', '💖'];
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+export const EmojiFall = ({ stopRef, pathname }) => {
   const container = useRef();
-  const animationTriggered = useRef(false);
 
-  useEffect(() => {
-    if (!stopRef.current) return;
+  useGSAP(() => {
+    // --- ФІНАЛЬНА НАДІЙНА ЛОГІКА ---
 
-    const runAnimation = () => {
-      if (animationTriggered.current) return;
-      animationTriggered.current = true;
+    const runMainLogic = () => {
+      // Перевіряємо ref ще раз, оскільки 'load' може спрацювати раніше
+      if (!stopRef.current) return;
 
+      // 1. Спочатку завжди очищуємо контейнер від старих смайликів
+      if (container.current) {
+        container.current.innerHTML = '';
+      }
+      gsap.killTweensOf(container.current.children);
+
+      // 2. Перевіряємо, чи є збережені позиції для цієї сторінки
+      if (window.emojiPositionCache[pathname]) {
+        // Якщо є, просто створюємо смайлики і розміщуємо їх на фінальних позиціях
+        const finalPositions = window.emojiPositionCache[pathname];
+        finalPositions.forEach((data, i) => {
+          const emojiEl = document.createElement('div');
+          emojiEl.className = 'emoji';
+          emojiEl.innerText = EMOJI_OPTIONS[i % EMOJI_OPTIONS.length];
+          container.current.appendChild(emojiEl);
+          // Миттєво встановлюємо позицію без анімації
+          gsap.set(emojiEl, { x: data.x, y: data.y, opacity: 0.9, rotation: 0 });
+        });
+        return; // Виходимо, анімацію запускати не потрібно
+      }
+
+      // 3. Якщо ми тут, значить це перший візит. Розраховуємо позиції та запускаємо анімацію.
+      // Позначаємо, що ми почали розрахунок для цієї сторінки, щоб уникнути повторних запусків
+      window.emojiPositionCache[pathname] = []; // Порожній масив як прапорець
+
+      const target = stopRef.current;
       const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      const pageHeight = document.body.scrollHeight;
       const emojiSize = 40;
-      const padding = 10;
-
+      const padding = 20;
+      const footer = document.querySelector('footer');
+      const allForbiddenNodes = document.querySelectorAll('.avoid-emoji');
       
-      const forbiddenZones = Array.from(document.querySelectorAll('.avoid-emoji')).map(el => {
+      const allForbiddenZones = Array.from(allForbiddenNodes).map(el => {
         const rect = el.getBoundingClientRect();
         return {
           top: rect.top + window.scrollY,
@@ -35,83 +69,91 @@ export const EmojiFall = ({ stopRef }) => {
         };
       });
 
-      const isSafe = (x, y) => {
-        return !forbiddenZones.some(zone =>
-          x < zone.right + padding &&
-          x + emojiSize > zone.left - padding &&
-          y < zone.bottom + padding &&
-          y + emojiSize > zone.top - padding
+      const landingAreaYStart = target.offsetTop;
+      const landingAreaYEnd = footer ? footer.offsetTop - padding - emojiSize : document.body.scrollHeight;
+      const landingAreaHeight = landingAreaYEnd - landingAreaYStart;
+
+      if (landingAreaHeight <= 0) return;
+
+      const minDistance = 400;
+      const minDistanceSq = minDistance * minDistance;
+      const finalPositions = [];
+      const maxEmojis = 25;
+      const maxAttempts = 2000;
+
+      for (let i = 0; i < maxAttempts && finalPositions.length < maxEmojis; i++) {
+        const x = Math.random() * (viewportWidth - emojiSize);
+        const y = Math.random() * landingAreaHeight + landingAreaYStart;
+
+        const isZoneSafe = !allForbiddenZones.some(zone =>
+          x < zone.right + padding && x + emojiSize > zone.left - padding &&
+          y < zone.bottom + padding && y + emojiSize > zone.top - padding
         );
-      };
 
+        if (isZoneSafe) {
+          const isDistanceSafe = !finalPositions.some(p => {
+            const dx = p.x - x; const dy = p.y - y;
+            return (dx * dx + dy * dy) < minDistanceSq;
+          });
+          if (isDistanceSafe) {
+            finalPositions.push({ x, y });
+          }
+        }
+      }
       
-      const step = pageHeight / emojiData.length;
+      // Зберігаємо розраховані позиції в кеші
+      window.emojiPositionCache[pathname] = finalPositions;
+      
+      const emojiDataToAnimate = shuffleArray(finalPositions);
 
-      const positions = emojiData.map((_, index) => {
-        let x, y, tries = 0;
-        do {
-          const baseY = step * index;
-          y = baseY + Math.random() * (step - emojiSize);
-          x = Math.random() * (viewportWidth - emojiSize);
-          tries++;
-        } while (!isSafe(x, y) && tries < 50);
-        return { x, y };
-      });
+      // Створюємо та анімуємо смайлики
+      emojiDataToAnimate.forEach((pos, i) => {
+        const emojiEl = document.createElement('div');
+        emojiEl.className = 'emoji';
+        emojiEl.innerText = EMOJI_OPTIONS[i % EMOJI_OPTIONS.length];
+        container.current.appendChild(emojiEl);
 
-      const ctx = gsap.context(() => {
-        gsap.utils.toArray('.emoji').forEach((emoji, i) => {
-          gsap.set(emoji, {
-            x: Math.random() * viewportWidth,
-            y: -150,
-            opacity: 1,
-          });
-
-          const tl = gsap.timeline();
-          const midY = viewportHeight / 2;
-
-          tl.to(emoji, {
-            y: midY + (Math.random() * 100 - 50),
-            duration: Math.random() * 1.5 + 1,
-            ease: 'bounce.out',
-            delay: Math.random() * 1.5,
-          });
-
-          const finalPos = positions[i];
-          tl.to(emoji, {
-            x: finalPos.x,
-            y: finalPos.y,
-            duration: Math.random() * 2 + 1.5,
-            ease: 'power1.inOut',
-            opacity: 0.9,
-          });
+        gsap.set(emojiEl, { x: Math.random() * viewportWidth, y: -150, opacity: 1 });
+        
+        const tl = gsap.timeline();
+        tl.to(emojiEl, {
+          y: target.offsetHeight * Math.random() * 0.5 + 50,
+          duration: 1.5,
+          ease: 'power1.out',
+          delay: Math.random() * 1.5,
+        }).to(emojiEl, {
+          rotation: Math.random() > 0.5 ? -10 : 10,
+          yoyo: true,
+          repeat: 1,
+          duration: 0.8,
         });
-      }, container);
 
-      return () => ctx.revert();
+        tl.to(emojiEl, {
+          x: pos.x,
+          y: pos.y,
+          rotation: 0,
+          duration: 2,
+          ease: 'power1.inOut',
+          opacity: 0.9,
+        });
+      });
     };
 
-    const handleLoad = () => {
-      setTimeout(runAnimation, 100);
-    };
-
+    // Цей блок відповідає за правильний час запуску
     if (document.readyState === 'complete') {
-      handleLoad();
+        // Якщо сторінка вже завантажена (навігація), запускаємо логіку
+        runMainLogic();
     } else {
-      window.addEventListener('load', handleLoad);
+        // Якщо сторінка ще завантажується (перший візит), чекаємо на подію 'load'
+        window.addEventListener('load', runMainLogic, { once: true });
     }
 
+    // Функція очищення для видалення слухача подій
     return () => {
-      window.removeEventListener('load', handleLoad);
-    };
-  }, [stopRef]);
+        window.removeEventListener('load', runMainLogic);
+    }
 
-  return (
-    <div ref={container} className="emoji-container">
-      {emojiData.map(data => (
-        <div key={data.id} className="emoji">
-          {data.char}
-        </div>
-      ))}
-    </div>
-  );
+  }, { dependencies: [pathname, stopRef], scope: container });
+
+  return <div ref={container} className="emoji-container" />;
 };

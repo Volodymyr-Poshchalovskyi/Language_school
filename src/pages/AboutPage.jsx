@@ -20,7 +20,8 @@ const AboutPage = () => {
   return (
     <section className="bg-white py-20 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        {/* --- КЛАС ДОДАНО --- */}
+        <div className="avoid-emoji text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
             Про нашу школу
           </h1>
@@ -31,7 +32,8 @@ const AboutPage = () => {
 
         {/* Секція 1: Місія та фото */}
         <div ref={refSection1} className="flex flex-col md:flex-row items-center gap-12 mb-20">
-          <div className="md:w-1/2">
+          {/* --- КЛАС ДОДАНО --- */}
+          <div className="avoid-emoji md:w-1/2">
             <img
               src={Image1}
               alt="Фотографія школи"
@@ -40,7 +42,8 @@ const AboutPage = () => {
               }`}
             />
           </div>
-          <div className="md:w-1/2 text-left">
+          {/* --- КЛАС ДОДАНО --- */}
+          <div className="avoid-emoji md:w-1/2 text-left">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Наша місія
             </h2>
@@ -52,7 +55,8 @@ const AboutPage = () => {
 
         {/* Секція 3: Наш підхід */}
         <div ref={refSection3} className="flex flex-col md:flex-row items-center gap-12 mb-20">
-         <div className="md:w-1/2 text-left">
+         {/* --- КЛАС ДОДАНО --- */}
+         <div className="avoid-emoji md:w-1/2 text-left">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Наш підхід
             </h2>
@@ -66,7 +70,8 @@ const AboutPage = () => {
               Переглянути програми
             </a>
           </div>
-          <div className="md:w-1/2 md:order-1">
+          {/* --- КЛАС ДОДАНО --- */}
+          <div className="avoid-emoji md:w-1/2 md:order-1">
             <img
               src={Image4}
               alt="Студенти працюють"
@@ -79,12 +84,14 @@ const AboutPage = () => {
 
         {/* Секція: Відгуки */}
         <div ref={refReviews} className="text-center mb-20">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">
+          {/* --- КЛАС ДОДАНО --- */}
+          <h2 className="avoid-emoji text-4xl font-bold text-gray-900 mb-12">
             Що кажуть про нас
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Відгук 1 */}
-            <div className={`bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {/* --- КЛАС ДОДАНО --- */}
+            <div className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-gray-600 italic mb-6">"Неймовірний досвід! Викладачі дуже терплячі та професійні. Я нарешті зрозумів складні теми, які довго не міг опанувати."</p>
               <div className="flex items-center justify-center">
                 <img src={Avatar1} alt="Аватар студента" className="w-12 h-12 rounded-full mr-4"/>
@@ -95,7 +102,8 @@ const AboutPage = () => {
               </div>
             </div>
             {/* Відгук 2 */}
-            <div className={`bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-200 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {/* --- КЛАС ДОДАНО --- */}
+            <div className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-200 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-gray-600 italic mb-6">"Гнучкий графік дозволив поєднувати навчання з роботою. Дуже задоволений результатом і отриманими знаннями. Рекомендую!"</p>
               <div className="flex items-center justify-center">
                 <img src={Avatar2} alt="Аватар студента" className="w-12 h-12 rounded-full mr-4"/>
@@ -106,7 +114,8 @@ const AboutPage = () => {
               </div>
             </div>
             {/* Відгук 3 */}
-            <div className={`bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-400 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {/* --- КЛАС ДОДАНО --- */}
+            <div className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-400 ${inViewReviews ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-gray-600 italic mb-6">"Найкраща інвестиція у власну освіту. Підтримка на кожному етапі та дружня атмосфера зробили процес навчання дуже приємним."</p>
               <div className="flex items-center justify-center">
                 <img src={Avatar3} alt="Аватар студента" className="w-12 h-12 rounded-full mr-4"/>
@@ -121,7 +130,8 @@ const AboutPage = () => {
 
         {/* Секція 4: Історія школи */}
         <div ref={refSection4} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="relative md:h-[400px]">
+          {/* --- КЛАС ДОДАНО --- */}
+          <div className="avoid-emoji relative md:h-[400px]">
             <img
               src={Image5}
               alt="Ілюстрація історії"
@@ -130,7 +140,8 @@ const AboutPage = () => {
               }`}
             />
           </div>
-          <div className="text-left">
+          {/* --- КЛАС ДОДАНО --- */}
+          <div className="avoid-emoji text-left">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Історія школи
             </h2>
