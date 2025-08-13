@@ -6,10 +6,10 @@ const Support = () => {
     <section className="bg-gray-50 py-16 px-4">
       {/* Заголовок компонента */}
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight avoid-emoji">
           Ми завжди на зв'язку
         </h1>
-        <p className="mt-4 text-xl text-gray-600">
+        <p className="mt-4 text-xl text-gray-600 avoid-emoji">
           Ваші запитання та відгуки важливі для нас.
         </p>
       </div>
@@ -17,7 +17,7 @@ const Support = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
 
         {/* Блок з номером телефону - ліва частина */}
-        <div className="md:w-1/2 bg-white rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:rotate-1 hover:-translate-y-2">
+        <div className="avoid-emoji md:w-1/2 bg-white rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:rotate-1 hover:-translate-y-2">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Зв'яжіться з нами</h2>
           <p className="text-lg text-gray-600 mb-6">
             Зателефонуйте нам для швидкої допомоги або консультації.
@@ -32,7 +32,7 @@ const Support = () => {
         </div>
 
         {/* Блок з соцмережами - права частина */}
-        <div className="md:w-1/2 bg-white rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-rotate-1 hover:-translate-y-2">
+        <div className="avoid-emoji md:w-1/2 bg-white rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-rotate-1 hover:-translate-y-2">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Наші соцмережі</h2>
           <p className="text-lg text-gray-600 mb-6">
             Підписуйтесь, щоб бути в курсі новин та оновлень.

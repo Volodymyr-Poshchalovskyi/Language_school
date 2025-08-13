@@ -6,7 +6,7 @@ const StatisticsSection = () => {
     <section className="bg-gray-100 py-20 px-6">
       <div className="max-w-7xl mx-auto text-center">
         {/* Заголовок компонента */}
-        <h2 className="text-4xl font-bold text-gray-900 mb-12">
+        <h2 className="avoid-emoji text-4xl font-bold text-gray-900 mb-12">
           Що кажуть цифри?
           <div className="mt-4 inline-block bg-white text-gray-900 px-6 py-2 rounded-lg shadow-md">
             Статистика нашої школи
@@ -14,7 +14,7 @@ const StatisticsSection = () => {
         </h2>
 
         {/* Контейнер для карток зі статистикою */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* Картка 1: Студенти */}
           <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">

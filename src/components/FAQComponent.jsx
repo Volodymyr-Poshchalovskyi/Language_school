@@ -62,11 +62,11 @@ const FAQComponent = () => {
   return (
     <section className="bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-12">
+        <h2 className="avoid-emoji text-4xl font-extrabold text-gray-900 mb-12">
           Часті запитання (FAQ)
         </h2>
         
-        <div className="space-y-6">
+        <div className="avoid-emoji space-y-6">
           {faqData.map((item, index) => (
             <FAQItem key={index} question={item.question} answer={item.answer} />
           ))}

@@ -48,14 +48,14 @@ const SocialMedia = () => {
   return (
     <section className="bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-12">
+        <h2 className="avoid-emoji text-4xl font-extrabold text-gray-900 mb-12">
           Ми в соціальних мережах
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
           {/* Блок 1: Instagram */}
-          <div className="bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center">
+          <div className=" avoid-emoji bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center">
             <blockquote 
               className="instagram-media" 
               data-instgrm-permalink="https://www.instagram.com/reel/DC4EY2HsZoT/?utm_source=ig_embed&amp;utm_campaign=loading" 
@@ -66,7 +66,7 @@ const SocialMedia = () => {
 
           {/* Блок 2: TikTok (Виправлено) */}
           {/* --- ЗМІНЕНО ТУТ: Видалено overlay, додано overflow-hidden та негативний margin до blockquote --- */}
-          <div className="bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center overflow-hidden">
+          <div className="avoid-emoji bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center overflow-hidden">
             <blockquote 
               className="tiktok-embed" 
               cite="https://www.tiktok.com/@besonderes.deutsch/video/7301413141257145605" 
@@ -82,7 +82,7 @@ const SocialMedia = () => {
           {/* Блок 3: Telegram */}
           <div 
             ref={telegramContainerRef}
-            className="bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center min-h-[400px]"
+            className="avoid-emoji bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center min-h-[400px]"
           >
             {/* Сюди буде вставлено пост Telegram */}
           </div>

@@ -10,11 +10,11 @@ const LearningOptions = () => {
   return (
     <section className="bg-white py-20 px-6">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-12">
+        <h2 className="avoid-emoji text-4xl font-bold text-gray-900 mb-12">
           Обери свій формат навчання
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center overflow-hidden">
+        <div className="avoid-emoji grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center overflow-hidden">
 
           {/* Індивідуальні заняття */}
           <div

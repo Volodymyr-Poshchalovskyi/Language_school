@@ -9,7 +9,7 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
         
         {/* Ліва частина: Зображення */}
-        <div className="md:w-1/2">
+        <div className="avoid-emoji md:w-1/2">
           <img
             src={AboutSectionImage}
             alt="Наша команда працює над проєктом"
@@ -19,7 +19,7 @@ const AboutSection = () => {
         </div>
 
         {/* Права частина: Текст */}
-        <div className="md:w-1/2 text-center md:text-left">
+        <div className="avoid-emoji md:w-1/2 text-center md:text-left">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Трохи про нашу{" "}
             <span className="inline-block bg-red-600 text-white px-3 py-1 rounded-md">

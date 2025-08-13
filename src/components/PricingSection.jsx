@@ -44,16 +44,16 @@ const PricingSection = () => {
   return (
     <section id="pricing" className="bg-gray-100 py-20 px-6">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="avoid-emoji text-4xl font-bold text-gray-900 mb-4">
           Обери свій ідеальний план
         </h2>
-        <p className="mt-2 text-lg text-gray-600 mb-12">
+        <p className="avoid-emoji mt-2 text-lg text-gray-600 mb-12">
           Знайди тариф, який ідеально підійде для твоїх цілей та темпу навчання.
         </p>
 
         <div 
           ref={ref} 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {tiers.map((tier, index) => (
             <div

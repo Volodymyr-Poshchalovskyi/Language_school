@@ -9,7 +9,7 @@ const CTA = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
         
         {/* Ліва частина: Текст */}
-        <div className="md:w-1/2 text-center md:text-left">
+        <div className="avoid-emoji md:w-1/2 text-center md:text-left">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Приєднуйся до нашої{" "}
             <span className="inline-block bg-orange-500 text-white px-3 py-1 rounded-md">
@@ -29,7 +29,7 @@ const CTA = () => {
         </div>
 
         {/* Права частина: Зображення */}
-        <div className="md:w-1/2">
+        <div className="avoid-emoji md:w-1/2">
           <img
             src={CTAImage} // 3. Використовуємо імпортоване зображення
             alt="CTA Illustration"

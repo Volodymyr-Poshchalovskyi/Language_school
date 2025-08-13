@@ -119,14 +119,14 @@ const GoalSlider = () => {
   return (
     <section className="bg-slate-50 py-16 md:py-24 font-sans">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
+        <h2 className="avoid-emoji text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
           Німецька мова для ваших цілей
         </h2>
-        <p className="text-lg text-gray-600 text-center mb-12">
+        <p className="avoid-emoji text-lg text-gray-600 text-center mb-12">
           Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
         </p>
       
-        <div className="relative">
+        <div className="avoid-emoji relative">
           {/* Контейнер слайдера */}
           <div className="overflow-hidden">
             <div
