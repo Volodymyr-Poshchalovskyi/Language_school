@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '../assets/image1.png'; // Перевір правильність шляху
-
-
+import { Link } from 'react-router-dom'; // 1. Імпортуємо Link
+import CTAImage from '../assets/CTAImage.jpg'
 
 const CTA = () => {
   return (
@@ -19,20 +19,22 @@ const CTA = () => {
           <p className="text-lg text-gray-600 mb-6">
             Отримай доступ до унікальних можливостей та стань частиною чогось більшого вже сьогодні.
           </p>
-          <a
-            href="#"
+          {/* 2. Замінюємо <a> на <Link> і href на to */}
+          <Link
+            to="/application"
             className="inline-block text-blue-600 bg-white border border-blue-600 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-50 transition"
           >
             Подати заявку
-          </a>
+          </Link>
         </div>
 
         {/* Права частина: Зображення */}
         <div className="md:w-1/2">
           <img
-            src={Image}
+            src={CTAImage} // 3. Використовуємо імпортоване зображення
             alt="CTA Illustration"
             className="w-full h-auto rounded-lg shadow-md"
+            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/EEE/31343C?text=Image+Not+Found'; }}
           />
         </div>
       </div>

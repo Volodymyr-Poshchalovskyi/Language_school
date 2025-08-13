@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/Logo.jpeg'; // 1. Використовуємо ваш логотип
 
 const Footer = () => {
   return (
@@ -7,9 +8,10 @@ const Footer = () => {
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <Link to="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+            {/* --- ЗМІНЕНО ТУТ --- */}
             <img
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8"
+              src={Logo}
+              className="h-12 w-12 rounded-full object-cover" // 2. Змінено розмір та форму
               alt="Besondres Deutch Logo"
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -58,7 +60,7 @@ const Footer = () => {
         </span>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

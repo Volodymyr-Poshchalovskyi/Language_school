@@ -1,6 +1,50 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const SocialMedia = () => {
+  // Ref для контейнера Telegram поста
+  const telegramContainerRef = useRef(null);
+
+  // Цей хук завантажує скрипти для Instagram, TikTok та Telegram
+  useEffect(() => {
+    const loadScript = (src, id, processFunc) => {
+      if (document.getElementById(id)) {
+        if (processFunc) processFunc();
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.id = id;
+      script.src = src;
+      script.async = true;
+      script.onload = () => {
+        if (processFunc) processFunc();
+      };
+      document.body.appendChild(script);
+    };
+
+    // Завантаження скриптів для Instagram та TikTok
+    loadScript('//www.instagram.com/embed.js', 'instagram-embed-script', () => {
+      if (window.instgrm) window.instgrm.Embeds.process();
+    });
+
+    loadScript('https://www.tiktok.com/embed.js', 'tiktok-embed-script', () => {
+      if (window.tiktok) window.tiktok.embed.render();
+    });
+    
+    // Створення та додавання скрипта для Telegram у відповідний контейнер
+    if (telegramContainerRef.current) {
+      const telegramScript = document.createElement('script');
+      telegramScript.async = true;
+      telegramScript.src = "https://telegram.org/js/telegram-widget.js?22";
+      telegramScript.setAttribute('data-telegram-post', 'deutchlernenukr/1032');
+      telegramScript.setAttribute('data-width', '100%');
+      
+      telegramContainerRef.current.innerHTML = '';
+      telegramContainerRef.current.appendChild(telegramScript);
+    }
+
+  }, []);
+
   return (
     <section className="bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto text-center">
@@ -8,70 +52,39 @@ const SocialMedia = () => {
           Ми в соціальних мережах
         </h2>
         
-        {/* Асиметричний макет з анімаціями */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
-          {/* Блок 1: Instagram (займає 2 колонки на md-екранах) */}
-          <div className="md:col-span-2 relative bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 hover:-rotate-1">
-            <div className="relative overflow-hidden rounded-2xl mb-4">
-              <img
-                src="https://via.placeholder.com/600x400?text=Instagram+Post" // Замініть на свій скріншот
-                alt="Instagram post"
-                className="w-full h-auto object-cover transition duration-300 group-hover:scale-110"
-              />
-            </div>
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Instagram</h3>
-              <p className="text-gray-600 mb-4">Наші найяскравіші моменти та історії.</p>
-              <a
-                href="#" // Замініть на посилання
-                className="inline-block bg-pink-500 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-pink-600 transition duration-300"
-              >
-                Переглянути в Instagram
-              </a>
-            </div>
+          {/* Блок 1: Instagram */}
+          <div className="bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center">
+            <blockquote 
+              className="instagram-media" 
+              data-instgrm-permalink="https://www.instagram.com/reel/DC4EY2HsZoT/?utm_source=ig_embed&amp;utm_campaign=loading" 
+              data-instgrm-version="14" 
+              style={{ background:'#FFF', border:0, borderRadius:'3px', boxShadow:'0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)', margin: '1px', maxWidth:'540px', minWidth:'326px', padding:0, width:'calc(100% - 2px)'}}>
+            </blockquote>
           </div>
 
-          {/* Блок 2: TikTok */}
-          <div className="md:col-span-1 relative bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 hover:rotate-1">
-            <div className="relative overflow-hidden rounded-2xl mb-4">
-              <img
-                src="https://via.placeholder.com/300x500?text=TikTok+Video" // Замініть на свій скріншот або відео
-                alt="TikTok video"
-                className="w-full h-auto object-cover transition duration-300 group-hover:scale-110"
-              />
-            </div>
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">TikTok</h3>
-              <p className="text-gray-600 mb-4">Короткі та веселі відеоролики.</p>
-              <a
-                href="#" // Замініть на посилання
-                className="inline-block bg-black text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-gray-800 transition duration-300"
-              >
-                Переглянути в TikTok
-              </a>
-            </div>
+          {/* Блок 2: TikTok (Виправлено) */}
+          {/* --- ЗМІНЕНО ТУТ: Видалено overlay, додано overflow-hidden та негативний margin до blockquote --- */}
+          <div className="bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center overflow-hidden">
+            <blockquote 
+              className="tiktok-embed" 
+              cite="https://www.tiktok.com/@besonderes.deutsch/video/7301413141257145605" 
+              data-video-id="7301413141257145605" 
+              style={{maxWidth: '100%', minWidth: 'auto', width: '100%', marginBottom: '-130px'}}
+            >
+              <section> 
+                <a target="_blank" rel="noopener noreferrer" title="@besonderes.deutsch" href="https://www.tiktok.com/@besonderes.deutsch?refer=embed">@besonderes.deutsch</a>
+              </section> 
+            </blockquote>
           </div>
           
-          {/* Блок 3: LinkedIn */}
-          <div className="md:col-span-1 relative bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 hover:-rotate-1">
-            <div className="relative overflow-hidden rounded-2xl mb-4">
-              <img
-                src="https://via.placeholder.com/500x300?text=LinkedIn+Post" // Замініть на свій скріншот
-                alt="Telegram post"
-                className="w-full h-auto object-cover transition duration-300 group-hover:scale-110"
-              />
-            </div>
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Telegram</h3>
-              <p className="text-gray-600 mb-4">Професійні новини та кар'єрні можливості.</p>
-              <a
-                href="#" // Замініть на посилання
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition duration-300"
-              >
-                Переглянути в Telegram
-              </a>
-            </div>
+          {/* Блок 3: Telegram */}
+          <div 
+            ref={telegramContainerRef}
+            className="bg-white rounded-3xl shadow-lg p-6 group transition duration-300 hover:shadow-xl hover:scale-105 flex flex-col items-center justify-center min-h-[400px]"
+          >
+            {/* Сюди буде вставлено пост Telegram */}
           </div>
 
         </div>

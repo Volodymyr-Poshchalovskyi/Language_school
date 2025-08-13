@@ -1,5 +1,8 @@
 import React from 'react';
 import Image from '../assets/foni-papik-pro-39ib-p-kartinki-dikii-kaban-na-prozrachnom-fone-1.png'; // Перевір правильність шляху
+import { Link } from 'react-router-dom'; // Додано імпорт Link
+import AboutSectionImage from '../assets/AboutSectionImage.jpg'; // Зображення для секції "Про нас"
+
 const AboutSection = () => {
   return (
     <section className="bg-white py-12 px-6">
@@ -8,10 +11,10 @@ const AboutSection = () => {
         {/* Ліва частина: Зображення */}
         <div className="md:w-1/2">
           <img
-           
-            src={Image}
+            src={AboutSectionImage}
             alt="Наша команда працює над проєктом"
             className="w-full h-auto rounded-lg shadow-md"
+            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/EEE/31343C?text=Image+Not+Found'; }}
           />
         </div>
 
@@ -26,12 +29,12 @@ const AboutSection = () => {
           <p className="text-lg text-gray-600 mb-6">
             Ми — команда ентузіастів, яка прагне зробити вивчення німецької мови доступним, цікавим та ефективним для кожного. Наша місія — надихати вас на нові звершення.
           </p>
-          <a
-            href="#"
+          <Link
+            to="/about"
             className="inline-block text-red-600 bg-white border border-red-600 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-red-50 transition"
           >
             Дізнатись більше
-          </a>
+          </Link>
         </div>
 
       </div>

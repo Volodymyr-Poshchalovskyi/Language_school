@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // 1. Імпортуємо Link
 
 function DualForm() {
   return (
@@ -60,12 +61,13 @@ function DualForm() {
         </div>
 
         <div className="mt-12 text-center">
-            <a 
-              href="#contact"
+            {/* 2. Замінюємо <a> на <Link> з параметром */}
+            <Link 
+              to="/application?format=dual"
               className="inline-block bg-purple-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-purple-700 transition-transform transform hover:scale-105"
             >
               Записати пару на урок
-            </a>
+            </Link>
         </div>
       </div>
     </div>

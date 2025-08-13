@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // 1. Імпортуємо useEffect
+import { useLocation } from 'react-router-dom'; // 2. Імпортуємо useLocation
 import { supabase } from '../supabaseClient';
 
 // === Компонент стилів ===
@@ -53,35 +54,58 @@ function ApplicationPage() {
     phone: '',
     lessonFormat: '',
     messenger: '',
+    birthYear: '',
+    germanLevel: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isErrorToastVisible, setErrorToastVisible] = useState(false);
+  
+  // 3. Отримуємо поточну локацію (URL)
+  const location = useLocation();
 
-  // --- ЗМІНЕНО: Додано валідацію формату email та телефону ---
+  // 4. Ефект, який спрацьовує при завантаженні компонента
+  useEffect(() => {
+    // Створюємо об'єкт для роботи з параметрами URL
+    const params = new URLSearchParams(location.search);
+    // Отримуємо значення параметра 'format'
+    const format = params.get('format');
+    
+    // Якщо параметр існує ('single' або 'dual'), оновлюємо стан форми
+    if (format === 'single' || format === 'dual') {
+      setFormData(prevState => ({
+        ...prevState,
+        lessonFormat: format
+      }));
+    }
+  }, [location.search]); // Ефект спрацює щоразу, коли змінюється URL
+
   const validate = () => {
     const newErrors = {};
-    // Регулярний вираз для базової перевірки email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // Регулярний вираз для телефону (дозволяє +, цифри, пробіли, дужки, дефіси, мінімум 7 цифр)
     const phoneRegex = /^\+?[0-9\s-()]{7,15}$/;
 
     if (!formData.firstName) newErrors.firstName = "Вкажіть ваше ім'я";
     if (!formData.lastName) newErrors.lastName = "Вкажіть ваше прізвище";
     if (!formData.lessonFormat) newErrors.lessonFormat = "Оберіть формат";
+    
+    if (!formData.birthYear) {
+      newErrors.birthYear = "Вкажіть ваш рік народження";
+    } else if (isNaN(formData.birthYear) || formData.birthYear < 1930 || formData.birthYear > new Date().getFullYear() - 7) {
+      newErrors.birthYear = "Вкажіть коректний рік";
+    }
+    if (!formData.germanLevel) newErrors.germanLevel = "Оберіть ваш рівень";
 
-    // Перевірка, що заповнено або email, або телефон
+
     if (!formData.email && !formData.phone) {
       newErrors.email = "Вкажіть email або номер телефону";
-      newErrors.phone = " "; // Потрібно для підсвічування поля без тексту помилки
+      newErrors.phone = " "; 
     } else {
-      // Якщо email введено, перевіряємо його формат
       if (formData.email && !emailRegex.test(formData.email)) {
         newErrors.email = "Некоректний формат email";
       }
-      // Якщо телефон введено, перевіряємо його формат
       if (formData.phone && !phoneRegex.test(formData.phone)) {
         newErrors.phone = "Некоректний формат номеру";
       }
@@ -94,12 +118,9 @@ function ApplicationPage() {
     const { name, value } = e.target;
     setFormData(prevState => ({ ...prevState, [name]: value }));
     
-    // --- ЗМІНЕНО: Покращена логіка очищення помилок ---
     if (errors[name]) {
         const newErrors = { ...errors };
         delete newErrors[name];
-        // Якщо очищується помилка email або телефону, прибираємо помилку і з іншого поля,
-        // якщо вона стосувалася їх одночасної відсутності.
         if ((name === 'email' || name === 'phone') && (errors.email?.includes('Вкажіть') || errors.phone === ' ')) {
             delete newErrors.email;
             delete newErrors.phone;
@@ -108,8 +129,7 @@ function ApplicationPage() {
     }
   };
 
-// --- ЗМІНЕНО: Оновлена функція handleSubmit ---
-const handleSubmit = async (e) => { // 1. Робимо функцію асинхронною (async)
+const handleSubmit = async (e) => {
   e.preventDefault();
   const formErrors = validate();
   if (Object.keys(formErrors).length > 0) {
@@ -119,9 +139,8 @@ const handleSubmit = async (e) => { // 1. Робимо функцію асинх
     return;
   }
 
-  // 2. Відправляємо дані в таблицю 'applications' на Supabase
   const { data, error } = await supabase
-    .from('Applications') // Назва вашої таблиці
+    .from('Applications') 
     .insert([
       { 
         firstName: formData.firstName,
@@ -129,18 +148,17 @@ const handleSubmit = async (e) => { // 1. Робимо функцію асинх
         email: formData.email,
         phone: formData.phone,
         lessonFormat: formData.lessonFormat,
-        messenger: formData.messenger
+        messenger: formData.messenger,
+        birthYear: formData.birthYear,
+        germanLevel: formData.germanLevel,
       }
     ])
-    .select(); // Додаємо .select(), щоб Supabase повернув вставлені дані
+    .select();
 
-  // 3. Обробляємо результат
   if (error) {
-    // Якщо є помилка від Supabase, показуємо її в консолі та сповіщаємо користувача
     console.error('Помилка при відправці в Supabase:', error);
     alert('На жаль, сталася помилка. Спробуйте, будь ласка, ще раз.');
   } else {
-    // Якщо все успішно
     console.log('Дані успішно відправлено:', data);
     setSuccessModalOpen(true);
     setErrors({});
@@ -179,6 +197,30 @@ const handleSubmit = async (e) => { // 1. Робимо функцію асинх
               </div>
             </div>
             
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="birthYear" className="block text-sm font-medium text-gray-700 mb-1">Рік народження*</label>
+                <input type="number" id="birthYear" name="birthYear" value={formData.birthYear} onChange={handleChange} placeholder="1999"
+                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.birthYear ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`} />
+                {errors.birthYear && <p className="text-red-500 text-xs mt-1">{errors.birthYear}</p>}
+              </div>
+              <div>
+                <label htmlFor="germanLevel" className="block text-sm font-medium text-gray-700 mb-1">Рівень німецької*</label>
+                <select id="germanLevel" name="germanLevel" value={formData.germanLevel} onChange={handleChange}
+                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.germanLevel ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}>
+                  <option value="" disabled>Оберіть ваш рівень...</option>
+                  <option value="A1">A1 - Початківець</option>
+                  <option value="A2">A2 - Елементарний</option>
+                  <option value="B1">B1 - Середній</option>
+                  <option value="B2">B2 - Вище середнього</option>
+                  <option value="C1">C1 - Просунутий</option>
+                  <option value="C2">C2 - Рівень носія</option>
+                  <option value="unknown">Не знаю свій рівень</option>
+                </select>
+                {errors.germanLevel && <p className="text-red-500 text-xs mt-1">{errors.germanLevel}</p>}
+              </div>
+            </div>
+
             <div>
                 <p className="text-sm font-medium text-gray-700 mb-2">Вкажіть принаймні один спосіб для зв'язку*</p>
                 <div className="space-y-4">

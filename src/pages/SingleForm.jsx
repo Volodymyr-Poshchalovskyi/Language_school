@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // 1. Імпортуємо Link
 
 function SingleForm() {
   return (
@@ -59,12 +60,13 @@ function SingleForm() {
         </div>
 
         <div className="mt-12 text-center">
-            <a 
-              href="#contact"
+            {/* 2. Замінюємо <a> на <Link> з параметром */}
+            <Link 
+              to="/application?format=single"
               className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
             >
               Записатися на консультацію
-            </a>
+            </Link>
         </div>
       </div>
     </div>
