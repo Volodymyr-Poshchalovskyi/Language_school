@@ -5,7 +5,9 @@ const ProgressBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const totalHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
       const scrolledHeight = window.scrollY;
       const percentage = (scrolledHeight / totalHeight) * 100;
       setScrollPercentage(percentage);

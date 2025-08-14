@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/Logo.jpeg'; // 1. Використовуємо ваш логотип
+import Logo from '../../assets/Logo.jpeg'; // 1. Використовуємо ваш логотип
 
 const Footer = () => {
   return (
     <footer className="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 avoid-emoji">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <Link to="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+          <Link
+            to="/"
+            className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
             {/* --- ЗМІНЕНО ТУТ --- */}
             <img
               src={Logo}
@@ -39,7 +42,7 @@ const Footer = () => {
                 Про нас
               </Link>
             </li>
-            
+
             <li className="flex-1">
               <Link
                 to="/application"

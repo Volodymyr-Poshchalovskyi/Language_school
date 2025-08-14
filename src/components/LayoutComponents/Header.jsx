@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { NavLink, Link, useLocation } from 'react-router-dom' 
+import React, { useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import {
   Dialog,
   DialogPanel,
@@ -12,40 +12,58 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
-} from '@headlessui/react'
+} from '@headlessui/react';
 import {
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import Logo from '../assets/Logo.jpeg' 
+  UserIcon,
+  UserGroupIcon,
+  HomeIcon,
+  AcademicCapIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import Logo from '../../assets/Logo.jpeg';
 
+// Текст оновлено тут
 const products = [
-  { name: 'Персональні заняття', description: 'Підходить якщо готові багато говорити', href: '/single-form', icon: ChartPieIcon },
-  { name: 'Групові заняття', description: 'Підходить для більшої практики слухання', href: '/dual-form', icon: CursorArrowRaysIcon },
-]
+  {
+    name: 'Персональні заняття',
+    description: 'Підходить якщо готові багато говорити',
+    href: '/single-form',
+    icon: UserIcon,
+  },
+  {
+    name: 'Парні заняття',
+    description: 'Ідеально для навчання з другом чи партнером',
+    href: '/dual-form',
+    icon: UserGroupIcon,
+  },
+];
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
-  const location = useLocation()
-  const isLearningFormsActive = products.some(item => location.pathname.startsWith(item.href))
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const location = useLocation();
+  const isLearningFormsActive = products.some((item) =>
+    location.pathname.startsWith(item.href)
+  );
 
   const navLinkStyles = ({ isActive }) =>
     `text-sm font-semibold leading-6 transition-colors duration-200 ${
       isActive ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'
-    }`
+    }`;
 
   return (
     <header className="bg-white sticky top-0 z-40 shadow-sm">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+      <nav
+        aria-label="Global"
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+      >
         {/* Logo */}
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Besondres Deutch</span>
-            {/* --- ЗМІНЕНО ТУТ --- */}
             <img
               alt="Besondres Deutch Logo"
               src={Logo}
@@ -72,13 +90,20 @@ export default function Header() {
             Головна
           </NavLink>
           <Popover className="relative">
-            <PopoverButton className={`flex items-center gap-x-1 text-sm font-semibold leading-6 transition-colors duration-200 ${
-              isLearningFormsActive ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'
-            }`}>
+            <PopoverButton
+              className={`flex items-center gap-x-1 text-sm font-semibold leading-6 transition-colors duration-200 ${
+                isLearningFormsActive
+                  ? 'text-blue-600'
+                  : 'text-gray-900 hover:text-blue-600'
+              }`}
+            >
               Форми навчання
-              <ChevronDownIcon aria-hidden="true" className="w-5 h-5 flex-none text-gray-400" />
+              <ChevronDownIcon
+                aria-hidden="true"
+                className="w-5 h-5 flex-none text-gray-400"
+              />
             </PopoverButton>
-            
+
             <PopoverPanel
               transition
               className="absolute left-1/2 z-10 mt-5 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
@@ -90,10 +115,16 @@ export default function Header() {
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                   >
                     <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <item.icon aria-hidden="true" className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
+                      <item.icon
+                        aria-hidden="true"
+                        className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                      />
                     </div>
                     <div className="flex-auto">
-                      <Link to={item.href} className="block font-semibold text-gray-900">
+                      <Link
+                        to={item.href}
+                        className="block font-semibold text-gray-900"
+                      >
                         {item.name}
                         <span className="absolute inset-0" />
                       </Link>
@@ -131,13 +162,16 @@ export default function Header() {
       </nav>
 
       {/* Mobile dialog menu */}
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+        className="lg:hidden"
+      >
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Besondres Deutch</span>
-              {/* --- ЗМІНЕНО ТУТ --- */}
               <img
                 alt="Besondres Deutch Logo"
                 src={Logo}
@@ -159,27 +193,43 @@ export default function Header() {
               <div className="space-y-2 py-6">
                 <NavLink
                   to="/"
-                  className={({ isActive }) => `-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${isActive ? 'bg-gray-100 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`}
+                  className={({ isActive }) =>
+                    `-mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 ${isActive ? 'bg-gray-100 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`
+                  }
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <HomeIcon className="h-6 w-6 flex-none" />
                   Головна
                 </NavLink>
 
                 <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className={`group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 ${
-                    isLearningFormsActive ? 'bg-gray-100 text-blue-600' : 'text-gray-900 hover:bg-gray-50'
-                  }`}>
-                    Форми навчання
-                    <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none group-data-[open]:rotate-180" />
+                  <DisclosureButton
+                    className={`group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 ${
+                      isLearningFormsActive
+                        ? 'bg-gray-100 text-blue-600'
+                        : 'text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className="flex items-center gap-x-3">
+                      <AcademicCapIcon className="h-6 w-6 flex-none" />
+                      Форми навчання
+                    </span>
+                    <ChevronDownIcon
+                      aria-hidden="true"
+                      className="h-5 w-5 flex-none group-data-[open]:rotate-180"
+                    />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
                     {products.map((item) => (
                       <NavLink
                         key={item.name}
                         to={item.href}
-                        className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                        className={({ isActive }) =>
+                          `flex items-center gap-x-3 rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 ${isActive ? 'bg-gray-50' : 'text-gray-900'} hover:bg-gray-50`
+                        }
                         onClick={() => setMobileMenuOpen(false)}
                       >
+                        <item.icon className="h-5 w-5 flex-none text-gray-400" />
                         {item.name}
                       </NavLink>
                     ))}
@@ -188,9 +238,12 @@ export default function Header() {
 
                 <NavLink
                   to="/about"
-                  className={({ isActive }) => `-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${isActive ? 'bg-gray-100 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`}
+                  className={({ isActive }) =>
+                    `-mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 ${isActive ? 'bg-gray-100 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`
+                  }
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <InformationCircleIcon className="h-6 w-6 flex-none" />
                   Про нас
                 </NavLink>
               </div>
@@ -202,7 +255,7 @@ export default function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white text-center bg-blue-600 hover:bg-blue-700 transition"
                 >
-                    Подати Заявку
+                  Подати Заявку
                 </Link>
                 <a
                   href="https://t.me/ashveme"
@@ -219,5 +272,5 @@ export default function Header() {
         </DialogPanel>
       </Dialog>
     </header>
-  )
+  );
 }

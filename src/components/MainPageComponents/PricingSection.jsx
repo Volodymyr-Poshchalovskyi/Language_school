@@ -1,42 +1,8 @@
-import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom'; // 1. Додано імпорт Link
-
-const tiers = [
-  {
-    name: 'Базовий',
-    id: 'tier-basic',
-    href: '/application?tier=basic', // Змінено для передачі параметрів
-    priceMonthly: '1500₴',
-    description: "Ідеальний план для тих, хто тільки починає свій шлях у вивченні німецької.",
-    features: ['10 уроків на місяць', 'Доступ до базових матеріалів', 'Підтримка спільноти'],
-    featured: false,
-  },
-  {
-    name: 'Стандартний',
-    id: 'tier-standard',
-    href: '/application?tier=standard', // Змінено для передачі параметрів
-    priceMonthly: '2500₴',
-    description: 'Оптимальний вибір для впевненого прогресу та глибоких знань.',
-    features: ['20 уроків на місяць', 'Доступ до всіх матеріалів', 'Індивідуальні консультації', 'Доступ до закритих вебінарів'],
-    featured: true,
-  },
-  {
-    name: 'Преміум',
-    id: 'tier-premium',
-    href: '/application?tier=premium', // Змінено для передачі параметрів
-    description: 'Максимальний рівень підтримки та індивідуальний підхід для швидкого зростання.',
-    features: [
-      'Необмежена кількість уроків',
-      'Особистий куратор',
-      'Індивідуальна програма',
-      'Пріоритетна підтримка 24/7',
-      'Підготовка до іспитів',
-    ],
-    featured: false,
-  },
-];
+import { Link } from 'react-router-dom';
+// 1. Імпортуємо дані з окремого файлу
+import { tiers } from '../../data/pricingData';
 
 const PricingSection = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -51,10 +17,11 @@ const PricingSection = () => {
           Знайди тариф, який ідеально підійде для твоїх цілей та темпу навчання.
         </p>
 
-        <div 
-          ref={ref} 
+        <div
+          ref={ref}
           className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-8"
         >
+          {/* 2. Використовуємо імпортований масив 'tiers' */}
           {tiers.map((tier, index) => (
             <div
               key={tier.id}
@@ -78,12 +45,18 @@ const PricingSection = () => {
                   <span className="text-4xl font-semibold tracking-tight text-gray-900">
                     {tier.priceMonthly}
                   </span>
-                  <span className="text-lg text-gray-500">/місяць</span>
+                  {/* Додаємо перевірку, щоб не показувати "/місяць" для договірної ціни */}
+                  {tier.priceMonthly !== 'Договірна' && (
+                    <span className="text-lg text-gray-500">/місяць</span>
+                  )}
                 </p>
                 <p className="mt-6 text-base text-gray-600">
                   {tier.description}
                 </p>
-                <ul role="list" className="mt-8 space-y-3 text-sm text-gray-600">
+                <ul
+                  role="list"
+                  className="mt-8 space-y-3 text-sm text-gray-600"
+                >
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex gap-x-3 items-center">
                       <FaCheckCircle className="h-5 w-5 flex-none text-green-500" />
@@ -92,7 +65,6 @@ const PricingSection = () => {
                   ))}
                 </ul>
               </div>
-              {/* 2. Замінено <a> на <Link> */}
               <Link
                 to={tier.href}
                 aria-describedby={tier.id}

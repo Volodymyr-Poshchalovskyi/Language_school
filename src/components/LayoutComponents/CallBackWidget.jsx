@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { supabase } from '../supabaseClient'; // Переконайтесь, що цей шлях до файлу правильний
+import { supabase } from '../../supabaseClient'; // Переконайтесь, що цей шлях до файлу правильний
 
 // === Внутрішній компонент модального вікна ===
 function Modal({ isOpen, onClose, children }) {
@@ -19,8 +19,18 @@ function Modal({ isOpen, onClose, children }) {
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors"
           aria-label="Закрити"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
         {children}
@@ -119,7 +129,10 @@ function CallBackWidget() {
       <style>{animationStyles}</style>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-md animate-fade-in" onClick={handleCloseModal} />
+        <div
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-md animate-fade-in"
+          onClick={handleCloseModal}
+        />
       )}
 
       <button
@@ -137,18 +150,34 @@ function CallBackWidget() {
         {isSubmitted ? (
           <div className="text-center">
             <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-              <svg className="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              <svg
+                className="h-10 w-10 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">Дякуємо!</h3>
-            <p className="text-gray-600">Ми отримали ваш запит і скоро зателефонуємо.</p>
+            <p className="text-gray-600">
+              Ми отримали ваш запит і скоро зателефонуємо.
+            </p>
           </div>
         ) : (
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Замовте дзвінок</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Замовте дзвінок
+            </h3>
             <form onSubmit={handleSubmit}>
-              <label htmlFor="callbackPhone" className="sr-only">Номер телефону</label>
+              <label htmlFor="callbackPhone" className="sr-only">
+                Номер телефону
+              </label>
               <input
                 id="callbackPhone"
                 type="tel"

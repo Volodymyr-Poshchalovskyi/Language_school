@@ -15,16 +15,18 @@ const StatisticsSection = () => {
 
         {/* Контейнер для карток зі статистикою */}
         <div className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-8">
-
           {/* Картка 1: Студенти */}
           <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
             <div className="flex justify-center mb-4">
               <FaUserGraduate className="text-orange-500 text-5xl" />
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-2">450+</h3>
-            <p className="text-xl font-semibold text-gray-700 mb-4">Студентів</p>
+            <p className="text-xl font-semibold text-gray-700 mb-4">
+              Студентів
+            </p>
             <p className="text-gray-600">
-              Всього за півроку роботи нашої школи, багато студентів уже досягли значних успіхів.
+              Всього за півроку роботи нашої школи, багато студентів уже досягли
+              значних успіхів.
             </p>
           </div>
 
@@ -34,9 +36,12 @@ const StatisticsSection = () => {
               <FaClipboardList className="text-orange-500 text-5xl" />
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-2">5200+</h3>
-            <p className="text-xl font-semibold text-gray-700 mb-4">Уроків на місяць</p>
+            <p className="text-xl font-semibold text-gray-700 mb-4">
+              Уроків на місяць
+            </p>
             <p className="text-gray-600">
-              Не втрачай свій шанс і приєднуйся до тих, хто вже навчається прямо зараз.
+              Не втрачай свій шанс і приєднуйся до тих, хто вже навчається прямо
+              зараз.
             </p>
           </div>
 
@@ -46,12 +51,14 @@ const StatisticsSection = () => {
               <FaHandshake className="text-orange-500 text-5xl" />
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-2">16+</h3>
-            <p className="text-xl font-semibold text-gray-700 mb-4">Партнерів</p>
+            <p className="text-xl font-semibold text-gray-700 mb-4">
+              Партнерів
+            </p>
             <p className="text-gray-600">
-              Це провідні компанії, з якими ми тісно співпрацюємо, пропонуючи нашим студентам нові послуги.
+              Це провідні компанії, з якими ми тісно співпрацюємо, пропонуючи
+              нашим студентам нові послуги.
             </p>
           </div>
-
         </div>
       </div>
     </section>

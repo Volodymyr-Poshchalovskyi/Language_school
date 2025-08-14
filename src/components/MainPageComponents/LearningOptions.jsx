@@ -4,8 +4,14 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom'; // 1. Додано імпорт Link
 
 const LearningOptions = () => {
-  const [refPersonal, inViewPersonal] = useInView({ threshold: 0.3, triggerOnce: true });
-  const [refPaired, inViewPaired] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [refPersonal, inViewPersonal] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+  const [refPaired, inViewPaired] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
 
   return (
     <section className="bg-white py-20 px-6">
@@ -15,7 +21,6 @@ const LearningOptions = () => {
         </h2>
 
         <div className="avoid-emoji grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center overflow-hidden">
-
           {/* Індивідуальні заняття */}
           <div
             ref={refPersonal}
@@ -32,7 +37,9 @@ const LearningOptions = () => {
               Індивідуальні заняття
             </h3>
             <p className="text-lg text-gray-600 mb-6">
-              Фокус тільки на тобі. Наш викладач повністю адаптує програму під твої потреби та темп навчання, забезпечуючи максимальну ефективність.
+              Фокус тільки на тобі. Наш викладач повністю адаптує програму під
+              твої потреби та темп навчання, забезпечуючи максимальну
+              ефективність.
             </p>
             {/* 2. Замінено <a> на <Link> */}
             <Link
@@ -59,7 +66,9 @@ const LearningOptions = () => {
               Парні заняття
             </h3>
             <p className="text-lg text-gray-600 mb-6">
-              Навчайтеся разом із другом або колегою! Це чудова можливість обмінюватися ідеями та підтримувати один одного, роблячи процес більш інтерактивним.
+              Навчайтеся разом із другом або колегою! Це чудова можливість
+              обмінюватися ідеями та підтримувати один одного, роблячи процес
+              більш інтерактивним.
             </p>
             {/* 3. Замінено <a> на <Link> */}
             <Link
@@ -69,7 +78,6 @@ const LearningOptions = () => {
               Дізнатися більше
             </Link>
           </div>
-
         </div>
       </div>
     </section>
