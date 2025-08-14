@@ -1,4 +1,5 @@
 //* The Footer component, providing a consistent navigation and branding element at the bottom of every page.
+// * This version is updated to have a distinct top border in dark mode.
 
 import React from 'react';
 // * 'Link' from 'react-router-dom' is used for client-side routing.
@@ -8,9 +9,9 @@ import Logo from '../../assets/Logo.jpeg';
 
 const Footer = () => {
   return (
-    // ? The 'avoid-emoji' class ensures the EmojiFall animation does not render on this component.
-    <footer className="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 avoid-emoji">
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+    // ! Added `border-t` for the top border and specified different colors for light and dark modes.
+    <footer className="bg-white dark:bg-gray-900 p-6 avoid-emoji transition-colors duration-300 border-t border-gray-200 dark:border-gray-700">
+      <div className="w-full max-w-screen-xl mx-auto md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           {/* * Brand logo and name, linked to the homepage. */}
           <Link

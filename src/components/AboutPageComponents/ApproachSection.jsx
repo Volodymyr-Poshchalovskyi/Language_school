@@ -13,9 +13,11 @@ const ApproachSection = () => {
     >
       <div className="avoid-emoji md:w-1/2 text-left">
         {/* ! Section title */}
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">Наш підхід</h2>
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          Наш підхід
+        </h2>
         {/* ? Section description */}
-        <p className="text-lg text-gray-600 mb-6">
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
           Ми створюємо унікальні програми навчання, які поєднують теорію з
           практикою, використовуючи сучасні технології. Наші студенти не просто
           отримують знання, а вчаться застосовувати їх у реальному житті.
@@ -23,7 +25,7 @@ const ApproachSection = () => {
         {/* * Link to view programs */}
         <a
           href="#"
-          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
+          className="inline-block bg-blue-600 dark:bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-500 transition"
         >
           Переглянути програми
         </a>
@@ -33,7 +35,7 @@ const ApproachSection = () => {
         <img
           src={Image4}
           alt="Студенти працюють"
-          className={`w-full h-auto rounded-3xl shadow-lg transform rotate-2 transition duration-700 hover:scale-105 hover:rotate-0 ${
+          className={`w-full h-auto rounded-3xl shadow-lg dark:shadow-none transform rotate-2 transition duration-700 hover:scale-105 hover:rotate-0 dark:brightness-90 ${
             inView ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
           }`}
         />

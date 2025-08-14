@@ -46,7 +46,7 @@ function Modal({ isOpen, onClose, children }) {
       {/* ! Prevents modal from closing when clicking inside the content area. */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full animate-scale-in"
+        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-2xl shadow-2xl p-8 max-w-sm w-full animate-scale-in"
       >
         {children}
       </div>
@@ -189,16 +189,16 @@ function ApplicationPage() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center p-4 relative overflow-hidden transition-colors">
       <PageStyles />
 
       {/* --- Main Form Wrapper --- */}
-      <div className="avoid-emoji w-full max-w-lg bg-white p-8 rounded-xl shadow-lg z-10">
+      <div className="avoid-emoji w-full max-w-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-8 rounded-xl shadow-lg dark:shadow-none z-10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
             Заявка на пробний урок
           </h1>
-          <p className="text-gray-500 mt-2">
+          <p className="text-gray-500 dark:text-gray-300 mt-2">
             Заповніть форму, і наш менеджер зв'яжеться з вами.
           </p>
         </div>
@@ -210,7 +210,7 @@ function ApplicationPage() {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
                 >
                   Ім'я*
                 </label>
@@ -221,7 +221,11 @@ function ApplicationPage() {
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="Анна"
-                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.firstName ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                    errors.firstName
+                      ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                      : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                  } dark:bg-gray-700 dark:text-gray-100`}
                 />
                 {errors.firstName && (
                   <p className="text-red-500 text-xs mt-1">
@@ -232,7 +236,7 @@ function ApplicationPage() {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
                 >
                   Прізвище*
                 </label>
@@ -243,7 +247,11 @@ function ApplicationPage() {
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="Коваленко"
-                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.lastName ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                    errors.lastName
+                      ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                      : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                  } dark:bg-gray-700 dark:text-gray-100`}
                 />
                 {errors.lastName && (
                   <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
@@ -256,7 +264,7 @@ function ApplicationPage() {
               <div>
                 <label
                   htmlFor="birthYear"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
                 >
                   Рік народження*
                 </label>
@@ -267,7 +275,11 @@ function ApplicationPage() {
                   value={formData.birthYear}
                   onChange={handleChange}
                   placeholder="1999"
-                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.birthYear ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                    errors.birthYear
+                      ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                      : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                  } dark:bg-gray-700 dark:text-gray-100`}
                 />
                 {errors.birthYear && (
                   <p className="text-red-500 text-xs mt-1">
@@ -278,7 +290,7 @@ function ApplicationPage() {
               <div>
                 <label
                   htmlFor="germanLevel"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
                 >
                   Рівень німецької*
                 </label>
@@ -287,7 +299,11 @@ function ApplicationPage() {
                   name="germanLevel"
                   value={formData.germanLevel}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.germanLevel ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                  className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                    errors.germanLevel
+                      ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                      : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                  } dark:bg-gray-700 dark:text-gray-100`}
                 >
                   <option value="" disabled>
                     Оберіть ваш рівень...
@@ -310,7 +326,7 @@ function ApplicationPage() {
 
             {/* * Contact fields (Email and Phone) with shared validation logic. */}
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Вкажіть принаймні один спосіб для зв'язку*
               </p>
               <div className="space-y-4">
@@ -325,7 +341,11 @@ function ApplicationPage() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Електронна пошта"
-                    className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                    className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                      errors.email
+                        ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                        : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                    } dark:bg-gray-700 dark:text-gray-100`}
                   />
                   {errors.email && errors.email !== ' ' && (
                     <p className="text-red-500 text-xs mt-1">{errors.email}</p>
@@ -342,7 +362,11 @@ function ApplicationPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Номер телефону"
-                    className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.phone ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                    className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                      errors.phone
+                        ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                        : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                    } dark:bg-gray-700 dark:text-gray-100`}
                   />
                   {errors.phone && errors.phone !== ' ' && (
                     <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
@@ -355,7 +379,7 @@ function ApplicationPage() {
             <div>
               <label
                 htmlFor="lessonFormat"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
               >
                 Форма навчання*
               </label>
@@ -364,7 +388,11 @@ function ApplicationPage() {
                 name="lessonFormat"
                 value={formData.lessonFormat}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${errors.lessonFormat ? 'border-red-500 ring-red-300' : 'border-gray-300 focus:ring-blue-500'}`}
+                className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all ${
+                  errors.lessonFormat
+                    ? 'border-red-500 ring-red-300 dark:ring-red-400'
+                    : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+                } dark:bg-gray-700 dark:text-gray-100`}
               >
                 <option value="" disabled>
                   Оберіть формат...
@@ -381,7 +409,7 @@ function ApplicationPage() {
             <div>
               <label
                 htmlFor="messenger"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
               >
                 Бажаний месенджер для зв'язку
               </label>
@@ -390,7 +418,7 @@ function ApplicationPage() {
                 name="messenger"
                 value={formData.messenger}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
               >
                 <option value="">Не обрано</option>
                 <option value="telegram">Telegram</option>
@@ -413,9 +441,9 @@ function ApplicationPage() {
       {/* --- Success Modal Component --- */}
       <Modal isOpen={isSuccessModalOpen} onClose={closeModalAndReset}>
         <div className="text-center">
-          <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+          <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-900/20 mb-4">
             <svg
-              className="h-10 w-10 text-green-600"
+              className="h-10 w-10 text-green-600 dark:text-green-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -428,16 +456,16 @@ function ApplicationPage() {
               />
             </svg>
           </div>
-          <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-2">
+          <h3 className="text-2xl leading-6 font-bold text-gray-900 dark:text-gray-100 mb-2">
             Чудово!
           </h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 dark:text-gray-300 mb-6">
             Вашу заявку успішно відправлено. Ми зв'яжемося з вами найближчим
             часом.
           </p>
           <button
             onClick={closeModalAndReset}
-            className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
+            className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-400 transition-colors"
           >
             Закрити
           </button>
@@ -446,7 +474,11 @@ function ApplicationPage() {
 
       {/* --- Error Toast Component --- */}
       <div
-        className={`fixed bottom-5 right-5 bg-red-600 text-white py-3 px-6 rounded-lg shadow-xl transition-all duration-300 z-50 ${isErrorToastVisible ? 'transform translate-y-0 opacity-100' : 'transform translate-y-10 opacity-0 pointer-events-none'}`}
+        className={`fixed bottom-5 right-5 bg-red-600 dark:bg-red-700 text-white py-3 px-6 rounded-lg shadow-xl transition-all duration-300 z-50 ${
+          isErrorToastVisible
+            ? 'transform translate-y-0 opacity-100'
+            : 'transform translate-y-10 opacity-0 pointer-events-none'
+        }`}
       >
         <p className="font-semibold">Будь ласка, заповніть обов'язкові поля!</p>
       </div>

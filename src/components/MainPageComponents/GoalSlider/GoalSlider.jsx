@@ -68,13 +68,13 @@ const GoalSlider = () => {
   const offset = current * (100 / slidesPerView);
 
   return (
-    <section className="bg-slate-50 py-16 md:py-24 font-sans">
+    <section className="bg-slate-50 dark:bg-slate-900 transition-colors py-16 md:py-24 font-sans">
       <div className="max-w-7xl mx-auto px-4">
         {/* * Section headings with `avoid-emoji` class. */}
-        <h2 className="avoid-emoji text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
+        <h2 className="avoid-emoji text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-2">
           Німецька мова для ваших цілей
         </h2>
-        <p className="avoid-emoji text-lg text-gray-600 text-center mb-12">
+        <p className="avoid-emoji text-lg text-gray-600 dark:text-gray-300 text-center mb-12">
           Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
         </p>
 
@@ -98,16 +98,16 @@ const GoalSlider = () => {
             </div>
           </div>
 
-          {/* * Navigation buttons for desktop screens. */}
+          {/* * Navigation buttons for desktop screens with dark mode variants. */}
           <button
-            className="hidden md:block absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition p-3 rounded-full shadow-md"
+            className="hidden md:block absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition p-3 rounded-full shadow-md dark:shadow-none"
             onClick={handlePrev}
             aria-label="Previous Slide"
           >
             <FaChevronLeft size={20} />
           </button>
           <button
-            className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition p-3 rounded-full shadow-md"
+            className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition p-3 rounded-full shadow-md dark:shadow-none"
             onClick={handleNext}
             aria-label="Next Slide"
           >
@@ -115,7 +115,7 @@ const GoalSlider = () => {
           </button>
         </div>
 
-        {/* * Slider navigation dots. */}
+        {/* * Slider navigation dots with dark mode variants. */}
         <div className="flex justify-center items-center mt-8 space-x-2">
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
             <button
@@ -124,7 +124,7 @@ const GoalSlider = () => {
               className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                 current === idx
                   ? 'bg-blue-600'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

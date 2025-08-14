@@ -12,8 +12,8 @@ import HistorySection from '../components/AboutPageComponents/HistorySection';
 const AboutPage = () => {
   // ! The component's main responsibility is to define the logical layout and order of sections.
   return (
-    // * Main section with responsive padding and centering.
-    <section className="bg-white py-20 px-6 overflow-hidden">
+    // * Main section with responsive padding and centering. Supports dark mode.
+    <section className="bg-white dark:bg-gray-900 transition-colors py-20 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <AboutHeader />
         <MissionSection />
