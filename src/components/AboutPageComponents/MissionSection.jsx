@@ -1,7 +1,9 @@
 import { useInView } from 'react-intersection-observer';
-import Image1 from '../../assets/image1.png'; 
+import Image1 from '../../assets/image1.png';
 
+// * MissionSection component displays the school's mission
 const MissionSection = () => {
+  // ? useInView hook for animation on scroll
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
 
   return (
@@ -10,6 +12,7 @@ const MissionSection = () => {
       className="flex flex-col md:flex-row items-center gap-12 mb-20"
     >
       <div className="avoid-emoji md:w-1/2">
+        {/* * Animated school photo */}
         <img
           src={Image1}
           alt="Фотографія школи"
@@ -19,7 +22,9 @@ const MissionSection = () => {
         />
       </div>
       <div className="avoid-emoji md:w-1/2 text-left">
+        {/* ! Section title */}
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Наша місія</h2>
+        {/* ? Section description */}
         <p className="text-lg text-gray-600">
           Ми віримо, що навчання має бути доступним, цікавим та ефективним для
           кожного. Наша мета — створити сприятливе середовище, де студенти

@@ -1,12 +1,16 @@
+//* A component for the support section, displaying contact information and social media links.
+//* It dynamically pulls data from a single source for easier maintenance.
+
 import React from 'react';
+// * Imports the phone icon from 'react-icons'.
 import { FaPhone } from 'react-icons/fa';
-// 1. Імпортуємо дані з єдиного джерела
+// ! Imports all social media and contact data from a centralized data file.
 import { socialMediaInfo } from '../../data/socialMediaData';
 
 const Support = () => {
   return (
     <section className="bg-gray-50 py-16 px-4">
-      {/* Заголовок компонента */}
+      {/* * Component title and subtitle. */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight avoid-emoji">
           Ми завжди на зв'язку
@@ -17,7 +21,8 @@ const Support = () => {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-        {/* Блок з номером телефону - ліва частина */}
+        {/* ! Left side: Phone number block.
+            Dynamic animations (`hover:rotate-1`) and data from `socialMediaInfo`. */}
         <div className="avoid-emoji md:w-1/2 bg-white rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:rotate-1 hover:-translate-y-2">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
             Зв'яжіться з нами
@@ -26,15 +31,16 @@ const Support = () => {
             Зателефонуйте нам для швидкої допомоги або консультації.
           </p>
           <a
-            href={`tel:${socialMediaInfo.contactPhone.number}`} // 2. Використовуємо дані
+            href={`tel:${socialMediaInfo.contactPhone.number}`}
             className="inline-flex items-center justify-center w-full md:w-auto text-blue-600 bg-blue-100 px-6 py-4 rounded-full text-xl font-bold transition duration-300 transform hover:bg-blue-200 hover:scale-105 hover:-translate-y-1"
           >
             <FaPhone className="mr-3 transition-transform duration-300 group-hover:rotate-6" />
-            {socialMediaInfo.contactPhone.display} {/* 2. Використовуємо дані */}
+            {socialMediaInfo.contactPhone.display}
           </a>
         </div>
 
-        {/* Блок з соцмережами - права частина */}
+        {/* ! Right side: Social media block.
+            Dynamic generation of social icons from `socialMediaInfo.platforms`. */}
         <div className="avoid-emoji md:w-1/2 bg-white rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-rotate-1 hover:-translate-y-2">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
             Наші соцмережі
@@ -43,7 +49,7 @@ const Support = () => {
             Підписуйтесь, щоб бути в курсі новин та оновлень.
           </p>
           <div className="flex justify-center md:justify-start gap-8">
-            {/* 3. Динамічно генеруємо іконки */}
+            {/* * Maps over the platforms array to render each social media icon. */}
             {socialMediaInfo.platforms.map((social) => (
               <a
                 key={social.name}

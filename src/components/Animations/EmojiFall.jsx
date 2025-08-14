@@ -1,13 +1,20 @@
+//* The EmojiFall component creates a falling emoji particle effect with GSAP.
+//* It's designed to be performant, responsive, and avoid overlapping key UI elements.
+
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
+// ! Caches final emoji positions in a global object to prevent re-calculation on page transitions.
 if (typeof window.emojiPositionCache === 'undefined') {
   window.emojiPositionCache = {};
 }
 
+// * A fixed set of emojis used for the animation.
 const EMOJI_OPTIONS = ['🔥', '👾', '🇩🇪', '📎', '💻', '📚', '⚡️', '🧨', '🧚🏻‍♀️'];
 
+// * Helper function to generate an emoji URL from a character.
+// ? This approach ensures consistent visual style across different browsers and devices.
 const getIosEmojiUrl = (emoji) => {
   if (emoji === '⚡️') {
     return `https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/26a1.png`;
@@ -20,6 +27,7 @@ const getIosEmojiUrl = (emoji) => {
   return `https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/${fileName}.png`;
 };
 
+// * Fisher-Yates shuffle algorithm to randomize emoji selection.
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -28,30 +36,34 @@ const shuffleArray = (array) => {
   return array;
 };
 
-// --- ЗМІНА 1: Додаємо константу для визначення мобільного пристрою ---
-const MOBILE_BREAKPOINT = 768; // Стандартна ширина для планшетів і менших екранів
+// ! Defines a mobile breakpoint to disable the animation on smaller screens.
+// ? This is a key performance optimization to prevent resource-heavy animations on mobile.
+const MOBILE_BREAKPOINT = 768;
 
 export const EmojiFall = ({ stopRef, pathname }) => {
   const container = useRef();
 
+  // * The primary GSAP animation hook. It runs when dependencies change.
   useGSAP(
     () => {
-      // --- ЗМІНА 2: Перевіряємо ширину екрана на самому початку ---
+      // ! The animation is explicitly disabled below the mobile breakpoint.
       if (window.innerWidth < MOBILE_BREAKPOINT) {
-        // Якщо екран менший за наш поріг, нічого не робимо і виходимо.
-        // Анімація не запуститься.
         return;
       }
-      // --- Кінець зміни ---
 
+      // * The main animation logic, encapsulated in a function to handle window 'load' event.
       const runMainLogic = () => {
+        // ? Ensures the target element (`stopRef`) exists before proceeding.
         if (!stopRef.current) return;
 
+        // * Clears the container and kills any existing GSAP tweens on its children.
         if (container.current) {
           container.current.innerHTML = '';
         }
         gsap.killTweensOf(container.current.children);
 
+        // * Checks if emoji positions are already cached for the current pathname.
+        // ! If cached, it skips the expensive calculation and just renders the emojis.
         if (window.emojiPositionCache[pathname]) {
           const finalPositions = window.emojiPositionCache[pathname];
           finalPositions.forEach((data, i) => {
@@ -71,8 +83,11 @@ export const EmojiFall = ({ stopRef, pathname }) => {
           return;
         }
 
+        // * If not cached, initializes the cache for the current path.
         window.emojiPositionCache[pathname] = [];
 
+        // ! Defines the "forbidden zones" where emojis should not land.
+        // * This prevents emojis from obscuring important UI elements like forms.
         const target = stopRef.current;
         const viewportWidth = window.innerWidth;
         const emojiSize = 40;
@@ -80,6 +95,7 @@ export const EmojiFall = ({ stopRef, pathname }) => {
         const footer = document.querySelector('footer');
         const allForbiddenNodes = document.querySelectorAll('.avoid-emoji');
 
+        // * Calculates the bounding box for all forbidden elements.
         const allForbiddenZones = Array.from(allForbiddenNodes).map((el) => {
           const rect = el.getBoundingClientRect();
           return {
@@ -90,6 +106,7 @@ export const EmojiFall = ({ stopRef, pathname }) => {
           };
         });
 
+        // * Determines the valid vertical range for emojis to land in.
         const landingAreaYStart = target.offsetTop;
         const landingAreaYEnd = footer
           ? footer.offsetTop - padding - emojiSize
@@ -98,6 +115,8 @@ export const EmojiFall = ({ stopRef, pathname }) => {
 
         if (landingAreaHeight <= 0) return;
 
+        // * Generates random, non-overlapping positions for emojis.
+        // ? This is an iterative process to ensure emojis don't crowd together.
         const minDistance = 400;
         const minDistanceSq = minDistance * minDistance;
         const finalPositions = [];
@@ -132,10 +151,12 @@ export const EmojiFall = ({ stopRef, pathname }) => {
           }
         }
 
+        // ! Caches the newly calculated positions.
         window.emojiPositionCache[pathname] = finalPositions;
 
         const emojiDataToAnimate = shuffleArray(finalPositions);
 
+        // * Creates and animates each emoji.
         emojiDataToAnimate.forEach((pos, i) => {
           const emojiEl = document.createElement('img');
           emojiEl.className = 'emoji';
@@ -145,26 +166,29 @@ export const EmojiFall = ({ stopRef, pathname }) => {
 
           container.current.appendChild(emojiEl);
 
+          // * Initial GSAP state: emojis start off-screen at the top.
           gsap.set(emojiEl, {
             x: Math.random() * viewportWidth,
             y: -150,
             opacity: 1,
           });
 
+          // * Defines the animation timeline for each emoji.
           const tl = gsap.timeline();
+          // ? Phase 1: Initial fall with a random delay.
           tl.to(emojiEl, {
             y: target.offsetHeight * Math.random() * 0.5 + 50,
             duration: 1.5,
             ease: 'power1.out',
             delay: Math.random() * 1.5,
+          // ? Phase 2: A slight wobble animation.
           }).to(emojiEl, {
             rotation: Math.random() > 0.5 ? -10 : 10,
             yoyo: true,
             repeat: 1,
             duration: 0.8,
-          });
-
-          tl.to(emojiEl, {
+          // ! Phase 3: Final movement to the calculated position.
+          }).to(emojiEl, {
             x: pos.x,
             y: pos.y,
             rotation: 0,
@@ -175,16 +199,20 @@ export const EmojiFall = ({ stopRef, pathname }) => {
         });
       };
 
+      // * Ensures the animation runs only after the entire page has loaded.
+      // ? This is crucial to get accurate DOM element positions (e.g., footer).
       if (document.readyState === 'complete') {
         runMainLogic();
       } else {
         window.addEventListener('load', runMainLogic, { once: true });
       }
 
+      // * Cleanup function to remove the event listener on unmount.
       return () => {
         window.removeEventListener('load', runMainLogic);
       };
     },
+    // ! Dependency array. The effect re-runs when the path or the target reference changes.
     { dependencies: [pathname, stopRef], scope: container }
   );
 

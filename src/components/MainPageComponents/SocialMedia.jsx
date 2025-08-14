@@ -1,16 +1,24 @@
+//* A component that displays social media links and embedded posts.
+//* It's structured to be highly modular, with data driving the content of each social card.
+
 import React, { useEffect, useRef } from 'react';
-// 1. Виправлено імпорт: тепер socialMediaInfo
+// ! Imports data from a centralized file.
 import { socialMediaInfo } from '../../data/socialMediaData';
 
-// Окремий компонент для однієї картки, щоб зробити код ще чистішим
+// === Internal Component: SocialCard ===
+// * A reusable component for a single social media card.
+// * It dynamically renders content based on the 'type' prop (image or embed).
 const SocialCard = ({ name, url, embedUrl, image, alt, buttonText, buttonColor, buttonHoverColor, type, embedPost }) => {
+  // ? A ref is used to target the container for the embedded content.
   const embedContainerRef = useRef(null);
 
+  // ! useEffect hook to handle the logic for embedding external scripts.
   useEffect(() => {
-    // Логіка для вбудованих постів Instagram та Telegram
+    // * Checks if the card type is 'embed' and if a container ref exists.
     if (type === 'embed' && embedContainerRef.current) {
       if (name === 'Instagram') {
-        // Затримка для Instagram, щоб уникнути конфліктів
+        // * Asynchronously loads the Instagram embed script.
+        // ? A timeout is used to allow the DOM to render the blockquote first.
         setTimeout(() => {
           if (window.instgrm) {
             window.instgrm.Embeds.process();
@@ -22,21 +30,25 @@ const SocialCard = ({ name, url, embedUrl, image, alt, buttonText, buttonColor, 
           }
         }, 100);
       } else if (name === 'Telegram' && embedPost) {
+        // * Dynamically creates and appends the Telegram embed script.
         const telegramScript = document.createElement('script');
         telegramScript.async = true;
         telegramScript.src = 'https://telegram.org/js/telegram-widget.js?22';
         telegramScript.setAttribute('data-telegram-post', embedPost);
         telegramScript.setAttribute('data-width', '100%');
+        // ! Clears existing content before appending to avoid duplication.
         embedContainerRef.current.innerHTML = '';
         embedContainerRef.current.appendChild(telegramScript);
       }
     }
-  }, [type, name, embedPost, embedUrl]);
+  }, [type, name, embedPost, embedUrl]); // * The effect reruns when these props change.
 
+  // * A helper function to conditionally render content based on the `type`.
   const renderContent = () => {
     switch (type) {
       case 'embed':
         if (name === 'Instagram') {
+          // * Renders the Instagram blockquote for the embed script to process.
           return (
             <div ref={embedContainerRef} className="w-full h-full flex items-center justify-center">
                 <blockquote
@@ -48,8 +60,10 @@ const SocialCard = ({ name, url, embedUrl, image, alt, buttonText, buttonColor, 
             </div>
           );
         }
+        // * Container for other embeds like Telegram.
         return <div ref={embedContainerRef} className="w-full h-full flex items-center justify-center" />;
       case 'image':
+        // * Renders a simple image for platforms without embeds.
         return <img src={image} alt={alt} className="w-full h-full object-cover" />;
       default:
         return null;
@@ -75,6 +89,8 @@ const SocialCard = ({ name, url, embedUrl, image, alt, buttonText, buttonColor, 
   );
 };
 
+// === Main Component: SocialMedia ===
+// * A container that maps over social media data to render `SocialCard` components.
 const SocialMedia = () => {
   return (
     <section className="bg-gray-50 py-16 px-4">
@@ -83,8 +99,9 @@ const SocialMedia = () => {
           Ми в соціальних мережах
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          {/* 2. Виправлено змінну: тепер socialMediaInfo.platforms */}
+          {/* ! Dynamically renders each social card using the `socialMediaInfo` data. */}
           {socialMediaInfo.platforms.map((social) => (
+            // * Spreads the properties of each social object as props to the SocialCard.
             <SocialCard key={social.name} {...social} />
           ))}
         </div>

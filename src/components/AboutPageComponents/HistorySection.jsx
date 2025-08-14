@@ -1,7 +1,9 @@
 import { useInView } from 'react-intersection-observer';
-import Image5 from '../../assets/image1.png'; 
+import Image5 from '../../assets/image1.png';
 
+// * HistorySection component displays the school's history
 const HistorySection = () => {
+  // ? useInView hook for animation on scroll
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
 
   return (
@@ -10,6 +12,7 @@ const HistorySection = () => {
       className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
     >
       <div className="avoid-emoji relative md:h-[400px]">
+        {/* * Animated school history illustration */}
         <img
           src={Image5}
           alt="Ілюстрація історії"
@@ -19,7 +22,9 @@ const HistorySection = () => {
         />
       </div>
       <div className="avoid-emoji text-left">
+        {/* ! Section title */}
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Історія школи</h2>
+        {/* ? Section description */}
         <p className="text-lg text-gray-600">
           Наша школа була заснована у 2010 році з простою ідеєю: зробити освіту
           якісною та доступною. З того часу ми виросли, розширили нашу команду

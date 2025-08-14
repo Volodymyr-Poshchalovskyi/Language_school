@@ -1,11 +1,15 @@
-import React from 'react';
+//* A static component that displays key statistics about the school.
+//* It serves a purely presentational role and does not manage any state or logic.
+
+
+// * Imports icons from `react-icons` to visually represent each statistic.
 import { FaUserGraduate, FaClipboardList, FaHandshake } from 'react-icons/fa';
 
 const StatisticsSection = () => {
   return (
     <section className="bg-gray-100 py-20 px-6">
       <div className="max-w-7xl mx-auto text-center">
-        {/* Заголовок компонента */}
+        {/* * The main heading and a subheading for the section. */}
         <h2 className="avoid-emoji text-4xl font-bold text-gray-900 mb-12">
           Що кажуть цифри?
           <div className="mt-4 inline-block bg-white text-gray-900 px-6 py-2 rounded-lg shadow-md">
@@ -13,9 +17,9 @@ const StatisticsSection = () => {
           </div>
         </h2>
 
-        {/* Контейнер для карток зі статистикою */}
+        {/* ! Container for the statistics cards, arranged in a responsive grid. */}
         <div className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Картка 1: Студенти */}
+          {/* * Card 1: Students. */}
           <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
             <div className="flex justify-center mb-4">
               <FaUserGraduate className="text-orange-500 text-5xl" />
@@ -30,7 +34,7 @@ const StatisticsSection = () => {
             </p>
           </div>
 
-          {/* Картка 2: Уроки */}
+          {/* * Card 2: Lessons. */}
           <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
             <div className="flex justify-center mb-4">
               <FaClipboardList className="text-orange-500 text-5xl" />
@@ -45,7 +49,7 @@ const StatisticsSection = () => {
             </p>
           </div>
 
-          {/* Картка 3: Партнери */}
+          {/* * Card 3: Partners. */}
           <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
             <div className="flex justify-center mb-4">
               <FaHandshake className="text-orange-500 text-5xl" />

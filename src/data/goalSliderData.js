@@ -1,5 +1,3 @@
-// src/data/goalSliderData.js
-import React from 'react';
 import {
   FaHome,
   FaBriefcase,
@@ -7,7 +5,7 @@ import {
   FaGraduationCap,
 } from 'react-icons/fa';
 
-// Дані для слайдів
+
 export const slides = [
   {
     icon: <FaHome size={32} />,
@@ -51,7 +49,7 @@ export const slides = [
   },
 ];
 
-// Об'єкт з кольорами для Tailwind CSS
+
 export const colorVariants = {
   blue: {
     bg: 'bg-blue-100',

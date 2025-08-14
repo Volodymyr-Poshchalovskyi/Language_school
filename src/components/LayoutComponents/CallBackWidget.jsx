@@ -1,60 +1,53 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { supabase } from '../../supabaseClient'; // Переконайтесь, що цей шлях до файлу правильний
+//* A widget component that provides a call-back functionality.
+//* It includes a floating button, a modal form, and handles data submission to Supabase.
 
-// === Внутрішній компонент модального вікна ===
+import React, { useState, useEffect, useRef } from 'react';
+// ! Imports the Supabase client for database interaction.
+import { supabase } from '../../supabaseClient';
+
+// === Internal Modal Component ===
+// * A self-contained, reusable modal for displaying UI elements.
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
+    // * Handles closing the modal when clicking on the backdrop.
     <div
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in"
     >
+      {/* ! Prevents the modal from closing when the content is clicked. */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full animate-scale-in"
       >
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors"
-          aria-label="Закрити"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
         {children}
       </div>
     </div>
   );
 }
 
-// === Основний компонент ===
+// === Main Component ===
 function CallBackWidget() {
+  // * State for UI visibility and form data.
   const [isButtonVisible, setButtonVisible] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  // ? A ref is used to get a direct reference to the button for the shake animation.
   const buttonRef = useRef(null);
 
+  // * Effect to make the button visible after an initial delay.
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonVisible(true);
     }, 2000);
+    // ! Cleanup function to prevent memory leaks if the component unmounts.
     return () => clearTimeout(timer);
   }, []);
 
+  // * Effect to trigger a "shake" animation on the button at regular intervals.
   useEffect(() => {
     if (!isButtonVisible) return;
     const intervalId = setInterval(() => {
@@ -66,9 +59,11 @@ function CallBackWidget() {
         }, 820);
       }
     }, 5000);
+    // ! Cleanup function for the interval.
     return () => clearInterval(intervalId);
   }, [isButtonVisible]);
 
+  // * Handlers for modal state and form submission.
   const handleOpenModal = () => {
     setModalOpen(true);
     setSubmitted(false);
@@ -80,6 +75,7 @@ function CallBackWidget() {
     setModalOpen(false);
   };
 
+  // ! Asynchronous function to handle form validation and Supabase submission.
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (phoneNumber.replace(/\D/g, '').length < 5) {
@@ -87,27 +83,21 @@ function CallBackWidget() {
       return;
     }
 
-    console.log('1. Починаю відправку...');
-
     const { data, error: supabaseError } = await supabase
-      .from('CallBacks') // Правильна назва таблиці
+      .from('CallBacks')
       .insert([{ phone: phoneNumber }])
       .select();
 
-    console.log('2. Відправка завершена.');
-    console.log('   - Повернуті дані (data):', data);
-    console.log('   - Повернута помилка (error):', supabaseError);
-
     if (supabaseError) {
-      console.error('ПОМИЛКА SUPABASE:', supabaseError);
+      console.error('SUPABASE ERROR:', supabaseError);
       alert('На жаль, сталася помилка. Спробуйте ще раз.');
     } else {
-      console.log('3. Успіх! Показую модальне вікно.');
       setError('');
       setSubmitted(true);
     }
   };
 
+  // * Injects CSS animations directly into the component's scope.
   const animationStyles = `
     @keyframes scale-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     .animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
@@ -128,6 +118,7 @@ function CallBackWidget() {
     <>
       <style>{animationStyles}</style>
 
+      {/* * The modal backdrop, conditionally rendered to blur the background. */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/20 backdrop-blur-md animate-fade-in"
@@ -135,6 +126,7 @@ function CallBackWidget() {
         />
       )}
 
+      {/* * The floating call-back button with animated visibility and shake effect. */}
       <button
         ref={buttonRef}
         onClick={handleOpenModal}
@@ -146,8 +138,10 @@ function CallBackWidget() {
         </svg>
       </button>
 
+      {/* ! The modal component, which displays either the form or the success message. */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {isSubmitted ? (
+          // * Success message component.
           <div className="text-center">
             <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
               <svg
@@ -170,6 +164,7 @@ function CallBackWidget() {
             </p>
           </div>
         ) : (
+          // * Form for entering a phone number.
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Замовте дзвінок

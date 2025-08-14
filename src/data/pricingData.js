@@ -31,7 +31,7 @@ export const tiers = [
     name: 'Преміум',
     id: 'tier-premium',
     href: '/application?tier=premium',
-    priceMonthly: 'Договірна', // Змінено для прикладу
+    priceMonthly: 'Договірна',
     description:
       'Максимальний рівень підтримки та індивідуальний підхід для швидкого зростання.',
     features: [

@@ -1,9 +1,17 @@
+//* A component that presents two learning options with a fade-in-on-scroll animation.
+//* It uses react-intersection-observer to trigger the animations as elements enter the viewport.
+
 import React from 'react';
 import { FaUser, FaUserFriends } from 'react-icons/fa';
+// ! Imports the `useInView` hook to detect when an element becomes visible.
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom'; // 1. Додано імпорт Link
+// * Imports the `Link` component for client-side routing.
+import { Link } from 'react-router-dom';
 
 const LearningOptions = () => {
+  // * Sets up two independent observers, one for each card.
+  // ? `threshold: 0.3` means the callback fires when 30% of the element is visible.
+  // ? `triggerOnce: true` ensures the animation runs only the first time the element enters the view.
   const [refPersonal, inViewPersonal] = useInView({
     threshold: 0.3,
     triggerOnce: true,
@@ -21,9 +29,10 @@ const LearningOptions = () => {
         </h2>
 
         <div className="avoid-emoji grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center overflow-hidden">
-          {/* Індивідуальні заняття */}
+          {/* ! The `ref` is attached to the div to track its visibility. */}
           <div
             ref={refPersonal}
+            // * Conditional class application to trigger the fade-in animation.
             className={`bg-gray-100 p-8 rounded-lg shadow-md transition-all duration-700 transform ${
               inViewPersonal
                 ? 'translate-x-0 opacity-100 delay-100'
@@ -41,7 +50,7 @@ const LearningOptions = () => {
               твої потреби та темп навчання, забезпечуючи максимальну
               ефективність.
             </p>
-            {/* 2. Замінено <a> на <Link> */}
+            {/* * Link to the single form page. */}
             <Link
               to="/single-form"
               className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
@@ -50,7 +59,7 @@ const LearningOptions = () => {
             </Link>
           </div>
 
-          {/* Парні заняття */}
+          {/* ! The second card, with a different animation and delay. */}
           <div
             ref={refPaired}
             className={`bg-gray-100 p-8 rounded-lg shadow-md transition-all duration-700 transform ${
@@ -70,7 +79,7 @@ const LearningOptions = () => {
               обмінюватися ідеями та підтримувати один одного, роблячи процес
               більш інтерактивним.
             </p>
-            {/* 3. Замінено <a> на <Link> */}
+            {/* * Link to the dual form page. */}
             <Link
               to="/dual-form"
               className="inline-block bg-green-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition"

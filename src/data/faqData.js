@@ -1,5 +1,3 @@
-// src/data/faqData.js
-
 export const faqData = [
   {
     question: "Як я можу зв'язатися з підтримкою?",

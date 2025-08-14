@@ -1,19 +1,25 @@
 import { useInView } from 'react-intersection-observer';
-import Avatar1 from '../../assets/image1.png'; 
-import Avatar2 from '../../assets/image1.png'; 
-import Avatar3 from '../../assets/image1.png'; 
+import Avatar1 from '../../assets/image1.png';
+import Avatar2 from '../../assets/image1.png';
+import Avatar3 from '../../assets/image1.png';
 
+// * ReviewsSection component displays student reviews
 const ReviewsSection = () => {
+  // ? useInView hook for animation on scroll
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
     <div ref={ref} className="text-center mb-20">
+      {/* ! Section title */}
       <h2 className="avoid-emoji text-4xl font-bold text-gray-900 mb-12">
         Що кажуть про нас
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* * First review card */}
         <div
-          className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 ${
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <p className="text-gray-600 italic mb-6">
             "Неймовірний досвід! Викладачі дуже терплячі та професійні. Я
@@ -33,8 +39,11 @@ const ReviewsSection = () => {
             </div>
           </div>
         </div>
+        {/* * Second review card */}
         <div
-          className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-200 ${
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <p className="text-gray-600 italic mb-6">
             "Гнучкий графік дозволив поєднувати навчання з роботою. Дуже
@@ -54,8 +63,11 @@ const ReviewsSection = () => {
             </div>
           </div>
         </div>
+        {/* * Third review card */}
         <div
-          className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`avoid-emoji bg-gray-50 p-8 rounded-2xl shadow-md transform transition-all duration-500 delay-400 ${
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <p className="text-gray-600 italic mb-6">
             "Найкраща інвестиція у власну освіту. Підтримка на кожному етапі та

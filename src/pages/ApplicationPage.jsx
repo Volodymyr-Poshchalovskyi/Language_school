@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react'; // 1. Імпортуємо useEffect
-import { useLocation } from 'react-router-dom'; // 2. Імпортуємо useLocation
+//* It handles state management, form validation, data submission to Supabase,
+//* and UI for success/error messages.
+
+import React, { useState, useEffect } from 'react';
+// * 'useLocation' is used to read URL query parameters.
+import { useLocation } from 'react-router-dom';
+// ! Supabase client import for database interaction.
 import { supabase } from '../supabaseClient';
 
-// === Компонент стилів ===
+// === CSS Component ===
+// * A component to inject scoped CSS for animations and modal backdrops.
 const PageStyles = () => (
   <style>{`
     @keyframes scale-in {
@@ -19,22 +25,25 @@ const PageStyles = () => (
       animation: scale-in 0.3s ease-out forwards;
     }
     .modal-backdrop {
-      background-color: rgba(0, 0, 0, 0.3); /* Напівпрозорий чорний */
-      -webkit-backdrop-filter: blur(4px); /* Розмиття для Safari */
-      backdrop-filter: blur(4px);         /* Стандартне розмиття */
+      background-color: rgba(0, 0, 0, 0.3);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
     }
   `}</style>
 );
 
-// === Компонент модального вікна ===
+// === Modal Component ===
+// * A reusable modal component. It controls its visibility and handles click events.
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
+    // * Closes modal when clicking on the backdrop.
     <div
       onClick={onClose}
       className="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50"
     >
+      {/* ! Prevents modal from closing when clicking inside the content area. */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full animate-scale-in"
@@ -45,8 +54,9 @@ function Modal({ isOpen, onClose, children }) {
   );
 }
 
-// === Основний компонент сторінки ===
+// === Main Page Component ===
 function ApplicationPage() {
+  // * Defines the initial state for the form data.
   const initialFormData = {
     firstName: '',
     lastName: '',
@@ -58,30 +68,28 @@ function ApplicationPage() {
     germanLevel: '',
   };
 
+  // * State hooks for form data, validation errors, and UI state.
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isErrorToastVisible, setErrorToastVisible] = useState(false);
 
-  // 3. Отримуємо поточну локацію (URL)
   const location = useLocation();
 
-  // 4. Ефект, який спрацьовує при завантаженні компонента
+  // ! useEffect hook to pre-fill the form based on a URL query parameter.
   useEffect(() => {
-    // Створюємо об'єкт для роботи з параметрами URL
     const params = new URLSearchParams(location.search);
-    // Отримуємо значення параметра 'format'
     const format = params.get('format');
 
-    // Якщо параметр існує ('single' або 'dual'), оновлюємо стан форми
     if (format === 'single' || format === 'dual') {
       setFormData((prevState) => ({
         ...prevState,
         lessonFormat: format,
       }));
     }
-  }, [location.search]); // Ефект спрацює щоразу, коли змінюється URL
+  }, [location.search]); // ? Dependency array ensures this runs only when the URL's search part changes.
 
+  // * Validation logic for all form fields.
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,6 +125,7 @@ function ApplicationPage() {
     return newErrors;
   };
 
+  // * Handles changes to form inputs and clears errors dynamically.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -135,6 +144,7 @@ function ApplicationPage() {
     }
   };
 
+  // ! The main form submission handler.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validate();
@@ -145,6 +155,7 @@ function ApplicationPage() {
       return;
     }
 
+    // * Submits the form data to the 'Applications' table in Supabase.
     const { data, error } = await supabase
       .from('Applications')
       .insert([
@@ -171,6 +182,7 @@ function ApplicationPage() {
     }
   };
 
+  // * Closes the success modal and resets the form state.
   const closeModalAndReset = () => {
     setSuccessModalOpen(false);
     setFormData(initialFormData);
@@ -180,7 +192,7 @@ function ApplicationPage() {
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       <PageStyles />
 
-      {/* --- КЛАС ДОДАНО ТУТ --- */}
+      {/* --- Main Form Wrapper --- */}
       <div className="avoid-emoji w-full max-w-lg bg-white p-8 rounded-xl shadow-lg z-10">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">
@@ -193,6 +205,7 @@ function ApplicationPage() {
 
         <form onSubmit={handleSubmit} noValidate>
           <div className="space-y-4">
+            {/* * First and Last Name fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label
@@ -238,6 +251,7 @@ function ApplicationPage() {
               </div>
             </div>
 
+            {/* * Birth Year and German Level fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label
@@ -294,6 +308,7 @@ function ApplicationPage() {
               </div>
             </div>
 
+            {/* * Contact fields (Email and Phone) with shared validation logic. */}
             <div>
               <p className="text-sm font-medium text-gray-700 mb-2">
                 Вкажіть принаймні один спосіб для зв'язку*
@@ -336,6 +351,7 @@ function ApplicationPage() {
               </div>
             </div>
 
+            {/* * Lesson Format and Messenger fields. */}
             <div>
               <label
                 htmlFor="lessonFormat"
@@ -394,6 +410,7 @@ function ApplicationPage() {
         </form>
       </div>
 
+      {/* --- Success Modal Component --- */}
       <Modal isOpen={isSuccessModalOpen} onClose={closeModalAndReset}>
         <div className="text-center">
           <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
@@ -427,6 +444,7 @@ function ApplicationPage() {
         </div>
       </Modal>
 
+      {/* --- Error Toast Component --- */}
       <div
         className={`fixed bottom-5 right-5 bg-red-600 text-white py-3 px-6 rounded-lg shadow-xl transition-all duration-300 z-50 ${isErrorToastVisible ? 'transform translate-y-0 opacity-100' : 'transform translate-y-10 opacity-0 pointer-events-none'}`}
       >

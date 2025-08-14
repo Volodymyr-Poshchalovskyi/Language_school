@@ -38,7 +38,7 @@ export const socialMediaInfo = {
       Icon: FaTelegramPlane,
       hoverColor: 'hover:text-sky-500',
       rotation: 'group-hover:rotate-6',
-      embedPost: 'turbo_deutsch/36', // <-- Змінено тут
+      embedPost: 'turbo_deutsch/36',
       buttonText: 'Перейти в Telegram',
       buttonColor: 'bg-sky-500',
       buttonHoverColor: 'hover:bg-sky-600',
