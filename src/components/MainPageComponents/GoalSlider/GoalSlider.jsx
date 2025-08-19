@@ -1,6 +1,3 @@
-//* A responsive, touch-enabled slider component for showcasing different learning goals.
-//* This version is restyled with the new brand color palette and a neutral dark theme.
-
 import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { slides, colorVariants } from '../../../data/goalSliderData';
@@ -11,7 +8,9 @@ const GoalSlider = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
-  const touchStartX = useRef(0);
+
+  const touchStartCoords = useRef({ x: 0, y: 0 });
+  const isSwipeHorizontal = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,7 +18,6 @@ const GoalSlider = () => {
       setSlidesPerView(newSlidesPerView);
       setCurrent(0);
     };
-
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -31,26 +29,56 @@ const GoalSlider = () => {
   const handlePrev = () => setCurrent((prev) => (prev <= 0 ? maxIndex : prev - 1));
 
   const handleTouchStart = (e) => {
-    setIsDragging(true);
-    touchStartX.current = e.touches[0].clientX;
-  };
+  setIsDragging(true);
+  touchStartCoords.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  isSwipeHorizontal.current = null;
+};
 
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diff = currentX - touchStartX.current;
-    setDragOffset(diff);
-  };
+const handleTouchMove = (e) => {
+  if (!isDragging) return;
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-    const swipeThreshold = 50; 
+  const currentX = e.touches[0].clientX;
+  const currentY = e.touches[0].clientY;
+  const diffX = currentX - touchStartCoords.current.x;
+  const diffY = currentY - touchStartCoords.current.y;
+
+  if (isSwipeHorizontal.current === null) {
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      isSwipeHorizontal.current = true; // горизонт
+    } else {
+      isSwipeHorizontal.current = false; // вертикаль
+    }
+  }
+
+  if (isSwipeHorizontal.current) {
+    e.preventDefault(); // блокуємо вертикальний скрол тільки для горизонтального свайпу
+    setDragOffset(diffX);
+  }
+};
+
+const handleTouchEnd = () => {
+  if (isSwipeHorizontal.current) {
+    const swipeThreshold = 50;
     if (dragOffset < -swipeThreshold) handleNext();
     else if (dragOffset > swipeThreshold) handlePrev();
-    setDragOffset(0);
-  };
+  }
+
+  setIsDragging(false);
+  isSwipeHorizontal.current = null;
+  setDragOffset(0);
+};
+
 
   const offset = current * (100 / slidesPerView);
+
+  // слухач із passive:false
+  useEffect(() => {
+    const slider = document.getElementById('mobile-slider-track');
+    if (!slider) return;
+
+    slider.addEventListener('touchmove', handleTouchMove, { passive: false });
+    return () => slider.removeEventListener('touchmove', handleTouchMove);
+  }, [isDragging]);
 
   return (
     <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-16 md:py-24 font-sans">
@@ -62,55 +90,55 @@ const GoalSlider = () => {
           Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
         </p>
 
-        {/* --- Desktop Slider --- */}
+        {/* Desktop */}
         <div className="avoid-emoji hidden md:flex items-center justify-center gap-4">
           <button
             className="bg-[#FFFFFF] dark:bg-gray-800 text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] transition p-3 rounded-full shadow-md"
             onClick={handlePrev}
-            aria-label="Previous Slide"
           >
             <FaChevronLeft size={20} />
           </button>
-
           <div className="overflow-hidden flex-1">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${offset}%)` }}
-            >
+            <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${offset}%)` }}>
               {slides.map((slide, index) => {
                 const colors = colorVariants[slide.color] || colorVariants.gold;
                 return <Slide key={index} slide={slide} colors={colors} />;
               })}
             </div>
           </div>
-
           <button
             className="bg-[#FFFFFF] dark:bg-gray-800 text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] transition p-3 rounded-full shadow-md"
             onClick={handleNext}
-            aria-label="Next Slide"
           >
             <FaChevronRight size={20} />
           </button>
         </div>
 
-        {/* --- Mobile Slider --- */}
+        {/* Mobile */}
         <div className="avoid-emoji md:hidden">
-          <div className="overflow-hidden">
-            <div
-              className={`flex ${isDragging ? '' : 'transition-transform duration-500 ease-in-out'}`}
-              style={{ transform: `translateX(calc(-${offset}% + ${dragOffset}px))` }}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
-              {slides.map((slide, index) => {
-                const colors = colorVariants[slide.color] || colorVariants.gold;
-                return <Slide key={index} slide={slide} colors={colors} />;
-              })}
-            </div>
-          </div>
+          <div className="overflow-hidden touch-pan-y">
+  <div
+    id="mobile-slider-track"
+    className="flex will-change-transform"
+    style={{
+      transform: `translateX(calc(-${offset}% + ${dragOffset}px))`,
+      transition: isDragging
+        ? "none"
+        : "transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)",
+    }}
+    onTouchStart={handleTouchStart}
+    onTouchEnd={handleTouchEnd}
+  >
+    {slides.map((slide, index) => {
+      const colors = colorVariants[slide.color] || colorVariants.gold;
+      return <Slide key={index} slide={slide} colors={colors} />;
+    })}
+  </div>
+</div>
+
         </div>
-        
+
+        {/* Dots */}
         <div className="flex justify-center items-center mt-8 space-x-2">
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
             <button
@@ -121,7 +149,6 @@ const GoalSlider = () => {
                   ? 'bg-[#FFD700]'
                   : 'bg-[#69140E]/20 dark:bg-[#FFFFFF]/20 hover:bg-[#69140E]/40 dark:hover:bg-[#FFFFFF]/40'
               }`}
-              aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
         </div>

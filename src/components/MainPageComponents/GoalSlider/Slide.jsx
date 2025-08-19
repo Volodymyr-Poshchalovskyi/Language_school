@@ -1,12 +1,10 @@
-//* A presentation component that displays a single slide within the GoalSlider.
-//* Its content and styling are driven by props, now with the new brand palette and a neutral dark theme.
-
 const Slide = ({ slide, colors }) => {
   return (
-    // ! ВИПРАВЛЕННЯ ТУТ: md:w-1-2 змінено на правильний клас md:w-1/2
     <div className="flex-shrink-0 w-full md:w-1/2 p-3">
       <div
-        className={`bg-[#FFFFFF] dark:bg-gray-800 rounded-2xl shadow-lg p-8 h-full flex flex-col border-t-4 ${colors.border} transition-colors duration-300`}
+        className={`bg-[#FFFFFF] dark:bg-gray-800 rounded-2xl shadow-lg p-6 
+                    h-[23rem] sm:h-[23rem] md:h-full flex flex-col 
+                    border-t-4 ${colors.border} transition-colors duration-300`}
       >
         <div
           className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${colors.bg} ${colors.text}`}
@@ -14,7 +12,9 @@ const Slide = ({ slide, colors }) => {
           {slide.icon}
         </div>
         
-        <h3 className="font-bold text-xl text-[#69140E] dark:text-[#FFFFFF] mb-4 flex-grow">{slide.title}</h3>
+        <h3 className="font-bold text-xl text-[#69140E] dark:text-[#FFFFFF] mb-4 flex-grow">
+          {slide.title}
+        </h3>
         
         <ul className="space-y-3">
           {slide.points.map((point, i) => (
