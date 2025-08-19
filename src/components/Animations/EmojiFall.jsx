@@ -1,6 +1,3 @@
-//* The EmojiFall component creates a falling emoji particle effect with GSAP.
-//* This version includes a delay to ensure accurate DOM measurements for collision detection.
-
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -29,6 +26,22 @@ const shuffleArray = (array) => {
   return array;
 };
 
+// ! ЗМІНА ТУТ: Нова функція для розрахунку позиції по краях екрану
+const getRandomEdgeX = (viewportWidth, emojiSize) => {
+  const leftZoneEnd = viewportWidth * 0.15;
+  const rightZoneStart = viewportWidth * (1 - 0.12); // Останні 12%
+
+  // З 50% шансом обираємо ліву або праву сторону
+  if (Math.random() < 0.5) {
+    // Ліва сторона (0% - 15%)
+    return Math.random() * (leftZoneEnd - emojiSize);
+  } else {
+    // Права сторона (88% - 100%)
+    return rightZoneStart + Math.random() * (viewportWidth - rightZoneStart - emojiSize);
+  }
+};
+
+
 const MOBILE_BREAKPOINT = 768;
 
 export const EmojiFall = ({ stopRef, pathname }) => {
@@ -41,7 +54,6 @@ export const EmojiFall = ({ stopRef, pathname }) => {
       }
       
       const runMainLogic = () => {
-        // ! ЗМІНА ТУТ: Додаємо невелику затримку, щоб всі елементи сторінки встигли відмалюватися.
         setTimeout(() => {
           if (!stopRef.current) return;
 
@@ -107,7 +119,8 @@ export const EmojiFall = ({ stopRef, pathname }) => {
             i < maxAttempts && finalPositions.length < maxEmojis;
             i++
           ) {
-            const x = Math.random() * (viewportWidth - emojiSize);
+            // ! ЗМІНА ТУТ: Використовуємо нову функцію для фінальної позиції
+            const x = getRandomEdgeX(viewportWidth, emojiSize);
             const y = Math.random() * landingAreaHeight + landingAreaYStart;
 
             const isZoneSafe = !allForbiddenZones.some(
@@ -139,8 +152,10 @@ export const EmojiFall = ({ stopRef, pathname }) => {
             const emojiChar = EMOJI_OPTIONS[i % EMOJI_OPTIONS.length];
             emojiEl.src = getIosEmojiUrl(emojiChar);
             container.current.appendChild(emojiEl);
+
+            // ! ЗМІНА ТУТ: Використовуємо нову функцію для стартової позиції
             gsap.set(emojiEl, {
-              x: Math.random() * viewportWidth,
+              x: getRandomEdgeX(viewportWidth, emojiSize),
               y: -150,
               opacity: 1,
             });
@@ -164,7 +179,7 @@ export const EmojiFall = ({ stopRef, pathname }) => {
               opacity: 0.9,
             });
           });
-        }, 100); // <-- Затримка в 100 мілісекунд
+        }, 100);
       };
 
       if (document.readyState === 'complete') {
