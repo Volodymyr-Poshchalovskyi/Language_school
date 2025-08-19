@@ -1,6 +1,15 @@
 body {
   overflow-x: hidden;
   position: relative;
+  background-color: #ffffff; /* Білий */
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.dark body {
+  /* Цей колір відповідає Tailwind класу dark:bg-gray-900, як у вашому футері */
+  background-color: #111827; 
 }
 
 .emoji-container {
