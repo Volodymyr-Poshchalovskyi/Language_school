@@ -1,12 +1,72 @@
 //* A Call-to-Action (CTA) component designed for the homepage.
-//* Restyled with the new brand color palette and a neutral dark theme.
+//* Features a magnetic CTA button.
 
+// ! ЗМІНА ТУТ: Імпортуємо хуки та GSAP
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
 import CTAImage from '../../assets/CTAImage.jpg';
 
 const CTA = () => {
+  // ! ЗМІНА ТУТ: Створюємо ref для кнопки
+  const buttonRef = useRef(null);
+
+  // ! ЗМІНА ТУТ: Додаємо ефект для "магнітної" анімації
+  useEffect(() => {
+    const button = buttonRef.current;
+    if (!button || window.innerWidth < 1024) return;
+
+    const activationDistance = 200;
+
+    const onMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = button.getBoundingClientRect();
+      const centerX = left + width / 2;
+      const centerY = top + height / 2;
+      
+      const deltaX = clientX - centerX;
+      const deltaY = clientY - centerY;
+
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+      if (distance < activationDistance) {
+        gsap.to(button, {
+          x: deltaX * 0.5,
+          y: deltaY * 0.5,
+          duration: 0.6,
+          ease: 'power3.out',
+        });
+      } else {
+        gsap.to(button, {
+          x: 0,
+          y: 0,
+          duration: 0.6,
+          ease: 'elastic.out(1, 0.5)',
+        });
+      }
+    };
+
+    const onMouseLeaveWindow = () => {
+      gsap.to(button, {
+        x: 0,
+        y: 0,
+        duration: 0.6,
+        ease: 'elastic.out(1, 0.5)',
+      });
+    };
+
+    // Слухаємо рух миші по всьому вікну, щоб ефект працював на відстані
+    window.addEventListener('mousemove', onMouseMove);
+    document.documentElement.addEventListener('mouseleave', onMouseLeaveWindow);
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      document.documentElement.removeEventListener('mouseleave', onMouseLeaveWindow);
+      gsap.to(button, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+    };
+  }, []); // Пустий масив залежностей, щоб ефект додався один раз
+
   return (
-    // ! ЗМІНА ТУТ: Фон світлої теми змінено на ледь помітний відтінок bg-[#69140E]/5
     <section className="bg-[#69140E]/5 dark:bg-gray-900 py-12 px-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
         
@@ -23,6 +83,7 @@ const CTA = () => {
           </p>
           
           <Link
+            ref={buttonRef} // ! ЗМІНА ТУТ: Прив'язуємо ref до кнопки
             to="/application"
             className="inline-block bg-[#FFD700] text-[#69140E] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition shadow-md"
           >
