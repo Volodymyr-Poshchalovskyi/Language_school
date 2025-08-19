@@ -1,6 +1,7 @@
 // * The main Header component, providing primary navigation for the site.
 // * It includes both desktop and mobile views and utilizes Headless UI for accessibility.
 // * This version uses the system's theme preference and has a distinct border for dark mode.
+// * It is also adapted for devices with a "notch" or "safe area" at the top.
 
 'use client';
 
@@ -63,8 +64,8 @@ export default function Header() {
     }`;
 
   return (
-    // ! Added dark mode classes, transition, and a distinct bottom border.
-    <header className="bg-white dark:bg-gray-800 sticky top-0 z-40 shadow-sm transition-colors duration-300 border-b border-gray-200 dark:border-gray-700">
+    // ! Added dark mode classes, transition, a distinct bottom border, and top padding for the notch.
+    <header className="bg-white dark:bg-gray-800 sticky top-0 z-40 shadow-sm transition-colors duration-300 border-b border-gray-200 dark:border-gray-700 pt-[env(safe-area-inset-top)]">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -77,6 +78,8 @@ export default function Header() {
               alt="Besondres Deutch Logo"
               src={Logo}
               className="h-12 w-12 rounded-full object-cover"
+              width="48"
+              height="48"
             />
           </Link>
         </div>
@@ -180,6 +183,7 @@ export default function Header() {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-50" />
+        {/* ! RESTORED SECTION: The entire mobile menu panel, which was previously missing. */}
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-gray-800 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:sm:ring-gray-100/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
@@ -188,6 +192,8 @@ export default function Header() {
                 alt="Besondres Deutch Logo"
                 src={Logo}
                 className="h-12 w-12 rounded-full object-cover"
+                width="48"
+                height="48"
               />
             </Link>
             <button

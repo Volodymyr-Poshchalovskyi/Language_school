@@ -1,4 +1,13 @@
+// src/data/socialMediaData.js
+
+// ! Import all necessary images for both light and dark themes
+import instagramAccountImage from '../assets/InstagramAcc.jpg';
+import instagramAccountDarkImage from '../assets/InstagramAccDark.jpg';
 import tiktokAccountImage from '../assets/TikTokAcc.jpg';
+import tiktokAccountDarkImage from '../assets/TikTokAccDark.jpg';
+import telegramAccountImage from '../assets/TelegramAcc.jpg';
+import telegramAccountDarkImage from '../assets/TelegramAccDark.jpg';
+
 import { FaTelegramPlane, FaInstagram, FaTiktok } from 'react-icons/fa';
 
 export const socialMediaInfo = {
@@ -13,11 +22,16 @@ export const socialMediaInfo = {
       Icon: FaInstagram,
       hoverColor: 'hover:text-pink-500',
       rotation: 'group-hover:-rotate-6',
-      embedUrl: 'https://www.instagram.com/reel/DC4EY2HsZoT/?utm_source=ig_embed&utm_campaign=loading',
+      // * The image is now an object with light and dark theme versions.
+      // * The 'type' property is no longer needed.
+      image: {
+        light: instagramAccountImage,
+        dark: instagramAccountDarkImage,
+      },
+      alt: 'Профіль Instagram besonderes.deutsch',
       buttonText: 'Перейти в Instagram',
       buttonColor: 'bg-pink-500',
       buttonHoverColor: 'hover:bg-pink-600',
-      type: 'embed',
     },
     {
       name: 'TikTok',
@@ -25,12 +39,14 @@ export const socialMediaInfo = {
       Icon: FaTiktok,
       hoverColor: 'hover:text-black',
       rotation: 'group-hover:rotate-6',
-      image: tiktokAccountImage,
+      image: {
+        light: tiktokAccountImage,
+        dark: tiktokAccountDarkImage,
+      },
       alt: 'Профіль TikTok besonderes.deutsch',
       buttonText: 'Перейти в TikTok',
       buttonColor: 'bg-black',
       buttonHoverColor: 'hover:bg-gray-800',
-      type: 'image',
     },
     {
       name: 'Telegram',
@@ -38,11 +54,14 @@ export const socialMediaInfo = {
       Icon: FaTelegramPlane,
       hoverColor: 'hover:text-sky-500',
       rotation: 'group-hover:rotate-6',
-      embedPost: 'turbo_deutsch/36',
+      image: {
+        light: telegramAccountImage,
+        dark: telegramAccountDarkImage,
+      },
+      alt: 'Профіль Telegram turbo_deutsch',
       buttonText: 'Перейти в Telegram',
       buttonColor: 'bg-sky-500',
       buttonHoverColor: 'hover:bg-sky-600',
-      type: 'embed',
     },
   ],
 };

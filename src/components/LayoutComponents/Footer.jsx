@@ -9,8 +9,8 @@ import Logo from '../../assets/Logo.jpeg';
 
 const Footer = () => {
   return (
-    // ! Added `border-t` for the top border and specified different colors for light and dark modes.
-    <footer className="bg-white dark:bg-gray-900 p-6 avoid-emoji transition-colors duration-300 border-t border-gray-200 dark:border-gray-700">
+    // ! Added `border-t`, padding classes to accommodate the mobile "notch" or safe area.
+    <footer className="bg-white dark:bg-gray-900 px-6 pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] avoid-emoji transition-colors duration-300 border-t border-gray-200 dark:border-gray-700">
       <div className="w-full max-w-screen-xl mx-auto md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           {/* * Brand logo and name, linked to the homepage. */}
@@ -23,6 +23,8 @@ const Footer = () => {
               src={Logo}
               className="h-12 w-12 rounded-full object-cover"
               alt="Besondres Deutch Logo"
+              width="48"
+              height="48"
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Besondres Deutch

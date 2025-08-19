@@ -36,21 +36,21 @@ export default function Layout() {
       }
     };
     
-    // * Встановлюємо тему при першому завантаженні
+    // * Set the theme on initial load
     setTheme(prefersDark);
 
-    // * Додаємо слухача для відслідковування змін у налаштуваннях системи
+    // * Add a listener for changes in system settings
     prefersDark.addEventListener('change', setTheme);
 
-    // * Очищаємо слухача, коли компонент розмонтовується
+    // * Clean up the listener when the component unmounts
     return () => {
       prefersDark.removeEventListener('change', setTheme);
     };
   }, []);
 
   return (
-    // * The main layout container. The 'dark' class is applied to the html element.
-    <div className="layout" style={{ position: 'relative' }}>
+    // * The main layout container with horizontal safe-area padding for landscape mode on notched devices.
+    <div className="layout pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]" style={{ position: 'relative' }}>
       {/* ! The EmojiFall component is rendered here. 
           It uses 'stopRef' to define a safe landing zone and 'pathname' for caching. */}
       <EmojiFall stopRef={mainContentRef} pathname={location.pathname} />
