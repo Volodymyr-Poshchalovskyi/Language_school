@@ -4,12 +4,11 @@ import React from 'react';
 const AboutHeader = () => {
   return (
     <div className="avoid-emoji text-center mb-16">
-      {/* ! Main title for the About page */}
-      <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight">
+      {/* ! Нова тема: Оновлені кольори тексту */}
+      <h1 className="text-5xl md:text-6xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] leading-tight">
         Про нашу школу
       </h1>
-      {/* ? Subtitle describing the school's mission and values */}
-      <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
+      <p className="mt-4 text-xl text-[#69140E]/80 dark:text-[#FFFFFF]/80">
         Дізнайтеся більше про нашу місію, цінності та підхід до навчання.
       </p>
     </div>

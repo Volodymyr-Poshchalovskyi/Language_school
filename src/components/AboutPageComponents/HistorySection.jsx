@@ -13,27 +13,26 @@ const HistorySection = () => {
       aria-labelledby="history-heading"
     >
       <div className="avoid-emoji relative md:h-[400px]">
-        {/* * Animated school history illustration */}
+        {/* ! Нова тема: Додано затемнення для зображення в темному режимі */}
         <img
           src={Image5}
           alt="Ілюстрація історії"
           loading="lazy"
           decoding="async"
-          className={`w-2/3 h-auto rounded-3xl shadow-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform -rotate-3 transition duration-700 hover:scale-110 hover:rotate-0 ${
+          className={`w-2/3 h-auto rounded-3xl shadow-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform -rotate-3 transition duration-700 hover:scale-110 hover:rotate-0 dark:brightness-90 ${
             inView ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
           }`}
         />
       </div>
       <div className="avoid-emoji text-left">
-        {/* ! Section title */}
+        {/* ! Нова тема: Оновлені кольори тексту */}
         <h2
           id="history-heading"
-          className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+          className="text-4xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4"
         >
           Історія школи
         </h2>
-        {/* ? Section description */}
-        <p className="text-lg text-gray-600 dark:text-gray-300">
+        <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80">
           Наша школа була заснована у 2010 році з простою ідеєю: зробити освіту
           якісною та доступною. З того часу ми виросли, розширили нашу команду
           та допомогли тисячам студентів досягти успіху.

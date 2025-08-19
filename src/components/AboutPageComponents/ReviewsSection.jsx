@@ -34,8 +34,8 @@ const ReviewsSection = () => {
 
   return (
     <section ref={ref} className="text-center mb-20">
-      {/* ! Section title */}
-      <h2 className="avoid-emoji text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12">
+      {/* ! Нова тема: Оновлений колір заголовка */}
+      <h2 className="avoid-emoji text-4xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-12">
         Що кажуть про нас
       </h2>
 
@@ -43,14 +43,15 @@ const ReviewsSection = () => {
         {reviews.map((r, index) => (
           <article
             key={index}
-            className={`avoid-emoji bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-md transform transition-all duration-700 ${
+            // ! Нова тема: Правильний фон для карток (білий / темно-сірий)
+            className={`avoid-emoji bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md transform transition-all duration-700 ${
               inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
             style={{ transitionDelay: `${index * 120}ms` }}
             aria-live="polite"
           >
-            <p className="text-gray-600 dark:text-gray-300 italic mb-6">
-              {r.quote}
+            <p className="text-[#69140E]/80 dark:text-[#FFFFFF]/80 italic mb-6">
+              "{r.quote}"
             </p>
             <div className="flex items-center justify-center">
               <img
@@ -61,10 +62,10 @@ const ReviewsSection = () => {
                 className="w-12 h-12 rounded-full mr-4 object-cover"
               />
               <div>
-                <p className="font-bold text-gray-900 dark:text-gray-100">
+                <p className="font-bold text-[#69140E] dark:text-[#FFFFFF]">
                   {r.name}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-300">
+                <p className="text-sm text-[#69140E]/70 dark:text-[#FFFFFF]/70">
                   {r.role}
                 </p>
               </div>

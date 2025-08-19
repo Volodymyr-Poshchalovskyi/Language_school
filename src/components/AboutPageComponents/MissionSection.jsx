@@ -25,22 +25,21 @@ const MissionSection = () => {
         />
       </div>
       <div className="avoid-emoji md:w-1/2 text-left">
-        {/* ! Section title */}
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+        {/* ! Нова тема: Оновлені кольори тексту */}
+        <h2 className="text-4xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
           Наша місія
         </h2>
-        {/* ? Section description */}
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
           Ми віримо, що навчання має бути доступним, цікавим та ефективним для
           кожного. Наша мета — створити сприятливе середовище, де студенти
           можуть розкрити свій потенціал та досягти своїх цілей, отримуючи
           якісні знання.
         </p>
-        {/* * Link to view programs */}
+        {/* ! Нова тема: Оновлена кнопка */}
         <Link
           to="/programs"
           aria-label="Переглянути програми"
-          className="inline-block bg-blue-600 dark:bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-500 transition"
+          className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition shadow-md"
         >
           Переглянути програми
         </Link>

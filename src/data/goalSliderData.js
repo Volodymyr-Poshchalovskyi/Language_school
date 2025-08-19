@@ -1,10 +1,11 @@
+// src/data/goalSliderData.js
+
 import {
   FaHome,
   FaBriefcase,
   FaBook,
   FaGraduationCap,
 } from 'react-icons/fa';
-
 
 export const slides = [
   {
@@ -15,7 +16,7 @@ export const slides = [
       'Спілкування в транспорті, магазинах, кафе, лікарні',
       'Вільне висловлювання власних думок',
     ],
-    color: 'blue',
+    color: 'coral', // ! ЗМІНА ТУТ
   },
   {
     icon: <FaBriefcase size={32} />,
@@ -25,7 +26,7 @@ export const slides = [
       'Ділова лексика та ведення переговорів',
       'Впевненість у робочому середовищі',
     ],
-    color: 'purple',
+    color: 'amber', // ! ЗМІНА ТУТ
   },
   {
     icon: <FaGraduationCap size={32} />,
@@ -35,7 +36,7 @@ export const slides = [
       'Знайомство з форматом завдань та критеріями',
       'Пробні тестування для оцінки рівня',
     ],
-    color: 'green',
+    color: 'gold', // ! ЗМІНА ТУТ
   },
   {
     icon: <FaBook size={32} />,
@@ -45,30 +46,25 @@ export const slides = [
       'Розширення словникового запасу',
       'Практичні завдання для закріплення знань',
     ],
-    color: 'orange',
+    color: 'coral', // ! ЗМІНА ТУТ
   },
 ];
 
-
+// Цей об'єкт залишається без змін
 export const colorVariants = {
-  blue: {
-    bg: 'bg-blue-100',
-    text: 'text-blue-600',
-    border: 'border-blue-500',
+  gold: {
+    border: 'border-[#FFD700]',
+    bg: 'bg-[#FFD700]/10',
+    text: 'text-[#FFD700]',
   },
-  purple: {
-    bg: 'bg-purple-100',
-    text: 'text-purple-600',
-    border: 'border-purple-500',
+  coral: {
+    border: 'border-[#E85F5C]',
+    bg: 'bg-[#E85F5C]/10',
+    text: 'text-[#E85F5C]',
   },
-  green: {
-    bg: 'bg-green-100',
-    text: 'text-green-600',
-    border: 'border-green-500',
-  },
-  orange: {
-    bg: 'bg-orange-100',
-    text: 'text-orange-600',
-    border: 'border-orange-500',
+  amber: {
+    border: 'border-[#F6AA1C]',
+    bg: 'bg-[#F6AA1C]/10',
+    text: 'text-[#F6AA1C]',
   },
 };
