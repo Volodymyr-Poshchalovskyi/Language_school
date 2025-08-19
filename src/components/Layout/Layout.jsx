@@ -1,13 +1,13 @@
 // * The main layout component for the application.
 // * It provides a consistent structure and includes shared components like the header, footer, and animations.
-// * This version now manages the site-wide dark mode state based on system preference.
+// * This version manages site-wide dark mode and animates the background on scroll.
 
 import React, { useRef, useEffect } from 'react';
-// * 'Outlet' renders the child route's component.
-// * 'useLocation' provides access to the current URL path.
 import { Outlet, useLocation } from 'react-router-dom';
+// ! ЗМІНА ТУТ: Імпорт GSAP та плагіна ScrollTrigger
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// * Imports all shared layout and animation components.
 import Header from '../LayoutComponents/Header';
 import Footer from '../LayoutComponents/Footer';
 import ProgresBar from '../Animations/ProgressBar';
@@ -16,60 +16,69 @@ import ScrollToTop from '../Animations/ScrollToTop';
 import SupportSection from '../LayoutComponents/SupportSection';
 import { EmojiFall } from '../Animations/EmojiFall';
 
+// ! ЗМІНА ТУТ: Реєстрація плагіна ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Layout() {
-  // * A ref to target the main content area for the emoji animation.
   const mainContentRef = useRef(null);
-  // * Hook to get the current location, which is passed to animations.
+  // ! ЗМІНА ТУТ: Створено ref для головного контейнера layout
+  const layoutRef = useRef(null);
   const location = useLocation();
 
-  // ! useEffect to detect system preference and apply the 'dark' class.
-  // ? This effect runs only once on component mount.
+  // useEffect for system dark mode preference
   useEffect(() => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     const htmlElement = document.documentElement;
 
     const setTheme = (e) => {
-      if (e.matches) {
-        htmlElement.classList.add('dark');
-      } else {
-        htmlElement.classList.remove('dark');
-      }
+      htmlElement.classList.toggle('dark', e.matches);
     };
 
-    // * Set the theme on initial load
     setTheme(prefersDark);
-
-    // * Add a listener for changes in system settings
     prefersDark.addEventListener('change', setTheme);
 
-    // * Clean up the listener when the component unmounts
     return () => {
       prefersDark.removeEventListener('change', setTheme);
     };
   }, []);
 
+  // ! ЗМІНА ТУТ: Новий useEffect для анімації фону при скролі
+  useEffect(() => {
+    const layoutElement = layoutRef.current;
+
+    const ctx = gsap.context(() => {
+      gsap.to(layoutElement, {
+        // * GSAP автоматично інтерполює колір від початкового до кінцевого.
+        // * Початковий колір задано через Tailwind клас `bg-[#69140E]/5`.
+        backgroundColor: 'rgba(246, 170, 28, 0.05)', // * кінцевий колір F6AA1C з 5% прозорістю
+        ease: 'none', // * лінійна анімація без прискорення/сповільнення
+        scrollTrigger: {
+          trigger: document.documentElement,
+          start: 'top top', // * початок анімації, коли верх сторінки на верху в'юпорта
+          end: 'bottom bottom', // * кінець, коли низ сторінки внизу в'юпорта
+          scrub: 1, // * плавно "прив'язує" анімацію до скролу (з затримкою в 1с)
+        },
+      });
+    }, layoutRef); // * Обмежуємо область дії GSAP цим компонентом
+
+    // * Очищення при розмонтуванні
+    return () => ctx.revert();
+  }, []);
+
   return (
-    // * The main layout container with horizontal safe-area padding for landscape mode on notched devices.
+    // ! ЗМІНА ТУТ: Додано ref та початковий колір фону
     <div
-      className="layout pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
+      ref={layoutRef}
+      className="layout bg-[#69140E]/5 pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] transition-colors duration-300"
       style={{ position: 'relative' }}
     >
-      {/* ! The EmojiFall component is rendered here. 
-          It uses 'stopRef' to define a safe landing zone and 'pathname' for caching. */}
       <EmojiFall stopRef={mainContentRef} pathname={location.pathname} />
-
-      {/* * ScrollToTop ensures the user starts at the top of a new page. */}
       <ScrollToTop />
-      {/* * A progress bar that tracks scroll position. */}
       <ProgresBar />
-      {/* ! The Header component no longer receives theme-related props. */}
       <Header />
-      {/* ! The 'main' tag is the container for all page-specific content. 
-          'Outlet' dynamically renders the child route's component here. */}
-      <main ref={mainContentRef}>
+      <main className='mt-23' ref={mainContentRef}>
         <Outlet />
       </main>
-      {/* * All other shared layout components. */}
       <CallBackWidget />
       <SupportSection />
       <Footer />

@@ -50,3 +50,14 @@ body {
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* InitialLoader.css */
+@keyframes wave-animation {
+  0% { background-position: -100% 0%, 0% 0%, 100% 0%; }
+  33% { background-position: 0% 33%, 100% 33%, 200% 33%; }
+  66% { background-position: -100% 66%, 0% 66%, 100% 66%; }
+  100% { background-position: 0% 100%, 100% 100%, 200% 100%; }
+}
+
+/* Цей імпорт потрібен для коректного відображення */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');

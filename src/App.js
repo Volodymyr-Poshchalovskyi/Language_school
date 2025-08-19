@@ -1,15 +1,16 @@
-//* The main application component, serving as the root of the React app.
+// * The main application component, serving as the root of the React app.
 
 import AppRouter from './routes/AppRouter';
+import InitialLoader from './components/Animations/InitialLoader'; // Переконайтеся, що шлях правильний
 import './App.css';
 
 function App() {
-  // ! This component's primary role is to render the routing logic for the entire application.
-  // * It imports and renders the AppRouter component to manage different pages and views.
+  // Обгортаємо AppRouter у InitialLoader, щоб показати анімацію завантаження
+  // при першому відвідуванні
   return (
-    <div>
+    <InitialLoader>
       <AppRouter />
-    </div>
+    </InitialLoader>
   );
 }
 

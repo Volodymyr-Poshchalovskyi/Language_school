@@ -82,168 +82,165 @@ export default function Header() {
     }`;
 
   return (
-    <header className="bg-[#FFFFFF] dark:bg-gray-900 sticky top-0 z-50 shadow-md transition-colors duration-300 border-b border-[#69140E]/10 dark:border-[#FFFFFF]/10 pt-[env(safe-area-inset-top)]">
-      <nav
-        aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-      >
-        {/* Logo */}
-        <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Besondres Deutch</span>
-            <img
-              alt="Besondres Deutch Logo"
-              src={Logo}
-              className="h-12 w-12 rounded-full object-cover"
-              width="48"
-              height="48"
-            />
-          </Link>
-        </div>
+    <>
+      <header className="bg-white/40 dark:bg-gray-900/60 fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300 border-b border-[#69140E]/10 dark:border-[#FFFFFF]/10 pt-[env(safe-area-inset-top)] backdrop-blur-md">
+        <nav
+          aria-label="Global"
+          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        >
+          {/* Logo */}
+          <div className="flex lg:flex-1">
+            <Link to="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">Besondres Deutch</span>
+              <img
+                alt="Besondres Deutch Logo"
+                src={Logo}
+                className="h-12 w-12 rounded-full object-cover"
+                width="48"
+                height="48"
+              />
+            </Link>
+          </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[#69140E] dark:text-[#FFFFFF]"
-          >
-            <span className="sr-only">Open main menu</span>
-            <AnimatedMenuIcon isOpen={mobileMenuOpen} />
-          </button>
-        </div>
+          {/* Mobile Menu Button */}
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[#69140E] dark:text-[#FFFFFF]"
+            >
+              <span className="sr-only">Open main menu</span>
+              <AnimatedMenuIcon isOpen={mobileMenuOpen} />
+            </button>
+          </div>
 
-        {/* Desktop Nav Links */}
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <NavLink to="/" className={navLinkStyles}>
-            Головна
-          </NavLink>
+          {/* Desktop Nav Links */}
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+            <NavLink to="/" className={navLinkStyles}>
+              Головна
+            </NavLink>
 
-          <Popover className="relative">
-            {({ close }) => (
-              <>
-                <PopoverButton
-                  className={`flex items-center gap-x-1 text-sm font-semibold leading-6 transition-colors duration-200 outline-none ${
-                    isLearningFormsActive
-                      ? 'text-[#FFD700]'
-                      : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
-                  }`}
-                >
-                  Форми навчання
-                  <ChevronDownIcon
-                    aria-hidden="true"
-                    className="w-5 h-5 flex-none text-gray-400"
-                  />
-                </PopoverButton>
+            <Popover className="relative">
+              {({ close }) => (
+                <>
+                  <PopoverButton
+                    className={`flex items-center gap-x-1 text-sm font-semibold leading-6 transition-colors duration-200 outline-none ${
+                      isLearningFormsActive
+                        ? 'text-[#FFD700]'
+                        : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
+                    }`}
+                  >
+                    Форми навчання
+                    <ChevronDownIcon
+                      aria-hidden="true"
+                      className="w-5 h-5 flex-none text-gray-400"
+                    />
+                  </PopoverButton>
 
-                <PopoverPanel
-                  transition
-                  className="absolute left-1/2 z-10 mt-5 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-[#FFFFFF] dark:bg-gray-900 shadow-lg ring-1 ring-[#69140E]/10 dark:ring-[#FFFFFF]/10"
-                >
-                  <div className="p-4">
-                    {products.map((item) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-[#F6AA1C]/10 dark:hover:bg-[#F6AA1C]/5"
-                      >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-[#69140E]/5 dark:bg-[#FFFFFF]/5">
-                          <item.icon
-                            aria-hidden="true"
-                            className="h-6 w-6 text-[#69140E] dark:text-[#FFFFFF] group-hover:text-[#FFD700]"
-                          />
+                  <PopoverPanel
+                    transition
+                    className="absolute left-1/2 z-10 mt-5 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-[#FFFFFF] dark:bg-gray-900 shadow-lg ring-1 ring-[#69140E]/10 dark:ring-[#FFFFFF]/10"
+                  >
+                    <div className="p-4">
+                      {products.map((item) => (
+                        <div
+                          key={item.name}
+                          className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-[#F6AA1C]/10 dark:hover:bg-[#F6AA1C]/5"
+                        >
+                          <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-[#69140E]/5 dark:bg-[#FFFFFF]/5">
+                            <item.icon
+                              aria-hidden="true"
+                              className="h-6 w-6 text-[#69140E] dark:text-[#FFFFFF] group-hover:text-[#FFD700]"
+                            />
+                          </div>
+                          <div className="flex-auto">
+                            <Link
+                              to={item.href}
+                              onClick={close}
+                              className="block font-semibold text-[#69140E] dark:text-[#FFFFFF]"
+                            >
+                              {item.name}
+                              <span className="absolute inset-0" />
+                            </Link>
+                            <p className="mt-1 text-[#69140E]/80 dark:text-[#FFFFFF]/80">
+                              {item.description}
+                            </p>
+                          </div>
                         </div>
-                        <div className="flex-auto">
-                          <Link
-                            to={item.href}
-                            onClick={close}
-                            className="block font-semibold text-[#69140E] dark:text-[#FFFFFF]"
-                          >
-                            {item.name}
-                            <span className="absolute inset-0" />
-                          </Link>
-                          <p className="mt-1 text-[#69140E]/80 dark:text-[#FFFFFF]/80">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </PopoverPanel>
-              </>
-            )}
-          </Popover>
+                      ))}
+                    </div>
+                  </PopoverPanel>
+                </>
+              )}
+            </Popover>
 
-          <NavLink to="/about" className={navLinkStyles}>
-            Про нас
-          </NavLink>
-        </PopoverGroup>
+            <NavLink to="/about" className={navLinkStyles}>
+              Про нас
+            </NavLink>
+          </PopoverGroup>
 
-        {/* Desktop Right Buttons */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
-          <a
-            href="https://t.me/ashveme"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-x-2 rounded-md bg-[#69140E]/10 dark:bg-[#FFFFFF]/10 px-3 py-2 text-sm font-semibold text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#69140E]/20 dark:hover:bg-[#FFFFFF]/20 transition"
-          >
-            Підтримка
-          </a>
-          <Link
-            to="/application"
-            className="inline-flex items-center gap-x-1 rounded-md bg-[#FFD700] px-4 py-2 text-sm font-semibold text-[#69140E] shadow-sm hover:bg-[#F6AA1C] transition"
-          >
-            Подати Заявку
-          </Link>
-        </div>
-      </nav>
+          {/* Desktop Right Buttons */}
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
+            <a
+              href="https://t.me/ashveme"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-x-2 rounded-md bg-[#69140E]/10 dark:bg-[#FFFFFF]/10 px-3 py-2 text-sm font-semibold text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#69140E]/20 dark:hover:bg-[#FFFFFF]/20 transition"
+            >
+              Підтримка
+            </a>
+            <Link
+              to="/application"
+              className="inline-flex items-center gap-x-1 rounded-md bg-[#FFD700] px-4 py-2 text-sm font-semibold text-[#69140E] shadow-sm hover:bg-[#F6AA1C] transition"
+            >
+              Подати Заявку
+            </Link>
+          </div>
+        </nav>
+      </header>
 
-      {/* Mobile Menu */}
-      <Transition show={mobileMenuOpen} as={Fragment}>
-        <Dialog as="div" className="lg:hidden" onClose={setMobileMenuOpen}>
-          {/* затемнення фону */}
+      {/* Mobile menu, show/hide based on `mobileMenuOpen` state. */}
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <div className="fixed inset-0 z-30" onClick={() => setMobileMenuOpen(false)}>
           <Transition.Child
             as={Fragment}
-            enter="transition-opacity ease-out duration-500"
+            enter="transition-opacity ease-out duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="transition-opacity ease-in duration-300"
+            leave="transition-opacity ease-in duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
             <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
           </Transition.Child>
-
-          {/* меню */}
-          <div className="fixed z-40 inset-0 flex justify-end">
-            <Transition.Child
-              as={Fragment}
-              enter="transform transition ease-out duration-500"
-              enterFrom="translate-x-full opacity-0"
-              enterTo="translate-x-0 opacity-100"
-              leave="transform transition ease-in duration-300"
-              leaveFrom="translate-x-0 opacity-100"
-              leaveTo="translate-x-full opacity-0"
-            >
-              <Dialog.Panel className="relative w-full max-w-xs bg-white dark:bg-gray-900 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] h-full shadow-xl overflow-y-auto flex flex-col">
-                {/* Контент меню */}
-                <div className="flex items-center justify-between">
-                  <Link to="/" onClick={() => setMobileMenuOpen(false)}>
-                    <img src={Logo} alt="Logo" className="h-12 w-12 rounded-full" />
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-[#69140E] dark:text-[#FFFFFF]"
-                  >
-                    <XMarkIcon className="h-6 w-6" />
-                  </button>
-                </div>
-
-                <nav className="mt-8 flex flex-col gap-2">
+        </div>
+        <Transition.Child
+          as={Fragment}
+          enter="transition ease-out duration-300 transform"
+          enterFrom="translate-x-full"
+          enterTo="translate-x-0"
+          leave="transition ease-in duration-200 transform"
+          leaveFrom="translate-x-0"
+          leaveTo="translate-x-full"
+        >
+          <DialogPanel className="fixed inset-y-0 right-0 z-40 w-full max-w-xs bg-white dark:bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 flex flex-col justify-between">
+            <div className="flex-grow">
+              <div className="flex items-center justify-end">
+                <button
+                  type="button"
+                  className="-m-2.5 rounded-md p-2.5 text-[#69140E] dark:text-[#FFFFFF]"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="sr-only">Close menu</span>
+                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+              <div className="mt-25 flow-root">
+                <nav className="-my-6 divide-y divide-gray-500/10 space-y-2">
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                      `flex items-center gap-2 -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors ${
                         isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
                       }`
                     }
@@ -251,13 +248,12 @@ export default function Header() {
                   >
                     <HomeIcon className="h-5 w-5" /> Головна
                   </NavLink>
-
                   {/* Disclosure для форм навчання */}
-                  <Disclosure>
+                  <Disclosure as="div" className="-mx-3">
                     {({ open }) => (
                       <>
-                        <Disclosure.Button
-                          className={`flex justify-between items-center w-full p-2 rounded-lg font-semibold transition-colors ${
+                        <DisclosureButton
+                          className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 transition-colors ${
                             isLearningFormsActive
                               ? 'bg-[#F6AA1C]/10 text-[#FFD700]'
                               : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
@@ -266,20 +262,23 @@ export default function Header() {
                           <span className="flex items-center gap-2">
                             <AcademicCapIcon className="h-5 w-5" /> Форми навчання
                           </span>
-                          <ChevronDownIcon className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
-                        </Disclosure.Button>
-                        <Disclosure.Panel className="pl-6 flex flex-col gap-1 mt-1">
-                          {products.map((item) => (
+                          <ChevronDownIcon
+                            className={`h-5 w-5 flex-none transition-transform ${open ? 'rotate-180' : ''}`}
+                            aria-hidden="true"
+                          />
+                        </DisclosureButton>
+                        <DisclosurePanel className="mt-2 space-y-2">
+                          {[...products].map((item) => (
                             <NavLink
                               key={item.name}
                               to={item.href}
-                              className="flex items-center gap-2 p-1 rounded-lg text-sm text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10"
+                              className="flex items-center gap-2 rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10"
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               <item.icon className="h-4 w-4" /> {item.name}
                             </NavLink>
                           ))}
-                        </Disclosure.Panel>
+                        </DisclosurePanel>
                       </>
                     )}
                   </Disclosure>
@@ -287,7 +286,7 @@ export default function Header() {
                   <NavLink
                     to="/about"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                      `flex items-center gap-2 -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors ${
                         isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
                       }`
                     }
@@ -296,30 +295,30 @@ export default function Header() {
                     <InformationCircleIcon className="h-5 w-5" /> Про нас
                   </NavLink>
                 </nav>
+              </div>
+            </div>
 
-                <div className="mt-auto flex flex-col gap-2 border-t border-[#69140E]/10 dark:border-[#FFFFFF]/10 pt-4">
-                  <Link
-                    to="/application"
-                    className="text-center bg-[#FFD700] text-[#69140E] py-2 rounded-lg font-semibold hover:bg-[#F6AA1C] transition"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Подати Заявку
-                  </Link>
-                  <a
-                    href="https://t.me/ashveme"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-center bg-[#69140E]/10 dark:bg-[#FFFFFF]/10 text-[#69140E] dark:text-[#FFFFFF] py-2 rounded-lg hover:bg-[#69140E]/20 dark:hover:bg-[#FFFFFF]/20 transition"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Підтримка
-                  </a>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
-    </header>
+            <div className="py-6 flex flex-col gap-2 border-t border-[#69140E]/10 dark:border-[#FFFFFF]/10 mt-auto">
+              <a
+                href="https://t.me/ashveme"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#69140E]/10 dark:hover:bg-[#FFFFFF]/10 text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Підтримка
+              </a>
+              <Link
+                to="/application"
+                className="text-center rounded-lg px-3 py-2.5 text-base font-semibold leading-7 bg-[#FFD700] text-[#69140E] shadow-sm hover:bg-[#F6AA1C] transition"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Подати Заявку
+              </Link>
+            </div>
+          </DialogPanel>
+        </Transition.Child>
+      </Dialog>
+    </>
   );
 }

@@ -33,7 +33,7 @@ const ProgressBar = () => {
     // * The progress bar component itself.
     // ? The `style` attribute dynamically sets the width based on the state.
     <div
-      className="fixed top-0 left-0 h-1 bg-orange-500 z-50 transition-width duration-300"
+      className="fixed top-0 left-0 h-1 z-70 bg-orange-500 transition-width duration-300"
       style={{ width: `${scrollPercentage}%` }}
     />
   );
