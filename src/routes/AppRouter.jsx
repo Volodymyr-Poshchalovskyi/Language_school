@@ -11,6 +11,8 @@ import AboutPage from '../pages/AboutPage';
 import DualForm from '../pages/DualForm';
 import SingleForm from '../pages/SingleForm';
 import NotFoundPage from '../pages/NotFoundPage';
+// ! ЗМІНА ТУТ: Імпортуємо нову сторінку
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage';
 
 export default function AppRouter() {
   return (
@@ -25,6 +27,8 @@ export default function AppRouter() {
           <Route path="about" element={<AboutPage />} />
           <Route path="dual-form" element={<DualForm />} />
           <Route path="single-form" element={<SingleForm />} />
+          {/* ! ЗМІНА ТУТ: Додаємо маршрут для сторінки політики конфіденційності */}
+          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
           {/* ? Catch-all route for handling undefined paths and displaying a 404 page. */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>

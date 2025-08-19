@@ -1,42 +1,34 @@
 //* A responsive, touch-enabled slider component for showcasing different learning goals.
-//* It dynamically adjusts the number of visible slides based on the viewport width.
+//* This version features a new layout for desktop controls and a fluid drag-and-swipe experience on mobile.
 
 import React, { useState, useRef, useEffect } from 'react';
-// * Imports icons for slider navigation.
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-// ! Imports data and styling configurations from external files.
 import { slides, colorVariants } from '../../../data/goalSliderData';
-// * Imports the single slide component.
 import Slide from './Slide';
 
 const GoalSlider = () => {
-  // * State hooks for managing the current slide index and number of slides visible.
   const [current, setCurrent] = useState(0);
-  const touchStartX = useRef(null);
-  const touchEndX = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
+  
+  // ! Нові стани для плавного перетягування
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const touchStartX = useRef(0);
 
-  // ! useEffect hook to handle responsive behavior.
   useEffect(() => {
-    // * Responds to window resize events to update `slidesPerView`.
     const handleResize = () => {
       const newSlidesPerView = window.innerWidth < 768 ? 1 : 2;
       setSlidesPerView(newSlidesPerView);
-      setCurrent(0); // ? Resets the slider to the first slide on resize for consistency.
+      setCurrent(0);
     };
 
-    // * Sets initial state and adds the event listener.
     handleResize();
     window.addEventListener('resize', handleResize);
-    // ! Cleanup function to prevent memory leaks.
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // * Calculates the maximum possible index for the slider to prevent out-of-bounds errors.
-  const maxIndex =
-    slides.length > slidesPerView ? slides.length - slidesPerView : 0;
+  const maxIndex = slides.length > slidesPerView ? slides.length - slidesPerView : 0;
 
-  // * Handlers for manual slide navigation.
   const handleNext = () => {
     setCurrent((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
@@ -45,32 +37,40 @@ const GoalSlider = () => {
     setCurrent((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
-  // ! Touch event handlers for mobile devices.
+  // ! Оновлені обробники дотиків для плавності
   const handleTouchStart = (e) => {
+    setIsDragging(true);
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
-    touchEndX.current = e.touches[0].clientX;
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - touchStartX.current;
+    setDragOffset(diff);
   };
 
   const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const diff = touchStartX.current - touchEndX.current;
-    // ? Swipes trigger a slide change if the movement is significant.
-    if (diff > 50) handleNext();
-    if (diff < -50) handlePrev();
-    touchStartX.current = null;
-    touchEndX.current = null;
+    setIsDragging(false);
+    
+    // ? Визначаємо, чи достатньо сильно свайпнули для перемикання
+    const swipeThreshold = 50; 
+    if (dragOffset < -swipeThreshold) {
+      handleNext();
+    } else if (dragOffset > swipeThreshold) {
+      handlePrev();
+    }
+    
+    // ? Скидаємо зміщення, щоб слайдер плавно повернувся на місце
+    setDragOffset(0);
   };
 
-  // * Calculates the translation offset for the slider animation.
+  // * Розрахунок зміщення для анімації
   const offset = current * (100 / slidesPerView);
 
   return (
     <section className="bg-slate-50 dark:bg-slate-900 transition-colors py-16 md:py-24 font-sans">
       <div className="max-w-7xl mx-auto px-4">
-        {/* * Section headings with `avoid-emoji` class. */}
         <h2 className="avoid-emoji text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-2">
           Німецька мова для ваших цілей
         </h2>
@@ -78,19 +78,21 @@ const GoalSlider = () => {
           Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
         </p>
 
-        <div className="avoid-emoji relative">
-          {/* * Slider container. `overflow-hidden` is essential for the horizontal layout. */}
-          <div className="overflow-hidden">
+        {/* ! Нова структура для десктопу: кнопки винесені за межі слайдера */}
+        <div className="avoid-emoji hidden md:flex items-center justify-center gap-4">
+          <button
+            className="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition p-3 rounded-full shadow-md dark:shadow-none"
+            onClick={handlePrev}
+            aria-label="Previous Slide"
+          >
+            <FaChevronLeft size={20} />
+          </button>
+
+          <div className="overflow-hidden flex-1">
             <div
               className="flex transition-transform duration-500 ease-in-out"
-              // ! Applies the calculated offset to animate the slides.
               style={{ transform: `translateX(-${offset}%)` }}
-              // * Attaches touch event handlers for swiping functionality.
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
             >
-              {/* * Maps over the slides data to render individual Slide components. */}
               {slides.map((slide, index) => {
                 const colors = colorVariants[slide.color] || colorVariants.blue;
                 return <Slide key={index} slide={slide} colors={colors} />;
@@ -98,16 +100,8 @@ const GoalSlider = () => {
             </div>
           </div>
 
-          {/* * Navigation buttons for desktop screens with dark mode variants. */}
           <button
-            className="hidden md:block absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition p-3 rounded-full shadow-md dark:shadow-none"
-            onClick={handlePrev}
-            aria-label="Previous Slide"
-          >
-            <FaChevronLeft size={20} />
-          </button>
-          <button
-            className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition p-3 rounded-full shadow-md dark:shadow-none"
+            className="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition p-3 rounded-full shadow-md dark:shadow-none"
             onClick={handleNext}
             aria-label="Next Slide"
           >
@@ -115,7 +109,27 @@ const GoalSlider = () => {
           </button>
         </div>
 
-        {/* * Slider navigation dots with dark mode variants. */}
+        {/* ! Окрема структура для мобільних пристроїв з новим, плавним свайпом */}
+        <div className="avoid-emoji md:hidden">
+          <div className="overflow-hidden">
+            <div
+              // ! Динамічний клас для плавного перетягування (вимикає анімацію під час руху пальця)
+              className={`flex ${isDragging ? '' : 'transition-transform duration-500 ease-in-out'}`}
+              // ! Новий стиль з calc() для руху слайдера вслід за пальцем
+              style={{ transform: `translateX(calc(-${offset}% + ${dragOffset}px))` }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              {slides.map((slide, index) => {
+                const colors = colorVariants[slide.color] || colorVariants.blue;
+                return <Slide key={index} slide={slide} colors={colors} />;
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* * Навігаційні крапки залишаються без змін */}
         <div className="flex justify-center items-center mt-8 space-x-2">
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
             <button
