@@ -13,19 +13,22 @@ const StatisticsSection = () => {
       icon: <FaUserGraduate className="text-[#E85F5C] text-5xl" />,
       value: '450+',
       title: 'Студентів',
-      description: 'Всього за півроку роботи нашої школи, багато студентів уже досягли значних успіхів.',
+      description:
+        'Всього за півроку роботи нашої школи, багато студентів уже досягли значних успіхів.',
     },
     {
       icon: <FaClipboardList className="text-[#E85F5C] text-5xl" />,
       value: '5200+',
       title: 'Уроків на місяць',
-      description: 'Не втрачай свій шанс і приєднуйся до тих, хто вже навчається прямо зараз.',
+      description:
+        'Не втрачай свій шанс і приєднуйся до тих, хто вже навчається прямо зараз.',
     },
     {
       icon: <FaHandshake className="text-[#E85F5C] text-5xl" />,
       value: '16+',
       title: 'Партнерів',
-      description: 'Це провідні компанії, з якими ми тісно співпрацюємо, пропонуючи нашим студентам нові послуги.',
+      description:
+        'Це провідні компанії, з якими ми тісно співпрацюємо, пропонуючи нашим студентам нові послуги.',
     },
   ];
 
@@ -52,7 +55,9 @@ const StatisticsSection = () => {
               scale={1.05}
               transitionSpeed={1500}
               className={`transition-all duration-700 ${
-                inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                inView
+                  ? 'translate-y-0 opacity-100'
+                  : 'translate-y-10 opacity-0'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >

@@ -20,7 +20,7 @@ const NotFoundPage = () => {
             На жаль, сторінка, яку ви шукаєте, не існує. Можливо, вона була
             переміщена або видалена.
           </p>
-          
+
           <Link
             to="/"
             className="inline-block bg-[#FFD700] text-[#69140E] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition shadow-md"

@@ -37,10 +37,12 @@ const getRandomEdgeX = (viewportWidth, emojiSize) => {
     return Math.random() * (leftZoneEnd - emojiSize);
   } else {
     // Права сторона (88% - 100%)
-    return rightZoneStart + Math.random() * (viewportWidth - rightZoneStart - emojiSize);
+    return (
+      rightZoneStart +
+      Math.random() * (viewportWidth - rightZoneStart - emojiSize)
+    );
   }
 };
-
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -52,7 +54,7 @@ export const EmojiFall = ({ stopRef, pathname }) => {
       if (window.innerWidth < MOBILE_BREAKPOINT) {
         return;
       }
-      
+
       const runMainLogic = () => {
         setTimeout(() => {
           if (!stopRef.current) return;
@@ -165,19 +167,21 @@ export const EmojiFall = ({ stopRef, pathname }) => {
               duration: 1.5,
               ease: 'power1.out',
               delay: Math.random() * 1.5,
-            }).to(emojiEl, {
-              rotation: Math.random() > 0.5 ? -10 : 10,
-              yoyo: true,
-              repeat: 1,
-              duration: 0.8,
-            }).to(emojiEl, {
-              x: pos.x,
-              y: pos.y,
-              rotation: 0,
-              duration: 2,
-              ease: 'power1.inOut',
-              opacity: 0.9,
-            });
+            })
+              .to(emojiEl, {
+                rotation: Math.random() > 0.5 ? -10 : 10,
+                yoyo: true,
+                repeat: 1,
+                duration: 0.8,
+              })
+              .to(emojiEl, {
+                x: pos.x,
+                y: pos.y,
+                rotation: 0,
+                duration: 2,
+                ease: 'power1.inOut',
+                opacity: 0.9,
+              });
           });
         }, 100);
       };

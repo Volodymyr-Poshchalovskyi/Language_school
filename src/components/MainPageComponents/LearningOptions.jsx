@@ -25,7 +25,6 @@ const LearningOptions = () => {
         </h2>
 
         <div className="avoid-emoji grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center overflow-hidden">
-          
           {/* ! ЗМІНА ТУТ: Додано зовнішній div для ref та анімації появи */}
           <div
             ref={refPersonal}
@@ -35,7 +34,13 @@ const LearningOptions = () => {
                 : '-translate-x-20 opacity-0'
             }`}
           >
-            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.05} transitionSpeed={1500}>
+            <Tilt
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              perspective={1000}
+              scale={1.05}
+              transitionSpeed={1500}
+            >
               <div
                 className={`p-8 rounded-lg bg-white dark:bg-gray-800 shadow-md h-full cursor-default ${
                   inViewPersonal ? 'animate-float' : ''
@@ -48,8 +53,8 @@ const LearningOptions = () => {
                   Індивідуальні заняття
                 </h3>
                 <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
-                  Фокус тільки на тобі. Наш викладач повністю адаптує програму під
-                  твої потреби та темп навчання, забезпечуючи максимальну
+                  Фокус тільки на тобі. Наш викладач повністю адаптує програму
+                  під твої потреби та темп навчання, забезпечуючи максимальну
                   ефективність.
                 </p>
                 <Link
@@ -71,7 +76,13 @@ const LearningOptions = () => {
                 : 'translate-x-20 opacity-0'
             }`}
           >
-            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.05} transitionSpeed={1500}>
+            <Tilt
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              perspective={1000}
+              scale={1.05}
+              transitionSpeed={1500}
+            >
               <div
                 className={`p-8 rounded-lg bg-white dark:bg-gray-800 shadow-md h-full cursor-default ${
                   inViewPaired ? 'animate-float' : ''
@@ -86,8 +97,8 @@ const LearningOptions = () => {
                 </h3>
                 <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
                   Навчайтеся разом із другом або колегою! Це чудова можливість
-                  обмінюватися ідеями та підтримувати один одного, роблячи процес
-                  більш інтерактивним.
+                  обмінюватися ідеями та підтримувати один одного, роблячи
+                  процес більш інтерактивним.
                 </p>
                 <Link
                   to="/dual-form"
@@ -98,7 +109,6 @@ const LearningOptions = () => {
               </div>
             </Tilt>
           </div>
-
         </div>
       </div>
     </section>

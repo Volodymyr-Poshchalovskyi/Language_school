@@ -1,29 +1,26 @@
 //* A Call-to-Action (CTA) component designed for the homepage.
-//* Features a magnetic CTA button.
+//* Features a magnetic CTA button and default cursor on text areas.
 
-// ! ЗМІНА ТУТ: Імпортуємо хуки та GSAP
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import CTAImage from '../../assets/CTAImage.jpg';
 
 const CTA = () => {
-  // ! ЗМІНА ТУТ: Створюємо ref для кнопки
   const buttonRef = useRef(null);
 
-  // ! ЗМІНА ТУТ: Додаємо ефект для "магнітної" анімації
   useEffect(() => {
     const button = buttonRef.current;
     if (!button || window.innerWidth < 1024) return;
 
-    const activationDistance = 200;
+    const activationDistance = 150;
 
     const onMouseMove = (e) => {
       const { clientX, clientY } = e;
       const { left, top, width, height } = button.getBoundingClientRect();
       const centerX = left + width / 2;
       const centerY = top + height / 2;
-      
+
       const deltaX = clientX - centerX;
       const deltaY = clientY - centerY;
 
@@ -55,22 +52,29 @@ const CTA = () => {
       });
     };
 
-    // Слухаємо рух миші по всьому вікну, щоб ефект працював на відстані
     window.addEventListener('mousemove', onMouseMove);
     document.documentElement.addEventListener('mouseleave', onMouseLeaveWindow);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      document.documentElement.removeEventListener('mouseleave', onMouseLeaveWindow);
-      gsap.to(button, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+      document.documentElement.removeEventListener(
+        'mouseleave',
+        onMouseLeaveWindow
+      );
+      gsap.to(button, {
+        x: 0,
+        y: 0,
+        duration: 0.6,
+        ease: 'elastic.out(1, 0.5)',
+      });
     };
-  }, []); // Пустий масив залежностей, щоб ефект додався один раз
+  }, []);
 
   return (
     <section className="bg-[#69140E]/5 dark:bg-gray-900 py-12 px-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
-        
-        <div className="avoid-emoji md:w-1/2 text-center md:text-left">
+        {/* ! ЗМІНА ТУТ: Додано клас `cursor-default` */}
+        <div className="avoid-emoji md:w-1/2 text-center md:text-left cursor-default">
           <h1 className="text-4xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
             Приєднуйся до нашої{' '}
             <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">
@@ -81,13 +85,17 @@ const CTA = () => {
             Отримай доступ до унікальних можливостей та стань частиною чогось
             більшого вже сьогодні.
           </p>
-          
+
           <Link
-            ref={buttonRef} // ! ЗМІНА ТУТ: Прив'язуємо ref до кнопки
+            ref={buttonRef}
             to="/application"
-            className="inline-block bg-[#FFD700] text-[#69140E] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition shadow-md"
+            // ! ЗМІНА ТУТ: Додано `cursor-pointer` для гарантії правильного курсора на кнопці
+            className="inline-flex items-center gap-x-2 bg-[#FFD700] text-[#69140E] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition shadow-md group cursor-pointer"
           >
-            Подати заявку
+            <span>Подати заявку</span>
+            <span className="transition-transform duration-300 ease-in-out transform -translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
+              →
+            </span>
           </Link>
         </div>
 

@@ -1,7 +1,7 @@
 //* The main application component, serving as the root of the React app.
 
 import AppRouter from './routes/AppRouter';
-import './App.css'; 
+import './App.css';
 
 function App() {
   // ! This component's primary role is to render the routing logic for the entire application.

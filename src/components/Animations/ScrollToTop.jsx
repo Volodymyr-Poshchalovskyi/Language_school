@@ -13,7 +13,7 @@ function ScrollToTop() {
     // ? Scrolls the window to the top (0, 0) of the document.
     window.scrollTo(0, 0);
   }, [pathname]); // ! The dependency array ensures the effect is triggered on route changes.
-  
+
   // * This component does not render any UI, so it returns null.
   return null;
 }

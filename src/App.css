@@ -9,7 +9,7 @@ body {
 
 .dark body {
   /* Цей колір відповідає Tailwind класу dark:bg-gray-900, як у вашому футері */
-  background-color: #111827; 
+  background-color: #111827;
 }
 
 .emoji-container {
@@ -34,8 +34,6 @@ body {
   border-radius: 12px;
   margin-top: 20px;
 }
-
-
 
 @keyframes float {
   0% {

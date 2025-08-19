@@ -1,11 +1,6 @@
 // src/data/goalSliderData.js
 
-import {
-  FaHome,
-  FaBriefcase,
-  FaBook,
-  FaGraduationCap,
-} from 'react-icons/fa';
+import { FaHome, FaBriefcase, FaBook, FaGraduationCap } from 'react-icons/fa';
 
 export const slides = [
   {

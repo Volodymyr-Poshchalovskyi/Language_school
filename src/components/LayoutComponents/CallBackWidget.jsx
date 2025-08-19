@@ -23,8 +23,19 @@ function Modal({ isOpen, onClose, children }) {
           className="absolute top-4 right-4 p-1 text-[#69140E]/40 hover:text-[#E85F5C] dark:text-[#FFFFFF]/40 dark:hover:text-[#E85F5C] transition-colors rounded-full"
           aria-label="Закрити"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
         {children}
@@ -53,7 +64,8 @@ function CallBackWidget() {
     if (!isButtonVisible) return;
     const intervalId = setInterval(() => {
       const buttonElement = buttonRef.current;
-      if (buttonElement && !buttonElement.matches(':hover')) { // Не трясти, якщо курсор на кнопці
+      if (buttonElement && !buttonElement.matches(':hover')) {
+        // Не трясти, якщо курсор на кнопці
         buttonElement.classList.add('animate-shake');
         setTimeout(() => {
           buttonElement.classList.remove('animate-shake');
@@ -62,7 +74,7 @@ function CallBackWidget() {
     }, 5000);
     return () => clearInterval(intervalId);
   }, [isButtonVisible]);
-  
+
   useEffect(() => {
     const button = buttonRef.current;
     if (!button || !isButtonVisible || window.innerWidth < 1024) return;
@@ -112,8 +124,16 @@ function CallBackWidget() {
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       // ! ЗМІНА ТУТ: Прибираємо слухача при демонтуванні
-      document.documentElement.removeEventListener('mouseleave', onMouseLeaveWindow);
-      gsap.to(button, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+      document.documentElement.removeEventListener(
+        'mouseleave',
+        onMouseLeaveWindow
+      );
+      gsap.to(button, {
+        x: 0,
+        y: 0,
+        duration: 0.7,
+        ease: 'elastic.out(1, 0.5)',
+      });
     };
   }, [isButtonVisible]);
 
@@ -134,7 +154,10 @@ function CallBackWidget() {
       setError('Введіть коректний номер телефону');
       return;
     }
-    const { data, error: supabaseError } = await supabase.from('CallBacks').insert([{ phone: phoneNumber }]).select();
+    const { data, error: supabaseError } = await supabase
+      .from('CallBacks')
+      .insert([{ phone: phoneNumber }])
+      .select();
     if (supabaseError) {
       console.error('SUPABASE ERROR:', supabaseError);
       alert('На жаль, сталася помилка. Спробуйте ще раз.');
@@ -159,7 +182,12 @@ function CallBackWidget() {
   return (
     <>
       <style>{animationStyles}</style>
-      {isModalOpen && <div className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm animate-fade-in" onClick={handleCloseModal} />}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm animate-fade-in"
+          onClick={handleCloseModal}
+        />
+      )}
       <button
         ref={buttonRef}
         onClick={handleOpenModal}
@@ -174,16 +202,32 @@ function CallBackWidget() {
         {isSubmitted ? (
           <div className="text-center">
             <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-[#F6AA1C]/20 mb-4">
-              <svg className="h-10 w-10 text-[#F6AA1C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
+              <svg
+                className="h-10 w-10 text-[#F6AA1C]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-2">Дякуємо!</h3>
-            <p className="text-[#69140E]/80 dark:text-[#FFFFFF]/80">Ми отримали ваш запит і скоро зателефонуємо.</p>
+            <h3 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-2">
+              Дякуємо!
+            </h3>
+            <p className="text-[#69140E]/80 dark:text-[#FFFFFF]/80">
+              Ми отримали ваш запит і скоро зателефонуємо.
+            </p>
           </div>
         ) : (
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">Замовте дзвінок</h3>
+            <h3 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
+              Замовте дзвінок
+            </h3>
             <form onSubmit={handleSubmit}>
               <input
                 id="callbackPhone"
@@ -201,7 +245,9 @@ function CallBackWidget() {
                 Подзвоніть мені
               </button>
             </form>
-            <p className="text-xs text-[#69140E]/70 dark:text-[#FFFFFF]/70 mt-4">Ми зателефонуємо вам впродовж 2-х годин у робочий час.</p>
+            <p className="text-xs text-[#69140E]/70 dark:text-[#FFFFFF]/70 mt-4">
+              Ми зателефонуємо вам впродовж 2-х годин у робочий час.
+            </p>
           </div>
         )}
       </Modal>

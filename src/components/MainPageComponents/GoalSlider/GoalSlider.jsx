@@ -23,51 +23,56 @@ const GoalSlider = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const maxIndex = slides.length > slidesPerView ? slides.length - slidesPerView : 0;
+  const maxIndex =
+    slides.length > slidesPerView ? slides.length - slidesPerView : 0;
 
-  const handleNext = () => setCurrent((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  const handlePrev = () => setCurrent((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  const handleNext = () =>
+    setCurrent((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  const handlePrev = () =>
+    setCurrent((prev) => (prev <= 0 ? maxIndex : prev - 1));
 
   const handleTouchStart = (e) => {
-  setIsDragging(true);
-  touchStartCoords.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-  isSwipeHorizontal.current = null;
-};
+    setIsDragging(true);
+    touchStartCoords.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+    isSwipeHorizontal.current = null;
+  };
 
-const handleTouchMove = (e) => {
-  if (!isDragging) return;
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
 
-  const currentX = e.touches[0].clientX;
-  const currentY = e.touches[0].clientY;
-  const diffX = currentX - touchStartCoords.current.x;
-  const diffY = currentY - touchStartCoords.current.y;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = currentX - touchStartCoords.current.x;
+    const diffY = currentY - touchStartCoords.current.y;
 
-  if (isSwipeHorizontal.current === null) {
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-      isSwipeHorizontal.current = true; // горизонт
-    } else {
-      isSwipeHorizontal.current = false; // вертикаль
+    if (isSwipeHorizontal.current === null) {
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        isSwipeHorizontal.current = true; // горизонт
+      } else {
+        isSwipeHorizontal.current = false; // вертикаль
+      }
     }
-  }
 
-  if (isSwipeHorizontal.current) {
-    e.preventDefault(); // блокуємо вертикальний скрол тільки для горизонтального свайпу
-    setDragOffset(diffX);
-  }
-};
+    if (isSwipeHorizontal.current) {
+      e.preventDefault(); // блокуємо вертикальний скрол тільки для горизонтального свайпу
+      setDragOffset(diffX);
+    }
+  };
 
-const handleTouchEnd = () => {
-  if (isSwipeHorizontal.current) {
-    const swipeThreshold = 50;
-    if (dragOffset < -swipeThreshold) handleNext();
-    else if (dragOffset > swipeThreshold) handlePrev();
-  }
+  const handleTouchEnd = () => {
+    if (isSwipeHorizontal.current) {
+      const swipeThreshold = 50;
+      if (dragOffset < -swipeThreshold) handleNext();
+      else if (dragOffset > swipeThreshold) handlePrev();
+    }
 
-  setIsDragging(false);
-  isSwipeHorizontal.current = null;
-  setDragOffset(0);
-};
-
+    setIsDragging(false);
+    isSwipeHorizontal.current = null;
+    setDragOffset(0);
+  };
 
   const offset = current * (100 / slidesPerView);
 
@@ -99,7 +104,10 @@ const handleTouchEnd = () => {
             <FaChevronLeft size={20} />
           </button>
           <div className="overflow-hidden flex-1">
-            <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${offset}%)` }}>
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${offset}%)` }}
+            >
               {slides.map((slide, index) => {
                 const colors = colorVariants[slide.color] || colorVariants.gold;
                 return <Slide key={index} slide={slide} colors={colors} />;
@@ -117,25 +125,24 @@ const handleTouchEnd = () => {
         {/* Mobile */}
         <div className="avoid-emoji md:hidden">
           <div className="overflow-hidden touch-pan-y">
-  <div
-    id="mobile-slider-track"
-    className="flex will-change-transform"
-    style={{
-      transform: `translateX(calc(-${offset}% + ${dragOffset}px))`,
-      transition: isDragging
-        ? "none"
-        : "transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)",
-    }}
-    onTouchStart={handleTouchStart}
-    onTouchEnd={handleTouchEnd}
-  >
-    {slides.map((slide, index) => {
-      const colors = colorVariants[slide.color] || colorVariants.gold;
-      return <Slide key={index} slide={slide} colors={colors} />;
-    })}
-  </div>
-</div>
-
+            <div
+              id="mobile-slider-track"
+              className="flex will-change-transform"
+              style={{
+                transform: `translateX(calc(-${offset}% + ${dragOffset}px))`,
+                transition: isDragging
+                  ? 'none'
+                  : 'transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)',
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              {slides.map((slide, index) => {
+                const colors = colorVariants[slide.color] || colorVariants.gold;
+                return <Slide key={index} slide={slide} colors={colors} />;
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Dots */}

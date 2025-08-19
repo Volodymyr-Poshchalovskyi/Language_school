@@ -35,7 +35,7 @@ export default function Layout() {
         htmlElement.classList.remove('dark');
       }
     };
-    
+
     // * Set the theme on initial load
     setTheme(prefersDark);
 
@@ -50,11 +50,14 @@ export default function Layout() {
 
   return (
     // * The main layout container with horizontal safe-area padding for landscape mode on notched devices.
-    <div className="layout pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]" style={{ position: 'relative' }}>
+    <div
+      className="layout pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
+      style={{ position: 'relative' }}
+    >
       {/* ! The EmojiFall component is rendered here. 
           It uses 'stopRef' to define a safe landing zone and 'pathname' for caching. */}
       <EmojiFall stopRef={mainContentRef} pathname={location.pathname} />
-      
+
       {/* * ScrollToTop ensures the user starts at the top of a new page. */}
       <ScrollToTop />
       {/* * A progress bar that tracks scroll position. */}

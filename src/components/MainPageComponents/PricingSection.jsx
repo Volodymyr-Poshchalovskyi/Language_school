@@ -36,7 +36,7 @@ const PricingSection = () => {
               transitionSpeed={1500}
               className={`
                 transition-all duration-700
-                ${ inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0' }
+                ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}
               `}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
@@ -44,8 +44,8 @@ const PricingSection = () => {
                 // ! ЗМІНА ТУТ: Додано клас `cursor-default`
                 className={`
                   bg-[#FFFFFF] dark:bg-gray-800 p-8 rounded-lg shadow-md flex flex-col h-full cursor-default
-                  ${ tier.featured ? 'border-2 border-[#FFD700]' : '' }
-                  ${ inView ? 'animate-float' : '' }
+                  ${tier.featured ? 'border-2 border-[#FFD700]' : ''}
+                  ${inView ? 'animate-float' : ''}
                 `}
                 style={{ animationDelay: `${index * -2}s` }}
               >
@@ -80,9 +80,7 @@ const PricingSection = () => {
                     {tier.features.map((feature) => (
                       <li key={feature} className="flex gap-x-3 items-center">
                         <FaCheckCircle className="h-5 w-5 flex-none text-[#F6AA1C]" />
-                        <span>
-                          {feature}
-                        </span>
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>

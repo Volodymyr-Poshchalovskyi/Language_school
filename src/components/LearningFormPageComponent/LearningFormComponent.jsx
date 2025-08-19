@@ -37,7 +37,9 @@ function LearningFormPage({ data }) {
             <ul className="space-y-3 text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80">
               {data.forWhomList.map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <span className={`${theme.checkmarkColor} mr-3 mt-1`}>&#10003;</span>
+                  <span className={`${theme.checkmarkColor} mr-3 mt-1`}>
+                    &#10003;
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}

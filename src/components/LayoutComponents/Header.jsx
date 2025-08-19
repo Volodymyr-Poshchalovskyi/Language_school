@@ -1,9 +1,6 @@
-// * The main Header component, providing primary navigation for the site.
-// * This version has been restyled with the new brand color palette.
-
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo, Fragment } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import {
   Dialog,
@@ -15,9 +12,9 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
+  Transition,
 } from '@headlessui/react';
 import {
-  Bars3Icon,
   XMarkIcon,
   UserIcon,
   UserGroupIcon,
@@ -28,7 +25,31 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Logo from '../../assets/Logo.jpeg';
 
-// * Static data for the dropdown menu links.
+// Animated Menu Icon for mobile
+const AnimatedMenuIcon = ({ isOpen }) => (
+  <div className="relative h-6 w-6">
+    <span
+      aria-hidden="true"
+      className={`absolute top-1/2 left-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 bg-current transition duration-300 ease-in-out ${
+        isOpen ? 'rotate-45' : '-translate-y-2'
+      }`}
+    />
+    <span
+      aria-hidden="true"
+      className={`absolute top-1/2 left-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 bg-current transition-opacity duration-300 ease-in-out ${
+        isOpen ? 'opacity-0' : ''
+      }`}
+    />
+    <span
+      aria-hidden="true"
+      className={`absolute top-1/2 left-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 bg-current transition duration-300 ease-in-out ${
+        isOpen ? '-rotate-45' : 'translate-y-2'
+      }`}
+    />
+  </div>
+);
+
+// Products for learning forms
 const products = [
   {
     name: 'Персональні заняття',
@@ -46,26 +67,27 @@ const products = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
   const location = useLocation();
-  const isLearningFormsActive = products.some((item) =>
-    location.pathname.startsWith(item.href)
+
+  const isLearningFormsActive = useMemo(
+    () => products.some((item) => location.pathname.startsWith(item.href)),
+    [location.pathname]
   );
 
   const navLinkStyles = ({ isActive }) =>
     `text-sm font-semibold leading-6 transition-colors duration-200 ${
-      isActive 
-      ? 'text-[#FFD700]' // Активний колір: Золотий
-      : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
+      isActive
+        ? 'text-[#FFD700]'
+        : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
     }`;
 
   return (
-    // ! ЗМІНА ТУТ: Фон темного режиму змінено на нейтральний dark:bg-gray-900
-    <header className="bg-[#FFFFFF] dark:bg-gray-900 sticky top-0 z-40 shadow-md transition-colors duration-300 border-b border-[#69140E]/10 dark:border-[#FFFFFF]/10 pt-[env(safe-area-inset-top)]">
+    <header className="bg-[#FFFFFF] dark:bg-gray-900 sticky top-0 z-50 shadow-md transition-colors duration-300 border-b border-[#69140E]/10 dark:border-[#FFFFFF]/10 pt-[env(safe-area-inset-top)]">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
+        {/* Logo */}
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Besondres Deutch</span>
@@ -79,23 +101,24 @@ export default function Header() {
           </Link>
         </div>
 
+        {/* Mobile Menu Button */}
         <div className="flex lg:hidden">
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[#69140E] dark:text-[#FFFFFF]"
           >
             <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="w-6 h-6" />
+            <AnimatedMenuIcon isOpen={mobileMenuOpen} />
           </button>
         </div>
 
-        {/* --- Desktop Navigation --- */}
+        {/* Desktop Nav Links */}
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <NavLink to="/" className={navLinkStyles}>
             Головна
           </NavLink>
-          
+
           <Popover className="relative">
             {({ close }) => (
               <>
@@ -113,10 +136,9 @@ export default function Header() {
                   />
                 </PopoverButton>
 
-                {/* ! ЗМІНА ТУТ: Фон темного режиму змінено на нейтральний dark:bg-gray-900 */}
                 <PopoverPanel
                   transition
-                  className="absolute left-1/2 z-10 mt-5 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-[#FFFFFF] dark:bg-gray-900 shadow-lg ring-1 ring-[#69140E]/10 dark:ring-[#FFFFFF]/10 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                  className="absolute left-1/2 z-10 mt-5 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-[#FFFFFF] dark:bg-gray-900 shadow-lg ring-1 ring-[#69140E]/10 dark:ring-[#FFFFFF]/10"
                 >
                   <div className="p-4">
                     {products.map((item) => (
@@ -139,7 +161,9 @@ export default function Header() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </Link>
-                          <p className="mt-1 text-[#69140E]/80 dark:text-[#FFFFFF]/80">{item.description}</p>
+                          <p className="mt-1 text-[#69140E]/80 dark:text-[#FFFFFF]/80">
+                            {item.description}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -154,6 +178,7 @@ export default function Header() {
           </NavLink>
         </PopoverGroup>
 
+        {/* Desktop Right Buttons */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           <a
             href="https://t.me/ashveme"
@@ -163,7 +188,6 @@ export default function Header() {
           >
             Підтримка
           </a>
-
           <Link
             to="/application"
             className="inline-flex items-center gap-x-1 rounded-md bg-[#FFD700] px-4 py-2 text-sm font-semibold text-[#69140E] shadow-sm hover:bg-[#F6AA1C] transition"
@@ -173,124 +197,129 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* --- Mobile Dialog Menu --- */}
-      <Dialog
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-        className="lg:hidden"
-      >
-        <div className="fixed inset-0 z-50" />
-        {/* ! ЗМІНА ТУТ: Фон темного режиму змінено на нейтральний dark:bg-gray-900 */}
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#FFFFFF] dark:bg-gray-900 p-6 sm:max-w-sm sm:ring-1 ring-[#69140E]/10 dark:ring-[#FFFFFF]/10">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Besondres Deutch</span>
-              <img
-                alt="Besondres Deutch Logo"
-                src={Logo}
-                className="h-12 w-12 rounded-full object-cover"
-                width="48"
-                height="48"
-              />
-            </Link>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              className="-m-2.5 rounded-md p-2.5 text-[#69140E] dark:text-[#FFFFFF]"
+      {/* Mobile Menu */}
+      <Transition show={mobileMenuOpen} as={Fragment}>
+        <Dialog as="div" className="lg:hidden" onClose={setMobileMenuOpen}>
+          {/* затемнення фону */}
+          <Transition.Child
+            as={Fragment}
+            enter="transition-opacity ease-out duration-500"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity ease-in duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
+          </Transition.Child>
+
+          {/* меню */}
+          <div className="fixed z-40 inset-0 flex justify-end">
+            <Transition.Child
+              as={Fragment}
+              enter="transform transition ease-out duration-500"
+              enterFrom="translate-x-full opacity-0"
+              enterTo="translate-x-0 opacity-100"
+              leave="transform transition ease-in duration-300"
+              leaveFrom="translate-x-0 opacity-100"
+              leaveTo="translate-x-full opacity-0"
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon aria-hidden="true" className="w-6 h-6" />
-            </button>
+              <Dialog.Panel className="relative w-full max-w-xs bg-white dark:bg-gray-900 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] h-full shadow-xl overflow-y-auto flex flex-col">
+                {/* Контент меню */}
+                <div className="flex items-center justify-between">
+                  <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+                    <img src={Logo} alt="Logo" className="h-12 w-12 rounded-full" />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[#69140E] dark:text-[#FFFFFF]"
+                  >
+                    <XMarkIcon className="h-6 w-6" />
+                  </button>
+                </div>
+
+                <nav className="mt-8 flex flex-col gap-2">
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                        isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
+                      }`
+                    }
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <HomeIcon className="h-5 w-5" /> Головна
+                  </NavLink>
+
+                  {/* Disclosure для форм навчання */}
+                  <Disclosure>
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button
+                          className={`flex justify-between items-center w-full p-2 rounded-lg font-semibold transition-colors ${
+                            isLearningFormsActive
+                              ? 'bg-[#F6AA1C]/10 text-[#FFD700]'
+                              : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
+                          }`}
+                        >
+                          <span className="flex items-center gap-2">
+                            <AcademicCapIcon className="h-5 w-5" /> Форми навчання
+                          </span>
+                          <ChevronDownIcon className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
+                        </Disclosure.Button>
+                        <Disclosure.Panel className="pl-6 flex flex-col gap-1 mt-1">
+                          {products.map((item) => (
+                            <NavLink
+                              key={item.name}
+                              to={item.href}
+                              className="flex items-center gap-2 p-1 rounded-lg text-sm text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              <item.icon className="h-4 w-4" /> {item.name}
+                            </NavLink>
+                          ))}
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                        isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
+                      }`
+                    }
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <InformationCircleIcon className="h-5 w-5" /> Про нас
+                  </NavLink>
+                </nav>
+
+                <div className="mt-auto flex flex-col gap-2 border-t border-[#69140E]/10 dark:border-[#FFFFFF]/10 pt-4">
+                  <Link
+                    to="/application"
+                    className="text-center bg-[#FFD700] text-[#69140E] py-2 rounded-lg font-semibold hover:bg-[#F6AA1C] transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Подати Заявку
+                  </Link>
+                  <a
+                    href="https://t.me/ashveme"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-center bg-[#69140E]/10 dark:bg-[#FFFFFF]/10 text-[#69140E] dark:text-[#FFFFFF] py-2 rounded-lg hover:bg-[#69140E]/20 dark:hover:bg-[#FFFFFF]/20 transition"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Підтримка
+                  </a>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 flex flex-col justify-between h-full">
-              <div className="space-y-2 py-6">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `-mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors ${isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'}`
-                  }
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <HomeIcon className="h-6 w-6 flex-none" />
-                  Головна
-                </NavLink>
-
-                <Disclosure as="div" className="-mx-3">
-                  {({ close }) => (
-                    <>
-                      <DisclosureButton
-                        className={`group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 transition-colors ${
-                          isLearningFormsActive
-                            ? 'bg-[#F6AA1C]/10 text-[#FFD700]'
-                            : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
-                        }`}
-                      >
-                        <span className="flex items-center gap-x-3">
-                          <AcademicCapIcon className="h-6 w-6 flex-none" />
-                          Форми навчання
-                        </span>
-                        <ChevronDownIcon
-                          aria-hidden="true"
-                          className="h-5 w-5 flex-none group-data-[open]:rotate-180"
-                        />
-                      </DisclosureButton>
-                      <DisclosurePanel className="mt-2 space-y-2">
-                        {products.map((item) => (
-                          <NavLink
-                            key={item.name}
-                            to={item.href}
-                            className={({ isActive }) =>
-                              `flex items-center gap-x-3 rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 transition-colors ${isActive ? 'bg-[#F6AA1C]/10' : 'text-[#69140E] dark:text-[#FFFFFF]'} hover:bg-[#F6AA1C]/10`
-                            }
-                            onClick={() => {
-                              setMobileMenuOpen(false);
-                              close();
-                            }}
-                          >
-                            <item.icon className="h-5 w-5 flex-none text-[#69140E]/60 dark:text-[#FFFFFF]/60" />
-                            {item.name}
-                          </NavLink>
-                        ))}
-                      </DisclosurePanel>
-                    </>
-                  )}
-                </Disclosure>
-
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    `-mx-3 flex items-center gap-x-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors ${isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'}`
-                  }
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <InformationCircleIcon className="h-6 w-6 flex-none" />
-                  Про нас
-                </NavLink>
-              </div>
-
-              <div className="space-y-4 py-6 border-t border-[#69140E]/10 dark:border-[#FFFFFF]/10">
-                <Link
-                  to="/application"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-center bg-[#FFD700] text-[#69140E] hover:bg-[#F6AA1C] transition"
-                >
-                  Подати Заявку
-                </Link>
-                <a
-                  href="https://t.me/ashveme"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-center bg-[#69140E]/10 dark:bg-[#FFFFFF]/10 text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#69140E]/20 dark:hover:bg-[#FFFFFF]/20 transition"
-                >
-                  Підтримка
-                </a>
-              </div>
-            </div>
-          </div>
-        </DialogPanel>
-      </Dialog>
+        </Dialog>
+      </Transition>
     </header>
   );
 }

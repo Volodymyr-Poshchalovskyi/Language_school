@@ -18,7 +18,6 @@ const Support = () => {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
-        
         <div className="avoid-emoji w-full md:w-1/2 bg-[#FFFFFF] dark:bg-gray-800 rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:rotate-1 hover:-translate-y-2">
           <h2 className="text-3xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] mb-4">
             Зв'яжіться з нами

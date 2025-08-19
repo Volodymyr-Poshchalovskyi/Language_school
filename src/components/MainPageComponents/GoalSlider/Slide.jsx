@@ -11,18 +11,20 @@ const Slide = ({ slide, colors }) => {
         >
           {slide.icon}
         </div>
-        
+
         <h3 className="font-bold text-xl text-[#69140E] dark:text-[#FFFFFF] mb-4 flex-grow">
           {slide.title}
         </h3>
-        
+
         <ul className="space-y-3">
           {slide.points.map((point, i) => (
             <li key={i} className="flex items-start">
               <span className={`mr-3 mt-1 ${colors.text}`} aria-hidden>
                 &#10003;
               </span>
-              <span className="text-[#69140E]/80 dark:text-[#FFFFFF]/80">{point}</span>
+              <span className="text-[#69140E]/80 dark:text-[#FFFFFF]/80">
+                {point}
+              </span>
             </li>
           ))}
         </ul>
