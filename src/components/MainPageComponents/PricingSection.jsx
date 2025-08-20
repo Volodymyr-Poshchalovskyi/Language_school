@@ -14,7 +14,7 @@ const PricingSection = () => {
     >
       <div className="max-w-7xl mx-auto text-center">
         <h2
-          className="text-4xl md:text-5xl mb-4 leading-snug text-[#69140E] dark:text-white"
+          className="text-4xl font-extrabold md:text-5xl mb-4 leading-snug text-[#69140E] dark:text-white"
           style={{ fontFamily: "'Viaoda Libre', cursive" }}
         >
           Обери свій ідеальний{" "}

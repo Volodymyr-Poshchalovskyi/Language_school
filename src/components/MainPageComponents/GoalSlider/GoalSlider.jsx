@@ -89,7 +89,7 @@ const GoalSlider = () => {
     <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-16 md:py-18 font-sans">
       <div className="max-w-7xl mx-auto px-4">
        <h2
-  className="avoid-emoji text-3xl md:text-4xl text-center mb-4 leading-snug text-[#69140E] dark:text-white"
+  className="avoid-emoji font-extrabold text-3xl md:text-4xl text-center mb-4 leading-snug text-[#69140E] dark:text-white"
   style={{
     fontFamily: "'Viaoda Libre', cursive",
   }}

@@ -1,25 +1,44 @@
-// src/components/LearningFormPageComponent/LearningFormComponent.jsx
-
 import { Link } from 'react-router-dom';
 
 function LearningFormPage({ data }) {
   const { theme } = data;
 
+  // Функція для виділення конкретного слова в заголовку
+  const getHighlightedTitle = (title) => {
+    if (title.includes('Індивідуальні')) {
+      return title.replace(
+        'Індивідуальні',
+        `<span class="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">Індивідуальні</span>`
+      );
+    }
+    if (title.includes('Парі')) {
+      return title.replace(
+        'Парі',
+        `<span class="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">Парі</span>`
+      );
+    }
+    return title;
+  };
+
   return (
-    <div
-      className={`${theme.sectionBg} dark:bg-gray-900 py-16 md:py-24 px-4 sm:px-6 lg:px-8 transition-colors duration-300`}
-    >
+    <div className="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8 transition-colors duration-300 bg-[#69140E]/5 dark:bg-gray-900">
+
       <div className="max-w-4xl mx-auto">
+        {/* Заголовок та підзаголовок */}
         <div className="avoid-emoji text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] tracking-tight">
-            {data.title}
-          </h1>
+          <h1
+            className="text-4xl md:text-5xl font-extrabold tracking-tight"
+            style={{ fontFamily: "'Viaoda Libre', cursive" }}
+            dangerouslySetInnerHTML={{ __html: getHighlightedTitle(data.title) }}
+          />
           <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-[#69140E]/80 dark:text-[#FFFFFF]/80">
             {data.subtitle}
           </p>
         </div>
 
+        {/* Основний блок */}
         <div className="avoid-emoji bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
+          {/* Що це таке */}
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-3">
               {data.whatIsItTitle}
@@ -30,6 +49,7 @@ function LearningFormPage({ data }) {
             />
           </div>
 
+          {/* Для кого */}
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
               {data.forWhomTitle}
@@ -46,13 +66,13 @@ function LearningFormPage({ data }) {
             </ul>
           </div>
 
+          {/* Переваги */}
           <div>
             <h2 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
               Ключові переваги
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {data.advantages.map((advantage, index) => (
-                // ! ЗМІНА ТУТ: Використовуємо новий клас для стилізації
                 <div
                   key={index}
                   className={`${advantage.cardClasses} p-6 rounded-lg transition-all duration-300`}
@@ -69,6 +89,7 @@ function LearningFormPage({ data }) {
           </div>
         </div>
 
+        {/* Кнопка */}
         <div className="avoid-emoji mt-12 text-center">
           <Link
             to={data.buttonLink}

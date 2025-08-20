@@ -34,8 +34,8 @@ const StatisticsSection = () => {
     <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-20 px-6">
       <div className="max-w-7xl mx-auto text-center">
         <h2
-          className="avoid-emoji text-4xl mb-12 leading-snug text-[#69140E] dark:text-white"
-          style={{ fontFamily: "'Viaoda Libre', cursive", fontWeight: 600 }}
+          className="avoid-emoji font-extrabold text-4xl mb-12 leading-snug text-[#69140E] dark:text-white"
+          style={{ fontFamily: "'Viaoda Libre', cursive", fontWeight: 800 }}
         >
           Що кажуть цифри?
           <div className="mt-4 text-[#69140E] dark:text-white">
