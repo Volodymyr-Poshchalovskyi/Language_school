@@ -1,6 +1,3 @@
-//* A pricing section component that displays various subscription tiers.
-//* Features a combined float/tilt animation and a default cursor on cards.
-
 import { FaCheckCircle } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
@@ -16,10 +13,17 @@ const PricingSection = () => {
       className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-20 px-6"
     >
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="avoid-emoji text-4xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
-          Обери свій ідеальний план
+        <h2
+          className="text-4xl md:text-5xl mb-4 leading-snug text-[#69140E] dark:text-white"
+          style={{ fontFamily: "'Viaoda Libre', cursive" }}
+        >
+          Обери свій ідеальний{" "}
+          <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
+            план
+          </span>
         </h2>
-        <p className="avoid-emoji mt-2 text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-12">
+
+        <p className="avoid-emoji mt-2 text-lg text-[#69140E]/80 dark:text-white/80 mb-12">
           Знайди тариф, який ідеально підійде для твоїх цілей та темпу навчання.
         </p>
 
@@ -41,9 +45,8 @@ const PricingSection = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div
-                // ! ЗМІНА ТУТ: Додано клас `cursor-default`
                 className={`
-                  bg-[#FFFFFF] dark:bg-gray-800 p-8 rounded-lg shadow-md flex flex-col h-full cursor-default
+                  bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md flex flex-col h-full cursor-default
                   ${tier.featured ? 'border-2 border-[#FFD700]' : ''}
                   ${inView ? 'animate-float' : ''}
                 `}
@@ -55,27 +58,27 @@ const PricingSection = () => {
                     className={`text-2xl font-bold mb-4 ${
                       tier.featured
                         ? 'text-[#FFD700]'
-                        : 'text-[#69140E] dark:text-[#FFFFFF]'
+                        : 'text-[#69140E] dark:text-white'
                     }`}
                   >
                     {tier.name}
                   </h3>
                   <p className="mt-4 flex items-baseline justify-center gap-x-2">
-                    <span className="text-4xl font-semibold tracking-tight text-[#69140E] dark:text-[#FFFFFF]">
+                    <span className="text-4xl font-semibold text-[#69140E] dark:text-white">
                       {tier.priceMonthly}
                     </span>
                     {tier.priceMonthly !== 'Договірна' && (
-                      <span className="text-lg text-[#69140E]/70 dark:text-[#FFFFFF]/70">
+                      <span className="text-lg text-[#69140E]/70 dark:text-white/70">
                         /місяць
                       </span>
                     )}
                   </p>
-                  <p className="mt-6 text-base text-[#69140E]/80 dark:text-[#FFFFFF]/80">
+                  <p className="mt-6 text-base text-[#69140E]/80 dark:text-white/80">
                     {tier.description}
                   </p>
                   <ul
                     role="list"
-                    className="mt-8 space-y-3 text-sm text-[#69140E] dark:text-[#FFFFFF]"
+                    className="mt-8 space-y-3 text-sm text-[#69140E] dark:text-white"
                   >
                     {tier.features.map((feature) => (
                       <li key={feature} className="flex gap-x-3 items-center">
@@ -89,7 +92,6 @@ const PricingSection = () => {
                 <Link
                   to={tier.href}
                   aria-describedby={tier.id}
-                  // ! ЗМІНА ТУТ: Додано клас `cursor-pointer` для кнопки
                   className={`
                     mt-8 block w-full rounded-lg px-3 py-3 text-center text-lg font-semibold transition cursor-pointer
                     ${

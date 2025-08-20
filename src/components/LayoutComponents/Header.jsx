@@ -75,11 +75,12 @@ export default function Header() {
   );
 
   const navLinkStyles = ({ isActive }) =>
-    `text-sm font-semibold leading-6 transition-colors duration-200 ${
-      isActive
-        ? 'text-[#FFD700]'
-        : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
-    }`;
+  `text-sm font-semibold leading-6 transition-colors duration-200 ${
+    isActive
+      ? 'text-[#F6AA1C]' // темніший жовто-помаранчевий
+      : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
+  }`;
+
 
   return (
     <>
@@ -124,18 +125,19 @@ export default function Header() {
               {({ close }) => (
                 <>
                   <PopoverButton
-                    className={`flex items-center gap-x-1 text-sm font-semibold leading-6 transition-colors duration-200 outline-none ${
-                      isLearningFormsActive
-                        ? 'text-[#FFD700]'
-                        : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
-                    }`}
-                  >
-                    Форми навчання
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="w-5 h-5 flex-none text-gray-400"
-                    />
-                  </PopoverButton>
+  className={`flex items-center gap-x-1 text-sm font-semibold leading-6 transition-colors duration-200 outline-none ${
+    isLearningFormsActive
+      ? 'text-[#F6AA1C]' // темніший жовто-помаранчевий
+      : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
+  }`}
+>
+  Форми навчання
+  <ChevronDownIcon
+    aria-hidden="true"
+    className="w-5 h-5 flex-none text-gray-400"
+  />
+</PopoverButton>
+
 
                   <PopoverPanel
                     transition
@@ -238,16 +240,19 @@ export default function Header() {
               <div className="mt-25 flow-root">
                 <nav className="-my-6 divide-y divide-gray-500/10 space-y-2">
                   <NavLink
-                    to="/"
-                    className={({ isActive }) =>
-                      `flex items-center gap-2 -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors ${
-                        isActive ? 'bg-[#F6AA1C]/10 text-[#FFD700]' : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
-                      }`
-                    }
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <HomeIcon className="h-5 w-5" /> Головна
-                  </NavLink>
+  to="/"
+  className={({ isActive }) =>
+    `flex items-center gap-2 -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors ${
+      isActive
+        ? 'text-[#F6AA1C]' // замінено на темніший жовто-помаранчевий
+        : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
+    }`
+  }
+  onClick={() => setMobileMenuOpen(false)}
+>
+  <HomeIcon className="h-5 w-5" /> Головна
+</NavLink>
+
                   {/* Disclosure для форм навчання */}
                   <Disclosure as="div" className="-mx-3">
                     {({ open }) => (
@@ -255,8 +260,8 @@ export default function Header() {
                         <DisclosureButton
                           className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 transition-colors ${
                             isLearningFormsActive
-                              ? 'bg-[#F6AA1C]/10 text-[#FFD700]'
-                              : 'text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
+                              ? 'bg-[#F6AA1C]/10 text-[#F6AA1C]'
+                              : 'text-[#F6AA1C] dark:text-[#FFFFFF] hover:bg-[#F6AA1C]/10'
                           }`}
                         >
                           <span className="flex items-center gap-2">

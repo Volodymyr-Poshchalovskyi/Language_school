@@ -1,11 +1,8 @@
-//* A component that displays a brief "About Us" section on the main page.
-//* This version fixes an IntersectionObserver error by correctly applying the ref.
-
-import React from 'react';
-import { useInView } from 'react-intersection-observer';
-import Tilt from 'react-parallax-tilt';
-import { Link } from 'react-router-dom';
-import AboutSectionImage from '../../assets/AboutSectionImage.jpg';
+import React from "react";
+import { useInView } from "react-intersection-observer";
+import Tilt from "react-parallax-tilt";
+import { Link } from "react-router-dom";
+import AboutSectionImage from "../../assets/AboutSectionImage.jpg";
 
 const AboutSection = () => {
   const [refLeft, inViewLeft] = useInView({
@@ -18,15 +15,15 @@ const AboutSection = () => {
   });
 
   return (
-    <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-12 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
-        {/* ! ЗМІНА ТУТ: `ref` та анімаційні класи тепер на зовнішньому div-контейнері */}
+    <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-16 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        {/* Left: Image with tilt */}
         <div
           ref={refLeft}
-          className={`md:w-1/2 transition-all duration-700 ${
+          className={`md:w-1/2 transition-all duration-700 ease-out ${
             inViewLeft
-              ? 'translate-x-0 opacity-100'
-              : '-translate-x-10 opacity-0'
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-12 opacity-0"
           }`}
         >
           <Tilt
@@ -40,50 +37,52 @@ const AboutSection = () => {
               <img
                 src={AboutSectionImage}
                 alt="Наша команда працює над проєктом"
-                className="w-full h-auto rounded-lg shadow-md dark:brightness-90"
+                className="w-full h-auto rounded-2xl shadow-xl dark:brightness-90"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src =
-                    'https://placehold.co/600x400/EEE/31343C?text=Image+Not+Found';
+                    "https://placehold.co/600x400/EEE/31343C?text=Image+Not+Found";
                 }}
               />
             </div>
           </Tilt>
         </div>
 
-        {/* ! ЗМІНА ТУТ: Те ж саме для правого блоку */}
+        {/* Right: Text content */}
         <div
           ref={refRight}
-          className={`md:w-1/2 transition-all duration-700 ${
+          className={`md:w-1/2 transition-all duration-700 ease-out ${
             inViewRight
-              ? 'translate-x-0 opacity-100'
-              : 'translate-x-10 opacity-0'
+              ? "translate-x-0 opacity-100"
+              : "translate-x-12 opacity-0"
           }`}
         >
           <Tilt
-            tiltMaxAngleX={5}
-            tiltMaxAngleY={5}
+            tiltMaxAngleX={3}
+            tiltMaxAngleY={3}
             perspective={1000}
-            scale={1.05}
-            transitionSpeed={1500}
+            scale={1.02}
+            transitionSpeed={1200}
           >
             <div className="avoid-emoji text-center md:text-left cursor-default p-4">
-              {' '}
-              {/* Додано padding для кращого вигляду */}
-              <h2 className="text-4xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
-                Трохи про нашу{' '}
-                <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">
+              <h2
+                className="text-4xl md:text-5xl mb-6 leading-snug text-[#69140E] dark:text-white"
+                style={{ fontFamily: "'Viaoda Libre', cursive" }}
+              >
+                Трохи про нашу{" "}
+                <span className="inline-block bg-[#FFD700] text-[#69140E] px-4 py-2 rounded-md shadow-md">
                   школу
                 </span>
               </h2>
-              <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
+
+              <p className="text-lg md:text-xl font-sans text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-8 leading-relaxed">
                 Ми — команда ентузіастів, яка прагне зробити вивчення німецької
                 мови доступним, цікавим та ефективним для кожного. Наша місія —
                 надихати вас на нові звершення.
               </p>
               <Link
                 to="/about"
-                className="inline-block text-[#E85F5C] bg-transparent border border-[#E85F5C] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E85F5C] hover:text-white transition cursor-pointer"
+                className="inline-block text-[#E85F5C] bg-transparent border border-[#E85F5C] px-8 py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-[#E85F5C] hover:text-white transition cursor-pointer"
               >
                 Дізнатись більше
               </Link>

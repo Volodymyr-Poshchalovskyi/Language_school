@@ -1,24 +1,9 @@
-// src/components/SocialMedia.jsx
-
-//* A component that displays social media links with a combined float and 3D tilt animation.
-
 import React, { useEffect, useState } from 'react';
-// ! ЗМІНА ТУТ: Імпортуємо необхідні хуки та компоненти для анімації
 import { useInView } from 'react-intersection-observer';
 import Tilt from 'react-parallax-tilt';
 import { socialMediaInfo } from '../../data/socialMediaData';
 
-// === Internal Component: SocialCard ===
-const SocialCard = ({
-  name,
-  url,
-  image,
-  alt,
-  buttonText,
-  // ! ЗМІНА ТУТ: Приймаємо нові пропси для керування анімацією
-  inView,
-  index,
-}) => {
+const SocialCard = ({ name, url, image, alt, buttonText, inView, index }) => {
   const [isDark, setIsDark] = useState(
     typeof document !== 'undefined' &&
       document.documentElement.classList.contains('dark')
@@ -37,7 +22,6 @@ const SocialCard = ({
   const buttonClasses = `w-full inline-block rounded-lg bg-[#FFD700] px-5 py-3 text-sm font-medium text-[#69140E] transition hover:bg-[#F6AA1C] text-center`;
 
   return (
-    // ! ЗМІНА ТУТ: Обертаємо картку в Tilt і додаємо анімацію появи
     <Tilt
       tiltMaxAngleX={10}
       tiltMaxAngleY={10}
@@ -51,7 +35,7 @@ const SocialCard = ({
     >
       <div
         className={`avoid-emoji bg-[#FFFFFF] dark:bg-gray-800 rounded-3xl shadow-lg group overflow-hidden flex flex-col min-h-[580px] h-full ${
-          inView ? 'animate-float' : '' // Додаємо анімацію плавання
+          inView ? 'animate-float' : ''
         }`}
         style={{ animationDelay: `${index * -2}s` }}
       >
@@ -77,24 +61,28 @@ const SocialCard = ({
   );
 };
 
-// === Main Component: SocialMedia ===
 const SocialMedia = () => {
-  // ! ЗМІНА ТУТ: Створюємо ref та inView для відстеження видимості секції
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
     <section className="bg-[#69140E]/5 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="avoid-emoji text-4xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] mb-12">
-          Ми в соціальних мережах
+        <h2
+          className="avoid-emoji text-4xl font-extrabold mb-12 text-[#69140E] dark:text-white"
+          style={{ fontFamily: "'Viaoda Libre', cursive" }}
+        >
+          Ми в{' '}
+          <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
+            соціальних
+          </span>{' '}
+          мережах
         </h2>
-        {/* ! ЗМІНА ТУТ: Прив'язуємо ref до контейнера з картками */}
+
         <div
           ref={ref}
           className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch"
         >
           {socialMediaInfo.platforms.map((social, index) => (
-            // ! ЗМІНА ТУТ: Передаємо inView та index у дочірній компонент
             <SocialCard
               key={social.name}
               {...social}

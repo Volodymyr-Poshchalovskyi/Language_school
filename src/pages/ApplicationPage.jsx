@@ -213,7 +213,7 @@ function ApplicationPage() {
                   Рік народження*
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   id="birthYear"
                   name="birthYear"
                   value={formData.birthYear}

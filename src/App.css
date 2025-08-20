@@ -1,4 +1,6 @@
 body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
   overflow-x: hidden;
   position: relative;
   background-color: #ffffff; /* Білий */

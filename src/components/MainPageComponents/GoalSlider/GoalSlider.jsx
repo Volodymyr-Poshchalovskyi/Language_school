@@ -86,14 +86,26 @@ const GoalSlider = () => {
   }, [isDragging]);
 
   return (
-    <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-16 md:py-24 font-sans">
+    <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-16 md:py-18 font-sans">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="avoid-emoji text-3xl md:text-4xl font-bold text-center text-[#69140E] dark:text-[#FFFFFF] mb-2">
-          Німецька мова для ваших цілей
-        </h2>
-        <p className="avoid-emoji text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 text-center mb-12">
-          Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
-        </p>
+       <h2
+  className="avoid-emoji text-3xl md:text-4xl text-center mb-4 leading-snug text-[#69140E] dark:text-white"
+  style={{
+    fontFamily: "'Viaoda Libre', cursive",
+  }}
+>
+  Німецька мова для ваших{" "}
+  <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
+    цілей
+  </span>
+</h2>
+
+
+
+<p className="avoid-emoji text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 text-center mb-12">
+  Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
+</p>
+
 
         {/* Desktop */}
         <div className="avoid-emoji hidden md:flex items-center justify-center gap-4">
