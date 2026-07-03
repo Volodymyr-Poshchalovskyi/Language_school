@@ -1,6 +1,5 @@
 import { FaUserGraduate, FaClipboardList, FaHandshake } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import Tilt from 'react-parallax-tilt';
 import React from 'react';
 
 const StatisticsSection = () => {
@@ -51,13 +50,8 @@ const StatisticsSection = () => {
           className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {statisticsCards.map((card, index) => (
-            <Tilt
+            <div
               key={index}
-              tiltMaxAngleX={10}
-              tiltMaxAngleY={10}
-              perspective={1000}
-              scale={1.05}
-              transitionSpeed={1500}
               className={`transition-all duration-700 ${
                 inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
@@ -80,7 +74,7 @@ const StatisticsSection = () => {
                   {card.description}
                 </p>
               </div>
-            </Tilt>
+            </div>
           ))}
         </div>
       </div>

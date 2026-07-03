@@ -1,7 +1,7 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import Tilt from "react-parallax-tilt";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import AboutSectionImage from "../../assets/AboutSectionImage.jpg";
 
 const AboutSection = () => {
@@ -35,7 +35,7 @@ const AboutSection = () => {
           >
             <div className="avoid-emoji">
               <img
-                src={AboutSectionImage}
+                src={AboutSectionImage.src}
                 alt="Наша команда працює над проєктом"
                 className="w-full h-auto rounded-2xl shadow-xl dark:brightness-90"
                 onError={(e) => {
@@ -81,7 +81,7 @@ const AboutSection = () => {
                 надихати вас на нові звершення.
               </p>
               <Link
-                to="/about"
+                href="/about"
                 className="inline-block text-[#E85F5C] bg-transparent border border-[#E85F5C] px-8 py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-[#E85F5C] hover:text-white transition cursor-pointer"
               >
                 Дізнатись більше

@@ -45,21 +45,23 @@ export const slides = [
   },
 ];
 
-// Цей об'єкт залишається без змін
 export const colorVariants = {
   gold: {
     border: 'border-[#FFD700]',
     bg: 'bg-[#FFD700]/10',
     text: 'text-[#FFD700]',
+    hex: '#FFD700',
   },
   coral: {
     border: 'border-[#E85F5C]',
     bg: 'bg-[#E85F5C]/10',
     text: 'text-[#E85F5C]',
+    hex: '#E85F5C',
   },
   amber: {
     border: 'border-[#F6AA1C]',
     bg: 'bg-[#F6AA1C]/10',
     text: 'text-[#F6AA1C]',
+    hex: '#F6AA1C',
   },
 };

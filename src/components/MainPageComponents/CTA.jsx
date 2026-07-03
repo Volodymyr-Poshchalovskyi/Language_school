@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import CTAImage from "../../assets/CTAImage.jpg";
+import CTAImage from "../../assets/CTA.webp";
 
 const CTA = () => {
   return (
@@ -36,7 +36,7 @@ const CTA = () => {
       >
         <div className="relative w-[78%] h-[60%]">
           <img
-            src={CTAImage}
+            src={CTAImage.src}
             alt="Community illustration"
             className="w-full h-full object-cover rounded-2xl"
           />
@@ -58,11 +58,11 @@ const CTA = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Link
-                to="/application"
+                href="/application"
                 className="
                   inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-semibold
-                  text-gray-800 dark:text-gray-900 bg-[#FFB400] shadow-md
-                  transition-all duration-300 cursor-pointer
+                  text-gray-800 dark:text-gray-900 shadow-md
+                  transition-all duration-300 cursor-pointer animate-border-shimmer
                 "
               >
                 Подати заявку

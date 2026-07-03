@@ -1,6 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Tilt from 'react-parallax-tilt';
 import { tiers } from '../../data/pricingData';
 
@@ -90,7 +90,7 @@ const PricingSection = () => {
                 </div>
 
                 <Link
-                  to={tier.href}
+                  href={tier.href}
                   aria-describedby={tier.id}
                   className={`
                     mt-8 block w-full rounded-lg px-3 py-3 text-center text-lg font-semibold transition cursor-pointer

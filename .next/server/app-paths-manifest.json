@@ -1,0 +1,9 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/dual-form/page": "app/dual-form/page.js",
+  "/page": "app/page.js",
+  "/single-form/page": "app/single-form/page.js",
+  "/application/page": "app/application/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js"
+}

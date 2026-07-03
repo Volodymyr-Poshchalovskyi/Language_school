@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react';
 // * 'useLocation' is a hook that provides access to the current URL location object.
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 function ScrollToTop() {
   // ! Extracts the 'pathname' from the location object.
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   // * The core logic: an effect that runs every time 'pathname' changes.
   useEffect(() => {

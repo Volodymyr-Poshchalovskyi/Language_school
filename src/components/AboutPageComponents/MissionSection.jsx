@@ -1,6 +1,6 @@
 import { useInView } from 'react-intersection-observer';
 import Image1 from '../../assets/image1.png';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 // * MissionSection component displays the school's mission
 const MissionSection = () => {
@@ -37,7 +37,7 @@ const MissionSection = () => {
         </p>
         {/* ! Нова тема: Оновлена кнопка */}
         <Link
-          to="/programs"
+          href="/programs"
           aria-label="Переглянути програми"
           className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition shadow-md"
         >

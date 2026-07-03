@@ -41,7 +41,7 @@ const SocialCard = ({ name, url, image, alt, buttonText, inView, index }) => {
       >
         <div className="flex-grow p-6 flex items-center justify-center">
           <img
-            src={isDark ? image.dark : image.light}
+            src={isDark ? image.dark.src : image.light.src}
             alt={alt}
             className="w-full h-full object-contain rounded-md"
           />

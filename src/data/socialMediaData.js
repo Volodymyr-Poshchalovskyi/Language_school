@@ -12,8 +12,8 @@ import { FaTelegramPlane, FaInstagram, FaTiktok } from 'react-icons/fa';
 
 export const socialMediaInfo = {
   contactPhone: {
-    number: '+380991234567',
-    display: '+38 (099) 123-45-67',
+    number: '+380681529702',
+    display: '+38 (068) 152-97-02',
   },
   platforms: [
     {

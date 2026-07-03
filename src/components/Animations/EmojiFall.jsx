@@ -2,9 +2,7 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-if (typeof window.emojiPositionCache === 'undefined') {
-  window.emojiPositionCache = {};
-}
+const emojiPositionCache = {};
 
 const EMOJI_OPTIONS = ['🔥', '👾', '🇩🇪', '📎', '💻', '📚', '⚡️', '🧨', '🧚🏻‍♀️'];
 
@@ -64,8 +62,8 @@ export const EmojiFall = ({ stopRef, pathname }) => {
           }
           gsap.killTweensOf(container.current.children);
 
-          if (window.emojiPositionCache[pathname]) {
-            const finalPositions = window.emojiPositionCache[pathname];
+          if (emojiPositionCache[pathname]) {
+            const finalPositions = emojiPositionCache[pathname];
             finalPositions.forEach((data, i) => {
               const emojiEl = document.createElement('img');
               emojiEl.className = 'emoji';
@@ -83,7 +81,7 @@ export const EmojiFall = ({ stopRef, pathname }) => {
             return;
           }
 
-          window.emojiPositionCache[pathname] = [];
+          emojiPositionCache[pathname] = [];
 
           const target = stopRef.current;
           const viewportWidth = window.innerWidth;
@@ -145,7 +143,7 @@ export const EmojiFall = ({ stopRef, pathname }) => {
             }
           }
 
-          window.emojiPositionCache[pathname] = finalPositions;
+          emojiPositionCache[pathname] = finalPositions;
           const emojiDataToAnimate = shuffleArray(finalPositions);
 
           emojiDataToAnimate.forEach((pos, i) => {

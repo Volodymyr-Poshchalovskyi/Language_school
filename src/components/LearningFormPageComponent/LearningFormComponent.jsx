@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function LearningFormPage({ data }) {
   const { theme } = data;
@@ -92,7 +92,7 @@ function LearningFormPage({ data }) {
         {/* Кнопка */}
         <div className="avoid-emoji mt-12 text-center">
           <Link
-            to={data.buttonLink}
+            href={data.buttonLink}
             className={`inline-block ${theme.buttonBg} ${theme.buttonTextColor} font-bold py-3 px-8 rounded-lg text-lg ${theme.buttonHoverBg} transition-all transform hover:scale-105 shadow-md`}
           >
             {data.buttonText}

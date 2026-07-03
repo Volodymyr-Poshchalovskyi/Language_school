@@ -1,176 +1,67 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React from 'react';
 import { slides, colorVariants } from '../../../data/goalSliderData';
 import Slide from './Slide';
+import { motion } from 'framer-motion';
 
 const GoalSlider = () => {
-  const [current, setCurrent] = useState(0);
-  const [slidesPerView, setSlidesPerView] = useState(1);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState(0);
-
-  const touchStartCoords = useRef({ x: 0, y: 0 });
-  const isSwipeHorizontal = useRef(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const newSlidesPerView = window.innerWidth < 768 ? 1 : 2;
-      setSlidesPerView(newSlidesPerView);
-      setCurrent(0);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const maxIndex =
-    slides.length > slidesPerView ? slides.length - slidesPerView : 0;
-
-  const handleNext = () =>
-    setCurrent((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  const handlePrev = () =>
-    setCurrent((prev) => (prev <= 0 ? maxIndex : prev - 1));
-
-  const handleTouchStart = (e) => {
-    setIsDragging(true);
-    touchStartCoords.current = {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY,
-    };
-    isSwipeHorizontal.current = null;
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-
-    const currentX = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
-    const diffX = currentX - touchStartCoords.current.x;
-    const diffY = currentY - touchStartCoords.current.y;
-
-    if (isSwipeHorizontal.current === null) {
-      if (Math.abs(diffX) > Math.abs(diffY)) {
-        isSwipeHorizontal.current = true; // горизонт
-      } else {
-        isSwipeHorizontal.current = false; // вертикаль
-      }
-    }
-
-    if (isSwipeHorizontal.current) {
-      e.preventDefault(); // блокуємо вертикальний скрол тільки для горизонтального свайпу
-      setDragOffset(diffX);
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (isSwipeHorizontal.current) {
-      const swipeThreshold = 50;
-      if (dragOffset < -swipeThreshold) handleNext();
-      else if (dragOffset > swipeThreshold) handlePrev();
-    }
-
-    setIsDragging(false);
-    isSwipeHorizontal.current = null;
-    setDragOffset(0);
-  };
-
-  const offset = current * (100 / slidesPerView);
-
-  // слухач із passive:false
-  useEffect(() => {
-    const slider = document.getElementById('mobile-slider-track');
-    if (!slider) return;
-
-    slider.addEventListener('touchmove', handleTouchMove, { passive: false });
-    return () => slider.removeEventListener('touchmove', handleTouchMove);
-  }, [isDragging]);
-
   return (
-    <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-16 md:py-18 font-sans">
-      <div className="max-w-7xl mx-auto px-4">
-       <h2
-  className="avoid-emoji font-extrabold text-3xl md:text-4xl text-center mb-4 leading-snug text-[#69140E] dark:text-white"
-  style={{
-    fontFamily: "'Viaoda Libre', cursive",
-  }}
->
-  Німецька мова для ваших{" "}
-  <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
-    цілей
-  </span>
-</h2>
-
-
-
-<p className="avoid-emoji text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 text-center mb-12">
-  Оберіть напрямок, який вас цікавить, і почніть свій шлях до успіху.
-</p>
-
-
-        {/* Desktop */}
-        <div className="avoid-emoji hidden md:flex items-center justify-center gap-4">
-          <button
-            className="bg-[#FFFFFF] dark:bg-gray-800 text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] transition p-3 rounded-full shadow-md"
-            onClick={handlePrev}
+    <section className="bg-[#69140E]/5 dark:bg-gray-900 transition-colors py-20 px-4 md:px-8 font-sans relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="avoid-emoji font-extrabold text-4xl md:text-5xl mb-4 text-[#69140E] dark:text-white leading-tight"
+            style={{ fontFamily: "'Viaoda Libre', cursive" }}
           >
-            <FaChevronLeft size={20} />
-          </button>
-          <div className="overflow-hidden flex-1">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${offset}%)` }}
-            >
-              {slides.map((slide, index) => {
-                const colors = colorVariants[slide.color] || colorVariants.gold;
-                return <Slide key={index} slide={slide} colors={colors} />;
-              })}
-            </div>
-          </div>
-          <button
-            className="bg-[#FFFFFF] dark:bg-gray-800 text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] transition p-3 rounded-full shadow-md"
-            onClick={handleNext}
+            Німецька мова для ваших{" "}
+            <span className="relative inline-block text-[#69140E] dark:text-white">
+              <span className="relative z-10 bg-[#FFD700] text-[#69140E] px-4 py-1 rounded-2xl shadow-md inline-block transform -rotate-1">
+                цілей
+              </span>
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="avoid-emoji text-lg md:text-xl text-[#69140E]/80 dark:text-[#FFFFFF]/80"
           >
-            <FaChevronRight size={20} />
-          </button>
+            Оберіть напрямок, який відповідає вашим прагненням, і почніть ефективне навчання з першого дня.
+          </motion.p>
         </div>
 
-        {/* Mobile */}
-        <div className="avoid-emoji md:hidden">
-          <div className="overflow-hidden touch-pan-y">
-            <div
-              id="mobile-slider-track"
-              className="flex will-change-transform"
-              style={{
-                transform: `translateX(calc(-${offset}% + ${dragOffset}px))`,
-                transition: isDragging
-                  ? 'none'
-                  : 'transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)',
-              }}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              {slides.map((slide, index) => {
-                const colors = colorVariants[slide.color] || colorVariants.gold;
-                return <Slide key={index} slide={slide} colors={colors} />;
-              })}
-            </div>
+        {/* Bento Grid */}
+        <div className="avoid-emoji grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
+          
+          {/* Card 1: Conversational German (Small - Col 1) */}
+          <div className="col-span-1">
+            <Slide index={0} slide={slides[0]} size="small" colors={colorVariants[slides[0].color]} />
           </div>
+
+          {/* Card 3: Exam Prep (Large - Featured - Col 2 & 3) */}
+          <div className="col-span-1 md:col-span-2">
+            <Slide index={2} slide={slides[2]} size="large" colors={colorVariants[slides[2].color]} />
+          </div>
+
+          {/* Card 2: Career German (Medium - Col 1 & 2) */}
+          <div className="col-span-1 md:col-span-2">
+            <Slide index={1} slide={slides[1]} size="medium" colors={colorVariants[slides[1].color]} />
+          </div>
+
+          {/* Card 4: Grammar & Vocabulary (Extra Small - Col 3) */}
+          <div className="col-span-1">
+            <Slide index={3} slide={slides[3]} size="small" colors={colorVariants[slides[3].color]} />
+          </div>
+
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center items-center mt-8 space-x-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrent(idx)}
-              className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                current === idx
-                  ? 'bg-[#FFD700]'
-                  : 'bg-[#69140E]/20 dark:bg-[#FFFFFF]/20 hover:bg-[#69140E]/40 dark:hover:bg-[#FFFFFF]/40'
-              }`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

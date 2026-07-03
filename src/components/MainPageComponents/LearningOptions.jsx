@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaUser, FaUserFriends } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Tilt from 'react-parallax-tilt';
 
 const LearningOptions = () => {
@@ -61,7 +61,7 @@ const LearningOptions = () => {
                   ефективність.
                 </p>
                 <Link
-                  to="/single-form"
+                  href="/single-form"
                   className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition cursor-pointer"
                 >
                   Дізнатися більше
@@ -104,7 +104,7 @@ const LearningOptions = () => {
                   процес більш інтерактивним.
                 </p>
                 <Link
-                  to="/dual-form"
+                  href="/dual-form"
                   className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition cursor-pointer"
                 >
                   Дізнатися більше
