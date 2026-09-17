@@ -3,11 +3,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import CTAImage from "../../assets/CTA.webp";
 
+// Hero. Mobile: heading, wide 3:2 photo, compact card under it.
+// Desktop (md+): full-screen section with the card overlaid on the photo.
 const CTA = () => {
   return (
-    <section className="w-full h-screen bg-[#69140E]/5 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
+    <section className="w-full bg-[#69140E]/5 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300 pt-6 pb-12 md:pt-0 md:pb-0 md:h-screen">
       {/* Header */}
-      <div className="absolute top-12 w-full text-center px-4 z-10">
+      <div className="w-full text-center px-4 z-10 md:absolute md:top-12">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,41 +28,42 @@ const CTA = () => {
         </motion.h1>
       </div>
 
-      {/* Image with overlay card */}
+      {/* Image with card */}
       <motion.div
-        className="w-full h-full flex justify-center items-center pt-24"
+        className="w-full mt-8 px-4 md:mt-0 md:px-0 md:h-full flex flex-col md:flex-row justify-center items-center md:pt-24"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative w-[78%] h-[60%]">
+        <div className="relative w-full md:w-[78%] md:h-[60%]">
           <img
             src={CTAImage.src}
             alt="Community illustration"
-            className="w-full h-full object-cover rounded-2xl"
+            className="w-full aspect-[3/2] object-cover object-[40%_center] rounded-2xl shadow-lg md:aspect-auto md:h-full md:object-center md:shadow-none"
           />
 
-          {/* Overlay Card bottom-right */}
+          {/* Card: under the photo on mobile, overlaid bottom-right on desktop */}
           <motion.div
             initial={{ opacity: 0, x: 50, y: 20 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute bottom-6 right-6 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg max-w-xs"
+            className="relative -mt-8 mx-4 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex flex-col gap-4 md:absolute md:mt-0 md:mx-0 md:bottom-6 md:right-6 md:max-w-xs md:p-6"
           >
-            <p className="text-sm font-light text-gray-600 dark:text-white mb-4">
+            <p className="text-sm font-light text-gray-600 dark:text-white">
               Отримай доступ до унікальних можливостей та стань частиною чогось більшого вже сьогодні.
             </p>
 
             <motion.div
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ type: "spring", stiffness: 300 }}
+              className="w-full md:w-auto"
             >
               <Link
                 href="/application"
                 className="
-                  inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-semibold
+                  w-full md:w-auto inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-semibold
                   text-gray-800 dark:text-gray-900 shadow-md
                   transition-all duration-300 cursor-pointer animate-border-shimmer
                 "
