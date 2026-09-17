@@ -135,7 +135,7 @@ export default function Header() {
                   height="44"
                 />
               </div>
-              <span className="font-extrabold text-lg text-[#69140E] dark:text-white tracking-wide transition-colors group-hover:text-[#E85F5C] dark:group-hover:text-[#FFD700]" style={{ fontFamily: "'Viaoda Libre', cursive" }}>
+              <span className="font-extrabold text-lg text-[#69140E] dark:text-white tracking-wide transition-colors group-hover:text-[#E85F5C] dark:group-hover:text-[#FFD700]" style={{ fontFamily: 'var(--font-display)' }}>
                 Besondres Deutch
               </span>
             </Link>
@@ -278,7 +278,7 @@ export default function Header() {
           <DialogPanel className="fixed inset-y-0 right-0 z-40 w-full max-w-xs bg-white dark:bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 flex flex-col justify-between shadow-2xl">
             <div className="flex-grow">
               <div className="flex items-center justify-between pb-6 border-b border-gray-100 dark:border-gray-800">
-                <span className="font-extrabold text-[#69140E] dark:text-white" style={{ fontFamily: "'Viaoda Libre', cursive" }}>
+                <span className="font-extrabold text-[#69140E] dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
                   Меню сайту
                 </span>
                 <button

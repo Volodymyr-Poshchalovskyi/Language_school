@@ -11,7 +11,7 @@ const FAQComponent = () => {
       <div className="max-w-7xl mx-auto text-center">
         <h2
   className="avoid-emoji text-4xl font-extrabold mb-12 text-[#69140E] dark:text-white"
-  style={{ fontFamily: "'Viaoda Libre', cursive" }}
+  style={{ fontFamily: 'var(--font-display)' }}
 >
   Часті запитання{' '}
   <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">

@@ -16,7 +16,7 @@ const Slide = ({ slide, index, size, colors }) => {
         transition={{ type: 'spring', stiffness: 350, damping: 25 }}
         className={`relative overflow-hidden flex flex-col justify-between transition-all duration-500 shadow-md hover:shadow-xl group h-full ${
           isLarge
-            ? 'p-8 md:p-12 bg-gradient-to-br from-white via-white to-[#FFD700]/5 dark:from-gray-800 dark:to-gray-900 border-2 border-[#FFD700] rounded-[2.5rem] min-h-[22rem]'
+            ? 'p-8 md:p-12 bg-gradient-to-br from-white via-white to-[#FFD700]/5 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 border-2 border-[#FFD700] rounded-[2.5rem] min-h-[22rem]'
             : isMedium
             ? 'p-8 md:p-10 bg-white/70 dark:bg-gray-800/50 backdrop-blur-md border border-[#69140E]/15 dark:border-white/5 rounded-[2rem] min-h-[20rem]'
             : 'p-6 md:p-8 bg-white/50 dark:bg-gray-800/30 backdrop-blur-md border border-[#69140E]/10 dark:border-white/5 rounded-[1.5rem] min-h-[18rem]'

@@ -24,7 +24,7 @@ const Footer = () => {
                 width="48"
                 height="48"
               />
-              <span className="self-center text-2xl font-extrabold tracking-wide text-[#69140E] dark:text-[#FFFFFF]" style={{ fontFamily: "'Viaoda Libre', cursive" }}>
+              <span className="self-center text-2xl font-extrabold tracking-wide text-[#69140E] dark:text-[#FFFFFF]" style={{ fontFamily: 'var(--font-display)' }}>
                 Besondres Deutch
               </span>
             </Link>

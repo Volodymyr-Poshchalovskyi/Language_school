@@ -59,7 +59,7 @@ const JourneySection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="avoid-emoji font-extrabold text-4xl md:text-5xl mt-6 mb-4 text-[#69140E] dark:text-white leading-tight"
-            style={{ fontFamily: "'Viaoda Libre', cursive" }}
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             Як проходить ваше{" "}
             <span className="relative inline-block text-[#69140E] dark:text-white">
@@ -87,7 +87,7 @@ const JourneySection = () => {
                 className={`relative p-5 rounded-2xl border text-left transition-all duration-300 flex flex-row lg:flex-col gap-4 items-center lg:items-start group cursor-pointer ${
                   isActive
                     ? 'bg-[#FFD700] border-[#FFD700] text-[#69140E] shadow-xl'
-                    : 'bg-white/80 border-gray-100 dark:bg-gray-900/80 dark:border-gray-800 text-[#69140E] dark:text-white hover:bg-[#69140E]/5 dark:hover:bg-white/5 hover:border-gray-200'
+                    : 'bg-white/80 border-gray-100 dark:bg-gray-800/80 dark:border-gray-700 text-[#69140E] dark:text-white hover:bg-[#69140E]/5 dark:hover:bg-white/5 hover:border-gray-200'
                 }`}
                 whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -121,7 +121,7 @@ const JourneySection = () => {
         </div>
 
         {/* Detailed Description Panel */}
-        <div className="relative bg-white/70 dark:bg-gray-900/60 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-white/20 dark:border-gray-800 shadow-xl overflow-hidden min-h-[16rem] flex flex-col justify-center">
+        <div className="relative bg-white/70 dark:bg-gray-800/60 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-white/20 dark:border-gray-800 shadow-xl overflow-hidden min-h-[16rem] flex flex-col justify-center">
           {/* Accent decoration */}
           <div className={`absolute -right-20 -bottom-20 w-44 h-44 rounded-full bg-gradient-to-tr ${steps[activeStep].color} opacity-20 filter blur-3xl`} />
           

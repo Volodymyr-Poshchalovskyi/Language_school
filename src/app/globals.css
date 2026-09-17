@@ -1,5 +1,17 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
+/* Tailwind v4: dark: variant follows the .dark class on <html> (set by the inline script in layout.js), not only the OS media query. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Viaoda Libre has no Cyrillic glyphs; Playfair Display picks up Ukrainian headings so they look the same on every OS. */
+  --font-display: 'Viaoda Libre', 'Playfair Display', Georgia, serif;
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
 
 body {
   font-family: 'Montserrat', sans-serif;

@@ -27,8 +27,8 @@ function LearningFormPage({ data }) {
         {/* Заголовок та підзаголовок */}
         <div className="avoid-emoji text-center mb-12">
           <h1
-            className="text-4xl md:text-5xl font-extrabold tracking-tight"
-            style={{ fontFamily: "'Viaoda Libre', cursive" }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#69140E] dark:text-white"
+            style={{ fontFamily: 'var(--font-display)' }}
             dangerouslySetInnerHTML={{ __html: getHighlightedTitle(data.title) }}
           />
           <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-[#69140E]/80 dark:text-[#FFFFFF]/80">
@@ -44,7 +44,7 @@ function LearningFormPage({ data }) {
               {data.whatIsItTitle}
             </h2>
             <div
-              className="prose prose-lg dark:prose-invert max-w-none text-[#69140E]/80 dark:text-[#FFFFFF]/80 leading-relaxed"
+              className="text-lg [&_strong]:font-bold [&_strong]:text-[#69140E] dark:[&_strong]:text-white text-[#69140E]/80 dark:text-[#FFFFFF]/80 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: data.whatIsItText }}
             />
           </div>

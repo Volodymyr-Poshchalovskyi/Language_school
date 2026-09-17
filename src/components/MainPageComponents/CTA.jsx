@@ -13,7 +13,7 @@ const CTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ fontFamily: "'Viaoda Libre', cursive" }}
+          style={{ fontFamily: 'var(--font-display)' }}
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-wider leading-snug text-gray-900 dark:text-white"
         >
           <span className="block">Приєднуйся до</span>

@@ -67,7 +67,7 @@ const AboutSection = () => {
             <div className="avoid-emoji text-center md:text-left cursor-default p-4">
               <h2
                 className="text-4xl font-extrabold md:text-5xl mb-6 leading-snug text-[#69140E] dark:text-white"
-                style={{ fontFamily: "'Viaoda Libre', cursive" }}
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 Трохи про нашу{" "}
                 <span className="inline-block bg-[#FFD700] text-[#69140E] px-4 py-2 rounded-md shadow-md">

@@ -1,24 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Tilt from 'react-parallax-tilt';
 import { socialMediaInfo } from '../../data/socialMediaData';
 
 const SocialCard = ({ name, url, image, alt, buttonText, inView, index }) => {
-  const [isDark, setIsDark] = useState(
-    typeof document !== 'undefined' &&
-      document.documentElement.classList.contains('dark')
-  );
-
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-    const root = document.documentElement;
-    const observer = new MutationObserver(() => {
-      setIsDark(root.classList.contains('dark'));
-    });
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-  }, []);
-
   const buttonClasses = `w-full inline-block rounded-lg bg-[#FFD700] px-5 py-3 text-sm font-medium text-[#69140E] transition hover:bg-[#F6AA1C] text-center`;
 
   return (
@@ -40,10 +25,18 @@ const SocialCard = ({ name, url, image, alt, buttonText, inView, index }) => {
         style={{ animationDelay: `${index * -2}s` }}
       >
         <div className="flex-grow p-6 flex items-center justify-center">
+          {/* Both variants are rendered; CSS picks the one for the active theme (no hydration mismatch, no flash). */}
           <img
-            src={isDark ? image.dark.src : image.light.src}
+            src={image.light.src}
             alt={alt}
-            className="w-full h-full object-contain rounded-md"
+            loading="lazy"
+            className="w-full h-full object-contain rounded-md dark:hidden"
+          />
+          <img
+            src={image.dark.src}
+            alt={alt}
+            loading="lazy"
+            className="w-full h-full object-contain rounded-md hidden dark:block"
           />
         </div>
         <div className="p-6 border-t border-[#69140E]/10 dark:border-[#FFFFFF]/10">
@@ -69,7 +62,7 @@ const SocialMedia = () => {
       <div className="max-w-7xl mx-auto text-center">
         <h2
           className="avoid-emoji text-4xl font-extrabold mb-12 text-[#69140E] dark:text-white"
-          style={{ fontFamily: "'Viaoda Libre', cursive" }}
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           Ми в{' '}
           <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">

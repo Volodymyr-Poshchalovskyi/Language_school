@@ -26,3 +26,13 @@ yarn-error.log*
 .env
 
 .prettierrc
+
+# next.js
+/.next
+/out
+
+# playwright mcp
+/.playwright-mcp
+
+# local tooling
+/.impeccable

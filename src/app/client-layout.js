@@ -21,23 +21,6 @@ export default function ClientLayout({ children }) {
   const layoutRef = useRef(null);
   const pathname = usePathname();
 
-  // useEffect for system dark mode preference
-  useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    const htmlElement = document.documentElement;
-
-    const setTheme = (e) => {
-      htmlElement.classList.toggle('dark', e.matches);
-    };
-
-    setTheme(prefersDark);
-    prefersDark.addEventListener('change', setTheme);
-
-    return () => {
-      prefersDark.removeEventListener('change', setTheme);
-    };
-  }, []);
-
   // useEffect for layout background animation on scroll
   useEffect(() => {
     const layoutElement = layoutRef.current;
@@ -61,7 +44,7 @@ export default function ClientLayout({ children }) {
   return (
     <div
       ref={layoutRef}
-      className="layout bg-[#69140E]/5 pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] transition-colors duration-300"
+      className="layout bg-[#69140E]/5 dark:bg-gray-900 pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] transition-colors duration-300"
       style={{ position: 'relative' }}
     >
       <EmojiFall stopRef={mainContentRef} pathname={pathname} />

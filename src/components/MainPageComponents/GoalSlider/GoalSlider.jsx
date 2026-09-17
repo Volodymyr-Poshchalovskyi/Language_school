@@ -16,7 +16,7 @@ const GoalSlider = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="avoid-emoji font-extrabold text-4xl md:text-5xl mb-4 text-[#69140E] dark:text-white leading-tight"
-            style={{ fontFamily: "'Viaoda Libre', cursive" }}
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             Німецька мова для ваших{" "}
             <span className="relative inline-block text-[#69140E] dark:text-white">
