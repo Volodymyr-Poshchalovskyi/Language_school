@@ -17,14 +17,14 @@ const PricingSection = () => {
           className="text-4xl font-extrabold md:text-5xl mb-4 leading-snug text-[#69140E] dark:text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Обери свій ідеальний{" "}
+          Choose your perfect{" "}
           <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
-            план
+            plan
           </span>
         </h2>
 
         <p className="avoid-emoji mt-2 text-lg text-[#69140E]/80 dark:text-white/80 mb-12">
-          Знайди тариф, який ідеально підійде для твоїх цілей та темпу навчання.
+          Find the plan that perfectly fits your goals and learning pace.
         </p>
 
         <div
@@ -67,9 +67,9 @@ const PricingSection = () => {
                     <span className="text-4xl font-semibold text-[#69140E] dark:text-white">
                       {tier.priceMonthly}
                     </span>
-                    {tier.priceMonthly !== 'Договірна' && (
+                    {tier.priceMonthly !== 'Negotiable' && (
                       <span className="text-lg text-[#69140E]/70 dark:text-white/70">
-                        /місяць
+                        /month
                       </span>
                     )}
                   </p>
@@ -101,7 +101,7 @@ const PricingSection = () => {
                     }
                   `}
                 >
-                  Почати навчання
+                  Start learning
                 </Link>
               </div>
             </Tilt>

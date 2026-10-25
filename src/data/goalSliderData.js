@@ -5,41 +5,41 @@ import { FaHome, FaBriefcase, FaBook, FaGraduationCap } from 'react-icons/fa';
 export const slides = [
   {
     icon: <FaHome size={32} />,
-    title: 'Розмовна німецька для життя та побутових ситуацій',
+    title: 'Conversational German for life and everyday situations',
     points: [
-      'Сприйняття мови на слух, правильна вимова',
-      'Спілкування в транспорті, магазинах, кафе, лікарні',
-      'Вільне висловлювання власних думок',
+      'Listening comprehension and correct pronunciation',
+      'Communicating on public transport, in shops, cafes and hospitals',
+      'Expressing your own thoughts freely',
     ],
     color: 'coral', // ! ЗМІНА ТУТ
   },
   {
     icon: <FaBriefcase size={32} />,
-    title: "Німецька для роботи та кар'єрного зростання",
+    title: "German for work and career growth",
     points: [
-      'Підготовка до професійного розвитку',
-      'Ділова лексика та ведення переговорів',
-      'Впевненість у робочому середовищі',
+      'Preparation for professional development',
+      'Business vocabulary and negotiations',
+      'Confidence in the workplace',
     ],
     color: 'amber', // ! ЗМІНА ТУТ
   },
   {
     icon: <FaGraduationCap size={32} />,
-    title: 'Підготовка до міжнародних іспитів',
+    title: 'Preparation for international exams',
     points: [
-      'Індивідуальний план для Goethe-Zertifikat, Telc',
-      'Знайомство з форматом завдань та критеріями',
-      'Пробні тестування для оцінки рівня',
+      'Individual plan for Goethe-Zertifikat, Telc',
+      'Getting familiar with task formats and criteria',
+      'Mock tests to assess your level',
     ],
     color: 'gold', // ! ЗМІНА ТУТ
   },
   {
     icon: <FaBook size={32} />,
-    title: 'Поглиблене вивчення граматики та лексики',
+    title: 'In-depth study of grammar and vocabulary',
     points: [
-      'Систематизація складних граматичних тем',
-      'Розширення словникового запасу',
-      'Практичні завдання для закріплення знань',
+      'Structuring complex grammar topics',
+      'Expanding your vocabulary',
+      'Practical tasks to reinforce your knowledge',
     ],
     color: 'coral', // ! ЗМІНА ТУТ
   },

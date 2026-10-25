@@ -43,7 +43,7 @@ const ReviewsSection = () => {
                 “
               </span>
 
-              <div className="flex items-center gap-1 text-[#F6AA1C] mb-4" aria-label="Оцінка 5 з 5">
+              <div className="flex items-center gap-1 text-[#F6AA1C] mb-4" aria-label="Rated 5 out of 5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <FaStar key={i} size={14} />
                 ))}

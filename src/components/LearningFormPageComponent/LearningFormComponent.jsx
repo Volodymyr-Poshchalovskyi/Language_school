@@ -5,16 +5,16 @@ function LearningFormPage({ data }) {
 
   // Функція для виділення конкретного слова в заголовку
   const getHighlightedTitle = (title) => {
-    if (title.includes('Індивідуальні')) {
+    if (title.includes('Individual')) {
       return title.replace(
-        'Індивідуальні',
-        `<span class="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">Індивідуальні</span>`
+        'Individual',
+        `<span class="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">Individual</span>`
       );
     }
-    if (title.includes('Парі')) {
+    if (title.includes('Pairs')) {
       return title.replace(
-        'Парі',
-        `<span class="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">Парі</span>`
+        'Pairs',
+        `<span class="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md">Pairs</span>`
       );
     }
     return title;
@@ -69,7 +69,7 @@ function LearningFormPage({ data }) {
           {/* Переваги */}
           <div>
             <h2 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
-              Ключові переваги
+              Key advantages
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {data.advantages.map((advantage, index) => (

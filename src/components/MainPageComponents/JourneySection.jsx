@@ -6,37 +6,37 @@ import { FaCalendarAlt, FaChalkboardTeacher, FaClipboardList, FaGraduationCap, F
 const steps = [
   {
     icon: <FaCalendarAlt size={28} />,
-    title: '1. Заявка та консультація',
-    desc: 'Заповнюєте коротку форму на сайті. Ми зв’язуємося з вами, щоб обговорити ваші цілі (робота, переїзд, іспити) та зручний розклад.',
-    badge: 'Початок',
+    title: '1. Application & consultation',
+    desc: 'You fill out a short form on the website. We get in touch to discuss your goals (work, relocation, exams) and a convenient schedule.',
+    badge: 'Start',
     color: 'from-[#FFD700] to-[#F6AA1C]',
   },
   {
     icon: <FaClipboardList size={28} />,
-    title: '2. Визначення рівня',
-    desc: 'Проходимо швидке тестування на ваші поточні знання граматики та розмовних навичок. Це дозволяє підібрати ідеальну програму.',
-    badge: 'Аналіз',
+    title: '2. Level assessment',
+    desc: 'We run a quick test of your current grammar knowledge and speaking skills. This lets us pick the ideal program for you.',
+    badge: 'Analysis',
     color: 'from-[#E85F5C] to-[#C13835]',
   },
   {
     icon: <FaChalkboardTeacher size={28} />,
-    title: '3. Індивідуальний підхід',
-    desc: 'Ви отримуєте персоналізований навчальний план, розроблений під ваші часові рамки та професійний напрямок.',
-    badge: 'План',
+    title: '3. Individual approach',
+    desc: 'You receive a personalized study plan built around your timeframe and professional field.',
+    badge: 'Plan',
     color: 'from-[#F6AA1C] to-[#E85F5C]',
   },
   {
     icon: <FaGraduationCap size={28} />,
-    title: '4. Інтерактивні заняття',
-    desc: 'Навчання проходить на зручній онлайн-платформі з використанням інтерактивних дошок, відеоматеріалів та розмовних клубів.',
-    badge: 'Навчання',
+    title: '4. Interactive lessons',
+    desc: 'Lessons take place on a convenient online platform with interactive whiteboards, video materials and speaking clubs.',
+    badge: 'Learning',
     color: 'from-[#FFD700] to-[#E85F5C]',
   },
   {
     icon: <FaTrophy size={28} />,
-    title: '5. Досягнення цілі',
-    desc: 'Складаєте внутрішній іспит, отримуєте сертифікат школи та, головне — впевненість у спілкуванні німецькою мовою!',
-    badge: 'Фініш',
+    title: '5. Reaching your goal',
+    desc: 'You pass an internal exam and receive a school certificate and, most importantly, confidence speaking German!',
+    badge: 'Finish',
     color: 'from-[#F6AA1C] to-[#FFD700]',
   },
 ];
@@ -61,15 +61,15 @@ const JourneySection = () => {
             className="avoid-emoji font-extrabold text-4xl md:text-5xl mt-6 mb-4 text-[#69140E] dark:text-white leading-tight"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Як проходить ваше{" "}
+            Your learning{" "}
             <span className="relative inline-block text-[#69140E] dark:text-white">
               <span className="relative z-10 bg-[#FFD700] text-[#69140E] px-4 py-1 rounded-2xl shadow-md inline-block transform rotate-1">
-                навчання
+                journey
               </span>
             </span>
           </motion.h2>
           <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Всього 5 простих кроків відділяють вас від вільного володіння німецькою мовою.
+            Just 5 simple steps stand between you and fluent German.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ const JourneySection = () => {
                     {step.title}
                   </h3>
                   <span className={`text-xs block lg:hidden mt-1 ${isActive ? 'text-[#69140E]/80' : 'text-[#69140E]/70 dark:text-white/70'}`}>
-                    Натисніть для деталей
+                    Click for details
                   </span>
                 </div>
               </motion.button>
@@ -140,7 +140,7 @@ const JourneySection = () => {
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <span className="text-sm font-extrabold uppercase tracking-widest text-[#E85F5C] dark:text-[#FFD700]">
-                    Крок {activeStep + 1}
+                    Step {activeStep + 1}
                   </span>
                   <h3 className="text-2xl md:text-3xl font-extrabold text-[#69140E] dark:text-white mt-2 mb-4">
                     {steps[activeStep].title.substring(3)}

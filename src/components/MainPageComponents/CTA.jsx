@@ -18,11 +18,11 @@ const CTA = () => {
           style={{ fontFamily: 'var(--font-display)' }}
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-wider leading-snug text-gray-900 dark:text-white"
         >
-          <span className="block">Приєднуйся до</span>
+          <span className="block">Join</span>
           <span className="block mt-2">
-            нашої{" "}
+            our{" "}
             <span className="bg-[#FFB400] text-gray-800 dark:text-gray-900 px-3 py-1 rounded-lg inline-block">
-              спільноти
+              community
             </span>
           </span>
         </motion.h1>
@@ -52,7 +52,7 @@ const CTA = () => {
             className="relative -mt-8 mx-4 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex flex-col gap-4 md:absolute md:mt-0 md:mx-0 md:bottom-6 md:right-6 md:max-w-xs md:p-6"
           >
             <p className="text-sm font-light text-gray-600 dark:text-white">
-              Отримай доступ до унікальних можливостей та стань частиною чогось більшого вже сьогодні.
+              Get access to unique opportunities and become part of something bigger today.
             </p>
 
             <motion.div
@@ -68,7 +68,7 @@ const CTA = () => {
                   transition-all duration-300 cursor-pointer animate-border-shimmer
                 "
               >
-                Подати заявку
+                Apply now
               </Link>
             </motion.div>
           </motion.div>

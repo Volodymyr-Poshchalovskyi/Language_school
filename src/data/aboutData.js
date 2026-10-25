@@ -8,110 +8,110 @@ import {
 } from 'react-icons/fa';
 
 export const aboutHeader = {
-  eyebrow: 'Онлайн-школа німецької мови',
-  titleStart: 'Про нашу',
-  titleHighlight: 'школу',
+  eyebrow: 'Online German language school',
+  titleStart: 'About our',
+  titleHighlight: 'school',
   subtitle:
-    'Дізнайтеся більше про нашу місію, цінності та підхід до навчання.',
+    'Learn more about our mission, values and approach to teaching.',
   stats: [
-    { value: '450+', label: 'студентів' },
-    { value: '5200+', label: 'уроків на місяць' },
-    { value: 'A1–C1', label: 'рівні навчання' },
+    { value: '450+', label: 'students' },
+    { value: '5200+', label: 'lessons per month' },
+    { value: 'A1–C1', label: 'levels taught' },
   ],
 };
 
 export const mission = {
-  title: 'Наша місія',
-  text: 'Ми віримо, що навчання має бути доступним, цікавим та ефективним для кожного. Наша мета — створити середовище, де ви не боїтеся говорити німецькою з першого уроку, розкриваєте свій потенціал і досягаєте цілей: роботи, переїзду чи іспиту.',
-  founderCaption: 'Засновниця та викладачка школи',
+  title: 'Our mission',
+  text: 'We believe learning should be accessible, engaging and effective for everyone. Our goal is to create an environment where you are not afraid to speak German from the very first lesson, unlock your potential and reach your goals: a new job, a move abroad or an exam.',
+  founderCaption: 'Founder and teacher of the school',
   bubbles: ['Ach so!', 'Na klar!', 'Ja, genau?'],
-  button: { text: 'Записатися на пробний урок', href: '/application' },
+  button: { text: 'Book a trial lesson', href: '/application' },
 };
 
 export const approach = {
-  title: 'Наш підхід',
-  text: 'Ми поєднуємо живу розмовну практику з чіткою системою граматики. Жодних нудних лекцій: на кожному занятті ви говорите, граєте в рольові діалоги та отримуєте зворотний зв’язок одразу.',
+  title: 'Our approach',
+  text: 'We combine live speaking practice with a clear grammar system. No boring lectures: in every lesson you speak, act out role-play dialogues and get feedback right away.',
   principles: [
     {
       Icon: FaComments,
-      title: 'Говоримо з першого уроку',
-      text: 'Щонайменше половину заняття говорите саме ви.',
+      title: 'Speaking from the first lesson',
+      text: 'You do the talking for at least half of every lesson.',
       color: 'coral',
     },
     {
       Icon: FaLaptop,
-      title: 'Інтерактивний онлайн-формат',
-      text: 'Інтерактивна дошка, відео та ігрові вправи замість підручника.',
+      title: 'Interactive online format',
+      text: 'An interactive whiteboard, videos and game-based exercises instead of a textbook.',
       color: 'gold',
     },
     {
       Icon: FaRoute,
-      title: 'Персональний план',
-      text: 'Програма під вашу ціль, темп і графік.',
+      title: 'Personal plan',
+      text: 'A program built around your goal, pace and schedule.',
       color: 'amber',
     },
     {
       Icon: FaGraduationCap,
-      title: 'Підготовка до іспитів',
-      text: 'Goethe-Zertifikat і Telc: формат, стратегія, пробні тести.',
+      title: 'Exam preparation',
+      text: 'Goethe-Zertifikat and Telc: format, strategy, mock tests.',
       color: 'maroon',
     },
   ],
   buttons: [
-    { text: 'Індивідуальні заняття', href: '/single-form', primary: true },
-    { text: 'Заняття в парі', href: '/dual-form', primary: false },
+    { text: 'Individual lessons', href: '/single-form', primary: true },
+    { text: 'Pair lessons', href: '/dual-form', primary: false },
   ],
 };
 
 export const reviews = {
-  title: 'Що кажуть про нас',
+  title: 'What our students say',
   items: [
     {
       quote:
-        'Через півроку занять я склала Goethe B1 з першої спроби. Найбільше подобається, що на уроках ми справді говоримо, а не тільки розбираємо граматику.',
-      name: 'Олена Петренко',
+        'After six months of lessons I passed Goethe B1 on my first try. What I like most is that in class we really speak instead of just going through grammar.',
+      name: 'Olena Petrenko',
       level: 'A2 → B1',
-      goal: 'Підготовка до Goethe-Zertifikat',
+      goal: 'Goethe-Zertifikat preparation',
       color: 'coral',
     },
     {
       quote:
-        'Займаюся в парі з колегою. Гнучкий графік дозволяє поєднувати навчання з роботою, а діалоги на уроках допомогли мені впевнено пройти співбесіду німецькою.',
-      name: 'Максим Іваненко',
+        'I study in a pair with a colleague. The flexible schedule lets me combine learning with work, and the dialogues in class helped me get through a job interview in German with confidence.',
+      name: 'Maksym Ivanenko',
       level: 'B1 → B2',
-      goal: 'Німецька для роботи',
+      goal: 'German for work',
       color: 'gold',
     },
     {
       quote:
-        'Починала з нуля перед переїздом. Викладачка дуже терпляча, пояснює просто і з гумором. Уже за три місяці я спокійно спілкуюся в магазинах і з лікарем.',
-      name: 'Анна Ковальчук',
+        'I started from zero before moving abroad. The teacher is very patient and explains things simply and with humor. After just three months I can comfortably talk in shops and at the doctor.',
+      name: 'Anna Kovalchuk',
       level: '0 → A2',
-      goal: 'Розмовна німецька для життя',
+      goal: 'Conversational German for everyday life',
       color: 'amber',
     },
   ],
 };
 
 export const history = {
-  title: 'Історія школи',
-  text: 'Школа виросла з невеликого блогу про німецьку мову в соцмережах. Ідея була простою: показати, що німецьку можна вчити легко, весело й із результатом.',
+  title: 'Our story',
+  text: 'The school grew out of a small blog about German on social media. The idea was simple: to show that German can be learned easily, with fun and with real results.',
   milestones: [
     {
-      title: 'Ідея та перші відео',
-      text: 'Короткі відео про живу німецьку набирають перших підписників.',
+      title: 'The idea and first videos',
+      text: 'Short videos about real-life German win their first followers.',
     },
     {
-      title: 'Перші студенти',
-      text: 'Запускаємо індивідуальні онлайн-заняття та формат навчання в парі.',
+      title: 'First students',
+      text: 'We launch individual online lessons and the pair learning format.',
     },
     {
-      title: 'Спільнота',
-      text: 'Instagram, TikTok і Telegram об’єднують тих, хто вчить німецьку разом з нами.',
+      title: 'Community',
+      text: 'Instagram, TikTok and Telegram bring together everyone learning German with us.',
     },
     {
-      title: 'Сьогодні',
-      text: '450+ студентів і понад 5200 уроків щомісяця. І це лише початок.',
+      title: 'Today',
+      text: '450+ students and over 5200 lessons every month. And this is just the beginning.',
     },
   ],
 };

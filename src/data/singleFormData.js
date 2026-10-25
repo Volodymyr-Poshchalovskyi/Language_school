@@ -6,32 +6,32 @@ export const singleFormData = {
     buttonHoverBg: 'hover:bg-[#d1504e]',
     buttonTextColor: 'text-white',
   },
-  title: 'Індивідуальні Уроки',
+  title: 'Individual Lessons',
   subtitle:
-    'Максимум уваги викладача та персоналізована програма для найшвидшого досягнення мети.',
-  whatIsItTitle: 'Що таке індивідуальний урок?',
+    'Maximum teacher attention and a personalized program to reach your goal as fast as possible.',
+  whatIsItTitle: 'What is an individual lesson?',
   whatIsItText:
-    'Це формат, де весь час та увага викладача присвячені <strong>лише вам</strong>. Програма навчання на 100% адаптується під ваші цілі, темп та сильні й слабкі сторони.',
-  forWhomTitle: 'Цей формат ідеально підходить вам, якщо ви:',
+    'It is a format where all of the teacher’s time and attention is devoted <strong>only to you</strong>. The study program is 100% adapted to your goals, pace, strengths and weaknesses.',
+  forWhomTitle: 'This format is perfect for you if you:',
   forWhomList: [
-    'Хочете досягти мети у стислі терміни.',
-    'Соромитеся говорити в групі та потребуєте безпечного простору для практики.',
-    'Маєте специфічні цілі, наприклад, підготовка до співбесіди.',
+    'Want to reach your goal in a short time.',
+    'Feel shy speaking in a group and need a safe space to practice.',
+    'Have specific goals, such as preparing for a job interview.',
   ],
   advantages: [
     {
-      title: 'Повна персоналізація',
-      description: 'Викладач будує урок навколо ваших потреб.',
+      title: 'Full personalization',
+      description: 'The teacher builds each lesson around your needs.',
       // ! ЗМІНА ТУТ: Новий стиль для картки
       cardClasses: 'bg-white dark:bg-gray-800 border-l-4 border-[#E85F5C]',
     },
     {
-      title: 'Максимум практики',
-      description: 'Ви говорите щонайменше 50% уроку.',
+      title: 'Maximum practice',
+      description: 'You speak for at least 50% of the lesson.',
       // ! ЗМІНА ТУТ: Новий стиль для картки
       cardClasses: 'bg-white dark:bg-gray-800 border-l-4 border-[#F6AA1C]',
     },
   ],
-  buttonText: 'Записатися на консультацію',
+  buttonText: 'Book a consultation',
   buttonLink: '/application?format=single',
 };

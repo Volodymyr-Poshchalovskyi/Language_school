@@ -21,7 +21,7 @@ function Modal({ isOpen, onClose, children }) {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-1 text-[#69140E]/40 hover:text-[#E85F5C] dark:text-[#FFFFFF]/40 dark:hover:text-[#E85F5C] transition-colors rounded-full"
-          aria-label="Закрити"
+          aria-label="Close"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ function CallBackWidget() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (phoneNumber.replace(/\D/g, '').length < 5) {
-      setError('Введіть коректний номер телефону');
+      setError('Enter a valid phone number');
       return;
     }
     const { data, error: supabaseError } = await supabase
@@ -160,7 +160,7 @@ function CallBackWidget() {
       .select();
     if (supabaseError) {
       console.error('SUPABASE ERROR:', supabaseError);
-      alert('На жаль, сталася помилка. Спробуйте ще раз.');
+      alert('Sorry, something went wrong. Please try again.');
     } else {
       setError('');
       setSubmitted(true);
@@ -192,7 +192,7 @@ function CallBackWidget() {
         ref={buttonRef}
         onClick={handleOpenModal}
         className={`fixed bottom-6 right-6 w-16 h-16 bg-[#FFD700] rounded-full flex items-center justify-center text-[#69140E] shadow-lg z-40 transition-opacity duration-300 cursor-pointer ${isButtonVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        aria-label="Замовити дзвінок"
+        aria-label="Request a call"
       >
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C6.842 18 2 13.158 2 7V3z"></path>
@@ -217,16 +217,16 @@ function CallBackWidget() {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-2">
-              Дякуємо!
+              Thank you!
             </h3>
             <p className="text-[#69140E]/80 dark:text-[#FFFFFF]/80">
-              Ми отримали ваш запит і скоро зателефонуємо.
+              We have received your request and will call you soon.
             </p>
           </div>
         ) : (
           <div className="text-center">
             <h3 className="text-2xl font-bold text-[#69140E] dark:text-[#FFFFFF] mb-4">
-              Замовте дзвінок
+              Request a call
             </h3>
             <form onSubmit={handleSubmit}>
               <input
@@ -234,7 +234,7 @@ function CallBackWidget() {
                 type="tel"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="Ваш номер телефону"
+                placeholder="Your phone number"
                 className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 transition-all bg-transparent text-[#69140E] dark:text-[#FFFFFF] placeholder:text-[#69140E]/40 dark:placeholder:text-[#FFFFFF]/40 ${error ? 'border-red-500 ring-red-300' : 'border-[#69140E]/20 dark:border-[#FFFFFF]/20 focus:ring-[#F6AA1C]'}`}
               />
               {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
@@ -242,11 +242,11 @@ function CallBackWidget() {
                 type="submit"
                 className="w-full mt-4 bg-[#FFD700] text-[#69140E] font-bold py-3 px-6 rounded-lg hover:bg-[#F6AA1C] transition-colors"
               >
-                Подзвоніть мені
+                Call me
               </button>
             </form>
             <p className="text-xs text-[#69140E]/70 dark:text-[#FFFFFF]/70 mt-4">
-              Ми зателефонуємо вам впродовж 2-х годин у робочий час.
+              We will call you back within 2 hours during business hours.
             </p>
           </div>
         )}

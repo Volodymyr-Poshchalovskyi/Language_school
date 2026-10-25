@@ -1,27 +1,27 @@
 export const faqData = [
   {
-    question: 'Як проходять заняття?',
+    question: 'How do the lessons work?',
     answer:
-      'Усі уроки проходять онлайн у Zoom або Google Meet з інтерактивною дошкою. Ви отримуєте матеріали після кожного заняття та домашні завдання з перевіркою від викладача.',
+      'All lessons take place online in Zoom or Google Meet with an interactive whiteboard. After each lesson you get the materials and homework that your teacher checks.',
   },
   {
-    question: 'Я не знаю свій рівень. З чого почати?',
+    question: 'I don’t know my level. Where do I start?',
     answer:
-      'Залиште заявку — ми проведемо коротке безкоштовне тестування та розмову з викладачем, визначимо ваш рівень і підберемо програму під вашу ціль.',
+      'Leave a request and we will run a short free test and a conversation with a teacher, determine your level and choose a program for your goal.',
   },
   {
-    question: 'Скільки триває один урок і як часто потрібно займатися?',
+    question: 'How long is a lesson and how often should I study?',
     answer:
-      'Стандартний урок триває 60 хвилин. Оптимальний темп — 2-3 заняття на тиждень, але графік підбираємо індивідуально під ваш ритм життя.',
+      'A standard lesson lasts 60 minutes. The optimal pace is 2-3 lessons per week, but we tailor the schedule to your lifestyle.',
   },
   {
-    question: 'Чи готуєте ви до іспитів Goethe-Zertifikat та Telc?',
+    question: 'Do you prepare students for the Goethe-Zertifikat and Telc exams?',
     answer:
-      'Так. Ми складаємо індивідуальний план підготовки, розбираємо формат кожної частини іспиту та проводимо пробні тестування, щоб ви йшли на екзамен упевнено.',
+      'Yes. We create an individual preparation plan, go through the format of each part of the exam and run mock tests so you walk into the exam with confidence.',
   },
   {
-    question: 'Що робити, якщо я пропущу заняття?',
+    question: 'What if I miss a lesson?',
     answer:
-      'Попередьте нас щонайменше за 12 годин — і ми перенесемо урок на інший зручний час без втрати оплати.',
+      'Let us know at least 12 hours in advance and we will move the lesson to another convenient time at no extra cost.',
   },
 ];

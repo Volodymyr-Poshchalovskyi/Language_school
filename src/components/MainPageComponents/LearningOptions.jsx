@@ -21,9 +21,9 @@ const LearningOptions = () => {
           className="text-4xl font-extrabold md:text-5xl mb-12 leading-snug text-[#69140E] dark:text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Обери свій формат{" "}
+          Choose your learning{" "}
           <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
-            навчання
+            format
           </span>
         </h2>
 
@@ -53,18 +53,18 @@ const LearningOptions = () => {
                   <FaUser className="text-[#E85F5C] text-6xl" />
                 </div>
                 <h3 className="text-3xl font-bold text-[#69140E] dark:text-white mb-4">
-                  Індивідуальні заняття
+                  Individual lessons
                 </h3>
                 <p className="text-lg text-[#69140E]/80 dark:text-white/80 mb-6">
-                  Фокус тільки на тобі. Наш викладач повністю адаптує програму
-                  під твої потреби та темп навчання, забезпечуючи максимальну
-                  ефективність.
+                  The focus is only on you. Our teacher fully adapts the program
+                  to your needs and learning pace, ensuring maximum
+                  effectiveness.
                 </p>
                 <Link
                   href="/single-form"
                   className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition cursor-pointer"
                 >
-                  Дізнатися більше
+                  Learn more
                 </Link>
               </div>
             </Tilt>
@@ -96,18 +96,18 @@ const LearningOptions = () => {
                   <FaUserFriends className="text-[#F6AA1C] text-6xl" />
                 </div>
                 <h3 className="text-3xl font-bold text-[#69140E] dark:text-white mb-4">
-                  Парні заняття
+                  Pair lessons
                 </h3>
                 <p className="text-lg text-[#69140E]/80 dark:text-white/80 mb-6">
-                  Навчайтеся разом із другом або колегою! Це чудова можливість
-                  обмінюватися ідеями та підтримувати один одного, роблячи
-                  процес більш інтерактивним.
+                  Study together with a friend or colleague! It is a great way
+                  to share ideas and support each other, making
+                  the process more interactive.
                 </p>
                 <Link
                   href="/dual-form"
                   className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#F6AA1C] transition cursor-pointer"
                 >
-                  Дізнатися більше
+                  Learn more
                 </Link>
               </div>
             </Tilt>

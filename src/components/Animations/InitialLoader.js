@@ -77,7 +77,7 @@ const InitialLoader = ({ children }) => {
           style={loaderStyle}
         >
           <div style={spinnerStyle}></div>
-          <div style={textStyle}>Завантаження...</div>
+          <div style={textStyle}>Loading...</div>
         </motion.div>
       )}
       {children}

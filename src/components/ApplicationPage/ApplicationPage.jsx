@@ -63,26 +63,26 @@ function ApplicationPage() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.firstName) newErrors.firstName = "Вкажіть ваше ім'я";
-    if (!formData.lastName) newErrors.lastName = 'Вкажіть ваше прізвище';
-    if (!formData.lessonFormat) newErrors.lessonFormat = 'Оберіть формат';
+    if (!formData.firstName) newErrors.firstName = 'Please enter your first name';
+    if (!formData.lastName) newErrors.lastName = 'Please enter your last name';
+    if (!formData.lessonFormat) newErrors.lessonFormat = 'Please choose a format';
     if (
       !formData.birthYear ||
       isNaN(formData.birthYear) ||
       formData.birthYear < 1930 ||
       formData.birthYear > new Date().getFullYear() - 7
     ) {
-      newErrors.birthYear = 'Вкажіть коректний рік';
+      newErrors.birthYear = 'Please enter a valid year';
     }
-    if (!formData.germanLevel) newErrors.germanLevel = 'Оберіть ваш рівень';
+    if (!formData.germanLevel) newErrors.germanLevel = 'Please choose your level';
     if (!formData.email && !formData.phone) {
-      newErrors.email = 'Вкажіть email або номер телефону';
+      newErrors.email = 'Please provide an email or phone number';
       newErrors.phone = ' ';
     } else {
       if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-        newErrors.email = 'Некоректний формат email';
+        newErrors.email = 'Invalid email format';
       if (formData.phone && !/^\+?[0-9\s-()]{7,15}$/.test(formData.phone))
-        newErrors.phone = 'Некоректний формат номеру';
+        newErrors.phone = 'Invalid phone number format';
     }
     return newErrors;
   };
@@ -95,7 +95,7 @@ function ApplicationPage() {
       delete newErrors[name];
       if (
         (name === 'email' || name === 'phone') &&
-        (errors.email?.includes('Вкажіть') || errors.phone === ' ')
+        (errors.email?.includes('or phone number') || errors.phone === ' ')
       ) {
         delete newErrors.email;
         delete newErrors.phone;
@@ -120,8 +120,8 @@ function ApplicationPage() {
       .select();
 
     if (error) {
-      console.error('Помилка при відправці в Supabase:', error);
-      alert('На жаль, сталася помилка. Спробуйте, будь ласка, ще раз.');
+      console.error('Error submitting to Supabase:', error);
+      alert('Sorry, something went wrong. Please try again.');
     } else {
       setSuccessModalOpen(true);
       setErrors({});
@@ -149,10 +149,10 @@ function ApplicationPage() {
         <div className="text-center mb-8">
           {/* ! Нова тема: Оновлені кольори тексту */}
           <h1 className="text-3xl font-bold text-[#69140E] dark:text-[#FFFFFF]">
-            Заявка на пробний урок
+            Trial Lesson Application
           </h1>
           <p className="text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-2">
-            Заповніть форму, і наш менеджер зв'яжеться з вами.
+            Fill out the form and our manager will contact you.
           </p>
         </div>
 
@@ -164,7 +164,7 @@ function ApplicationPage() {
                   htmlFor="firstName"
                   className="block text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-1"
                 >
-                  Ім'я*
+                  First name*
                 </label>
                 <input
                   type="text"
@@ -172,7 +172,7 @@ function ApplicationPage() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="Анна"
+                  placeholder="Anna"
                   className={inputClasses('firstName')}
                 />
                 {errors.firstName && (
@@ -186,7 +186,7 @@ function ApplicationPage() {
                   htmlFor="lastName"
                   className="block text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-1"
                 >
-                  Прізвище*
+                  Last name*
                 </label>
                 <input
                   type="text"
@@ -194,7 +194,7 @@ function ApplicationPage() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  placeholder="Коваленко"
+                  placeholder="Smith"
                   className={inputClasses('lastName')}
                 />
                 {errors.lastName && (
@@ -208,7 +208,7 @@ function ApplicationPage() {
                   htmlFor="birthYear"
                   className="block text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-1"
                 >
-                  Рік народження*
+                  Year of birth*
                 </label>
                 <input
                   type="text"
@@ -230,7 +230,7 @@ function ApplicationPage() {
                   htmlFor="germanLevel"
                   className="block text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-1"
                 >
-                  Рівень німецької*
+                  German level*
                 </label>
                 <select
                   id="germanLevel"
@@ -240,15 +240,15 @@ function ApplicationPage() {
                   className={inputClasses('germanLevel')}
                 >
                   <option value="" disabled>
-                    Оберіть ваш рівень...
+                    Select your level...
                   </option>
-                  <option value="A1">A1 - Початківець</option>
-                  <option value="A2">A2 - Елементарний</option>
-                  <option value="B1">B1 - Середній</option>
-                  <option value="B2">B2 - Вище середнього</option>
-                  <option value="C1">C1 - Просунутий</option>
-                  <option value="C2">C2 - Рівень носія</option>
-                  <option value="unknown">Не знаю свій рівень</option>
+                  <option value="A1">A1 - Beginner</option>
+                  <option value="A2">A2 - Elementary</option>
+                  <option value="B1">B1 - Intermediate</option>
+                  <option value="B2">B2 - Upper intermediate</option>
+                  <option value="C1">C1 - Advanced</option>
+                  <option value="C2">C2 - Proficient</option>
+                  <option value="unknown">I don't know my level</option>
                 </select>
                 {errors.germanLevel && (
                   <p className="text-red-500 text-xs mt-1">
@@ -259,7 +259,7 @@ function ApplicationPage() {
             </div>
             <div>
               <p className="text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-2">
-                Вкажіть принаймні один спосіб для зв'язку*
+                Provide at least one way to contact you*
               </p>
               <div className="space-y-4">
                 <div>
@@ -269,7 +269,7 @@ function ApplicationPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Електронна пошта"
+                    placeholder="Email"
                     className={inputClasses('email')}
                   />
                   {errors.email && errors.email !== ' ' && (
@@ -283,7 +283,7 @@ function ApplicationPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Номер телефону"
+                    placeholder="Phone number"
                     className={inputClasses('phone')}
                   />
                   {errors.phone && errors.phone !== ' ' && (
@@ -297,7 +297,7 @@ function ApplicationPage() {
                 htmlFor="lessonFormat"
                 className="block text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-1"
               >
-                Форма навчання*
+                Lesson format*
               </label>
               <select
                 id="lessonFormat"
@@ -307,10 +307,10 @@ function ApplicationPage() {
                 className={inputClasses('lessonFormat')}
               >
                 <option value="" disabled>
-                  Оберіть формат...
+                  Select a format...
                 </option>
-                <option value="single">Індивідуальний (Single)</option>
-                <option value="dual">В парі (Dual)</option>
+                <option value="single">Individual (Single)</option>
+                <option value="dual">In a pair (Dual)</option>
               </select>
               {errors.lessonFormat && (
                 <p className="text-red-500 text-xs mt-1">
@@ -323,7 +323,7 @@ function ApplicationPage() {
                 htmlFor="messenger"
                 className="block text-sm font-medium text-[#69140E] dark:text-[#FFFFFF] mb-1"
               >
-                Бажаний месенджер для зв'язку
+                Preferred messenger
               </label>
               <select
                 id="messenger"
@@ -332,7 +332,7 @@ function ApplicationPage() {
                 onChange={handleChange}
                 className={inputClasses('messenger')}
               >
-                <option value="">Не обрано</option>
+                <option value="">Not selected</option>
                 <option value="telegram">Telegram</option>
                 <option value="viber">Viber</option>
                 <option value="whatsapp">WhatsApp</option>
@@ -344,7 +344,7 @@ function ApplicationPage() {
                 type="submit"
                 className="w-full bg-[#FFD700] text-[#69140E] font-bold py-3 px-6 rounded-lg hover:bg-[#F6AA1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F6AA1C] transition-colors duration-300"
               >
-                Відправити заявку
+                Submit application
               </button>
             </div>
           </div>
@@ -370,18 +370,18 @@ function ApplicationPage() {
             </svg>
           </div>
           <h3 className="text-2xl leading-6 font-bold text-[#69140E] dark:text-[#FFFFFF] mb-2">
-            Чудово!
+            Great!
           </h3>
           <p className="text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
-            Вашу заявку успішно відправлено. Ми зв'яжемося з вами найближчим
-            часом.
+            Your application has been sent successfully. We will contact you
+            shortly.
           </p>
           {/* ! Нова тема: Оновлена кнопка закриття */}
           <button
             onClick={closeModalAndReset}
             className="w-full bg-[#E85F5C] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#d1504e] transition-colors"
           >
-            Закрити
+            Close
           </button>
         </div>
       </Modal>
@@ -389,7 +389,7 @@ function ApplicationPage() {
       <div
         className={`fixed bottom-5 right-5 bg-red-600 text-white py-3 px-6 rounded-lg shadow-xl transition-all duration-300 z-50 ${isErrorToastVisible ? 'transform translate-y-0 opacity-100' : 'transform translate-y-10 opacity-0 pointer-events-none'}`}
       >
-        <p className="font-semibold">Будь ласка, заповніть обов'язкові поля!</p>
+        <p className="font-semibold">Please fill in the required fields!</p>
       </div>
     </div>
   );
