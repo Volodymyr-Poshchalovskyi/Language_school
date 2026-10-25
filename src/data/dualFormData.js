@@ -6,34 +6,34 @@ export const dualFormData = {
     buttonHoverBg: 'hover:bg-[#F6AA1C]',
     buttonTextColor: 'text-[#69140E]',
   },
-  title: 'Уроки в Парі',
+  title: 'Lessons in Pairs',
   subtitle:
-    'Вивчайте німецьку разом із другом або партнером — це мотивуюче, ефективно та вигідно!',
-  whatIsItTitle: 'Що таке урок в парі?',
+    'Learn German together with a friend or partner: it is motivating, effective and good value!',
+  whatIsItTitle: 'What is a pair lesson?',
   whatIsItText:
-    'Це заняття, на якому викладач працює <strong>одночасно з двома студентами</strong> приблизно однакового рівня. Такий формат додає елемент здорової конкуренції та дозволяє відпрацьовувати діалоги.',
-  forWhomTitle: 'Цей формат ідеально підходить вам, якщо ви:',
+    'It is a lesson where the teacher works <strong>with two students at once</strong> at roughly the same level. This format adds an element of healthy competition and lets you practice dialogues.',
+  forWhomTitle: 'This format is perfect for you if you:',
   forWhomList: [
-    'Хочете займатися разом із другом, колегою або членом родини.',
-    'Шукаєте більш бюджетний варіант, ніж індивідуальні уроки.',
-    'Краще засвоюєте матеріал, коли маєте партнера для діалогів.',
+    'Want to study together with a friend, colleague or family member.',
+    'Are looking for a more affordable option than individual lessons.',
+    'Learn better when you have a partner for dialogues.',
   ],
   advantages: [
     {
-      title: 'Мотивація та підтримка',
+      title: 'Motivation and support',
       description:
-        'Навчатися з партнером веселіше! Ви можете підтримувати та мотивувати один одного.',
+        'Learning with a partner is more fun! You can support and motivate each other.',
       // ! ЗМІНА ТУТ: Новий стиль для картки
       cardClasses: 'bg-white dark:bg-gray-800 border-l-4 border-[#FFD700]',
     },
     {
-      title: 'Практика живих діалогів',
+      title: 'Real dialogue practice',
       description:
-        'Це ідеальне середовище для відпрацювання реальних розмов та рольових ігор.',
+        'It is the ideal setting for practicing real conversations and role-plays.',
       // ! ЗМІНА ТУТ: Новий стиль для картки
       cardClasses: 'bg-white dark:bg-gray-800 border-l-4 border-[#E85F5C]',
     },
   ],
-  buttonText: 'Записати пару на урок',
+  buttonText: 'Book a pair lesson',
   buttonLink: '/application?format=dual',
 };

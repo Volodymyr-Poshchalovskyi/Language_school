@@ -36,7 +36,7 @@ const AboutSection = () => {
             <div className="avoid-emoji">
               <img
                 src={AboutSectionImage.src}
-                alt="Наша команда працює над проєктом"
+                alt="Our team working on a project"
                 className="w-full h-auto rounded-2xl shadow-xl dark:brightness-90"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -69,22 +69,22 @@ const AboutSection = () => {
                 className="text-4xl font-extrabold md:text-5xl mb-6 leading-snug text-[#69140E] dark:text-white"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Трохи про нашу{" "}
+                A little about our{" "}
                 <span className="inline-block bg-[#FFD700] text-[#69140E] px-4 py-2 rounded-md shadow-md">
-                  школу
+                  school
                 </span>
               </h2>
 
               <p className="text-lg md:text-xl font-sans text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-8 leading-relaxed">
-                Ми — команда ентузіастів, яка прагне зробити вивчення німецької
-                мови доступним, цікавим та ефективним для кожного. Наша місія —
-                надихати вас на нові звершення.
+                We are a team of enthusiasts who want to make learning German
+                accessible, engaging and effective for everyone. Our mission is
+                to inspire you to new achievements.
               </p>
               <Link
                 href="/about"
                 className="inline-block text-[#E85F5C] bg-transparent border border-[#E85F5C] px-8 py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-[#E85F5C] hover:text-white transition cursor-pointer"
               >
-                Дізнатись більше
+                Learn more
               </Link>
             </div>
           </Tilt>

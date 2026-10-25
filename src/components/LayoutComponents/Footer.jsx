@@ -29,39 +29,39 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-[#69140E]/70 dark:text-white/70 max-w-sm">
-              Ваша преміальна школа німецької мови. Ми допомагаємо руйнувати мовні бар'єри, готуватися до іспитів та кар'єрного зростання за допомогою сучасних інтерактивних методик.
+              Your premium German language school. We help you break down language barriers, prepare for exams and grow your career with modern interactive methods.
             </p>
           </div>
 
           {/* Column 2: Navigation Links */}
           <div className="flex flex-col items-center md:items-start">
             <h3 className="text-sm font-bold uppercase tracking-wider text-[#69140E] dark:text-white mb-6">
-              Навігація
+              Navigation
             </h3>
             <ul className="grid grid-cols-2 gap-x-8 gap-y-3.5 text-sm font-medium text-center md:text-left">
               <li>
                 <Link href="/" className="text-[#69140E]/75 dark:text-white/70 hover:text-[#E85F5C] dark:hover:text-[#FFD700] transition-colors">
-                  Головна
+                  Home
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="text-[#69140E]/75 dark:text-white/70 hover:text-[#E85F5C] dark:hover:text-[#FFD700] transition-colors">
-                  Про нас
+                  About us
                 </Link>
               </li>
               <li>
                 <Link href="/single-form" className="text-[#69140E]/75 dark:text-white/70 hover:text-[#E85F5C] dark:hover:text-[#FFD700] transition-colors">
-                  Індивідуально
+                  Individual
                 </Link>
               </li>
               <li>
                 <Link href="/dual-form" className="text-[#69140E]/75 dark:text-white/70 hover:text-[#E85F5C] dark:hover:text-[#FFD700] transition-colors">
-                  В парі
+                  In pairs
                 </Link>
               </li>
               <li className="col-span-2">
                 <Link href="/privacy-policy" className="text-[#69140E]/75 dark:text-white/70 hover:text-[#E85F5C] dark:hover:text-[#FFD700] transition-colors">
-                  Політика конфіденційності
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -70,7 +70,7 @@ const Footer = () => {
           {/* Column 3: Contacts & Social Links */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h3 className="text-sm font-bold uppercase tracking-wider text-[#69140E] dark:text-white mb-6">
-              Контакти та соціальні мережі
+              Contacts & social media
             </h3>
             <ul className="space-y-3.5 mb-6 text-sm text-[#69140E]/80 dark:text-white/80">
               <li className="flex items-center gap-3 justify-center md:justify-start">
@@ -87,7 +87,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 justify-center md:justify-start">
                 <FaClock className="text-[#E85F5C]" />
-                <span>Пн-Сб: 09:00 - 20:00</span>
+                <span>Mon–Sat: 09:00 - 20:00</span>
               </li>
             </ul>
 
@@ -134,11 +134,11 @@ const Footer = () => {
             <Link href="/" className="font-semibold hover:text-[#E85F5C] dark:hover:text-[#FFD700] transition-colors">
               Besondres Deutch™
             </Link>
-            . Всі права захищено.
+            . All rights reserved.
           </span>
           <div className="flex items-center gap-4">
             <span>
-              Розробка:{' '}
+              Developed by:{' '}
               <a
                 href="https://github.com/Volodymyr-Poshchalovskyi"
                 target="_blank"
@@ -149,7 +149,7 @@ const Footer = () => {
               </a>
             </span>
             <Link href="/application" className="bg-[#FFD700] text-[#69140E] px-4 py-1.5 rounded-full font-bold shadow-sm hover:bg-[#F6AA1C] hover:scale-105 active:scale-95 transition-all">
-              Подати заявку
+              Apply now
             </Link>
           </div>
         </div>

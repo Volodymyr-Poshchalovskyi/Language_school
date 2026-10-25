@@ -12,18 +12,18 @@ export default function NotFound() {
             <span className="inline-block bg-[#E85F5C] text-white px-3 py-1 rounded-xl shadow-md transform -rotate-2">
               404
             </span>{' '}
-            Сторінку не знайдено
+            Page not found
           </h1>
           <p className="text-lg text-[#69140E]/80 dark:text-white/80 mb-8">
-            На жаль, сторінка, яку ви шукаєте, не існує. Можливо, вона була
-            переміщена або видалена.
+            Sorry, the page you are looking for does not exist. It may have been
+            moved or deleted.
           </p>
 
           <Link
             href="/"
             className="inline-block bg-[#FFD700] text-[#69140E] px-8 py-3 rounded-xl text-lg font-semibold hover:bg-[#F6AA1C] hover:scale-105 active:scale-95 transition-all shadow-md"
           >
-            Повернутися на головну
+            Back to home
           </Link>
         </div>
 
@@ -45,7 +45,7 @@ export default function NotFound() {
                 Wo bin ich?
               </p>
               <p className="mt-1 text-xs text-[#69140E]/60 dark:text-white/60">
-                «Де я?» — саме так ми запитуємо себе зараз.
+                “Where am I?” — that is exactly what we are asking ourselves right now.
               </p>
             </div>
             <span

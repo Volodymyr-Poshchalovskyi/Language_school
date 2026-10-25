@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Політика конфіденційності - Besondres Deutch",
-  description: "Політика конфіденційності та захисту персональних даних мовної школи німецької мови Besondres Deutch.",
+  title: "Privacy Policy - Besondres Deutch",
+  description: "Privacy and personal data protection policy of the Besondres Deutch German language school.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -12,104 +12,104 @@ export default function PrivacyPolicyPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="avoid-emoji">
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] text-center sm:text-left">
-            Політика конфіденційності
+            Privacy Policy
           </h1>
           <p className="text-lg text-[#69140E]/60 dark:text-[#FFFFFF]/60 text-center sm:text-left mt-4">
-            Останнє оновлення: 19 серпня 2025 р.
+            Last updated: August 19, 2025
           </p>
 
           <h2 className="text-3xl font-semibold mt-12 text-[#69140E] dark:text-[#FFFFFF]">
-            1. Загальні положення
+            1. General Provisions
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Цей document описує політику конфіденційності (далі – Політика) для
-            веб-сайту мовної школи "Besondres Deutch". Ми з повагою ставимося до
-            вашої приватності та прагнемо захищати ваші персональні дані
-            відповідно до Закону України “Про захист персональних даних”.
+            This document describes the privacy policy (hereinafter – the Policy) for the
+            website of the "Besondres Deutch" language school. We respect
+            your privacy and strive to protect your personal data
+            in accordance with the Law of Ukraine “On Personal Data Protection”.
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            2. Збір та використання персональних даних
+            2. Collection and Use of Personal Data
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
             <strong className="font-semibold text-[#69140E] dark:text-[#FFFFFF]">
-              Персональні дані
+              Personal data
             </strong>{' '}
-            – це будь-яка інформація, що дозволяє ідентифікувати фізичну особу.
-            Ми збираємо дані, які ви свідомо надаєте нам при заповненні форм на
-            Сайті (ім'я, номер телефону, email).
+            is any information that makes it possible to identify an individual.
+            We collect the data you knowingly provide to us when filling out forms on
+            the Site (name, phone number, email).
           </p>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Заповнюючи форму, ви{' '}
+            By filling out a form, you{' '}
             <strong className="font-semibold text-[#69140E] dark:text-[#FFFFFF]">
-              надаєте згоду на обробку
+              consent to the processing
             </strong>{' '}
-            цих даних з метою обробки вашої заявки, зворотного зв'язку та
-            інформування про наші послуги.
+            of this data for the purpose of handling your application, contacting you and
+            informing you about our services.
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            3. Файли Cookie
+            3. Cookies
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Ми використовуємо{' '}
+            We use{' '}
             <strong className="font-semibold text-[#69140E] dark:text-[#FFFFFF]">
-              файли cookie
+              cookies
             </strong>{' '}
-            та аналітичні сервіси (наприклад, Google Analytics) для збору
-            знеособленої статистики, що допомагає нам покращувати Сайт. Ця
-            інформація не пов’язана з вами особисто.
+            and analytics services (for example, Google Analytics) to collect
+            anonymized statistics that help us improve the Site. This
+            information is not personally linked to you.
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            4. Зберігання та захист даних
+            4. Data Storage and Protection
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Ми зберігаємо ваші дані лише стільки часу, скільки це необхідно, та
-            вживаємо належних заходів для їх захисту від несанкціонованого
-            доступу.
+            We store your data only for as long as necessary and
+            take appropriate measures to protect it from unauthorized
+            access.
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            5. Ваші права
+            5. Your Rights
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Ви маєте право на доступ до своїх даних, їх виправлення, видалення,
-            а також можете відкликати свою згоду на їх обробку. Для реалізації
-            цих прав, будь ласка, зв'яжіться з нами.
+            You have the right to access, correct and delete your data,
+            and you may withdraw your consent to its processing. To exercise
+            these rights, please contact us.
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            6. Розкриття інформації третім особам
+            6. Disclosure to Third Parties
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Ми гарантуємо, що{' '}
+            We guarantee that we{' '}
             <strong className="font-semibold text-[#69140E] dark:text-[#FFFFFF]">
-              не передаємо ваші персональні дані третім особам
+              do not share your personal data with third parties
             </strong>
-            , за винятком випадків, передбачених законодавством України.
+            , except as required by the laws of Ukraine.
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            7. Зміни та згода
+            7. Changes and Consent
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Ми можемо оновлювати цю Політику, публікуючи зміни на цій сторінці.{' '}
+            We may update this Policy by publishing changes on this page.{' '}
             <strong className="font-semibold text-[#69140E] dark:text-[#FFFFFF]">
-              Користуючись Сайтом, ви підтверджуєте свою згоду з її умовами.
+              By using the Site, you confirm your agreement with its terms.
             </strong>
           </p>
 
           <h2 className="text-3xl font-semibold mt-16 text-[#69140E] dark:text-[#FFFFFF]">
-            8. Контактна інформація
+            8. Contact Information
           </h2>
           <p className="text-xl leading-loose text-[#69140E]/80 dark:text-[#FFFFFF]/80 mt-4">
-            Якщо у вас виникли питання, ви можете зв'язатися з нами,
-            скориставшись{' '}
+            If you have any questions, you can contact us
+            using the{' '}
             <Link href="/application" className="text-[#E85F5C] hover:underline">
-              контактною формою
+              contact form
             </Link>{' '}
-            на сайті.
+            on the website.
           </p>
         </div>
       </div>

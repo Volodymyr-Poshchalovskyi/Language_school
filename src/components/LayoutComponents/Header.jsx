@@ -53,14 +53,14 @@ const AnimatedMenuIcon = ({ isOpen }) => (
 // Products for learning forms
 const products = [
   {
-    name: 'Персональні заняття',
-    description: 'Підходить якщо готові багато говорити',
+    name: 'Individual lessons',
+    description: 'Great if you are ready to talk a lot',
     href: '/single-form',
     icon: UserIcon,
   },
   {
-    name: 'Парні заняття',
-    description: 'Ідеально для навчання з другом чи партнером',
+    name: 'Pair lessons',
+    description: 'Perfect for learning with a friend or partner',
     href: '/dual-form',
     icon: UserGroupIcon,
   },
@@ -156,7 +156,7 @@ export default function Header() {
           {/* Desktop Nav Links */}
           <PopoverGroup className="hidden lg:flex lg:gap-x-10 items-center">
             <Link href="/" className={getNavLinkClass('/')}>
-              Головна
+              Home
               <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#F6AA1C] transform transition-transform duration-300 origin-left ${pathname === '/' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
             </Link>
 
@@ -170,7 +170,7 @@ export default function Header() {
                         : 'text-[#69140E] dark:text-[#FFFFFF] hover:text-[#E85F5C] dark:hover:text-[#E85F5C]'
                     }`}
                   >
-                    Форми навчання
+                    Learning formats
                     <ChevronDownIcon
                       aria-hidden="true"
                       className="w-4 h-4 flex-none text-[#69140E]/50 dark:text-white/50 transition-transform duration-300 group-hover:rotate-180"
@@ -223,7 +223,7 @@ export default function Header() {
             </Popover>
 
             <Link href="/about" className={getNavLinkClass('/about')}>
-              Про нас
+              About us
               <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#F6AA1C] transform transition-transform duration-300 origin-left ${pathname === '/about' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
             </Link>
           </PopoverGroup>
@@ -236,7 +236,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-x-2 rounded-full border-2 border-[#69140E]/20 dark:border-white/20 px-4 py-2 text-sm font-bold text-[#69140E] dark:text-[#FFFFFF] hover:bg-[#69140E] hover:text-white hover:border-[#69140E] dark:hover:bg-white dark:hover:text-[#69140E] dark:hover:border-white transition-all duration-300"
             >
-              Підтримка
+              Support
             </a>
             <Link
               href="/application"
@@ -244,7 +244,7 @@ export default function Header() {
                 shouldPulse ? 'animate-btn-pulse' : ''
               }`}
             >
-              <span className="relative z-10">Подати Заявку</span>
+              <span className="relative z-10">Apply Now</span>
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#F6AA1C] to-[#FFD700] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           </div>
@@ -279,7 +279,7 @@ export default function Header() {
             <div className="flex-grow">
               <div className="flex items-center justify-between pb-6 border-b border-gray-100 dark:border-gray-800">
                 <span className="font-extrabold text-[#69140E] dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
-                  Меню сайту
+                  Site menu
                 </span>
                 <button
                   type="button"
@@ -297,7 +297,7 @@ export default function Header() {
                     className={getMobileNavLinkClass('/')}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <HomeIcon className="h-5 w-5" /> Головна
+                    <HomeIcon className="h-5 w-5" /> Home
                   </Link>
 
                   {/* Disclosure для форм навчання */}
@@ -312,7 +312,7 @@ export default function Header() {
                           }`}
                         >
                           <span className="flex items-center gap-3">
-                            <AcademicCapIcon className="h-5 w-5" /> Форми навчання
+                            <AcademicCapIcon className="h-5 w-5" /> Learning formats
                           </span>
                           <ChevronDownIcon
                             className={`h-5 w-5 flex-none transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -347,7 +347,7 @@ export default function Header() {
                     className={getMobileNavLinkClass('/about')}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <InformationCircleIcon className="h-5 w-5" /> Про нас
+                    <InformationCircleIcon className="h-5 w-5" /> About us
                   </Link>
                 </nav>
               </div>
@@ -361,7 +361,7 @@ export default function Header() {
                 className="block rounded-full border-2 border-[#69140E]/20 dark:border-white/20 py-2.5 text-base font-bold text-[#69140E] dark:text-white hover:bg-[#69140E]/10 text-center transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Підтримка
+                Support
               </a>
               <Link
                 href="/application"
@@ -370,7 +370,7 @@ export default function Header() {
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Подати Заявку
+                Apply Now
               </Link>
             </div>
           </DialogPanel>

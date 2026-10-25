@@ -9,23 +9,23 @@ const StatisticsSection = () => {
     {
       icon: <FaUserGraduate className="text-gray-800 dark:text-gray-200 text-5xl" />,
       value: '450+',
-      title: 'Студентів',
+      title: 'Students',
       description:
-        'Всього за півроку роботи нашої школи, багато студентів уже досягли значних успіхів.',
+        'In just six months since our school opened, many students have already achieved great results.',
     },
     {
       icon: <FaClipboardList className="text-gray-800 dark:text-gray-200 text-5xl" />,
       value: '5200+',
-      title: 'Уроків на місяць',
+      title: 'Lessons per month',
       description:
-        'Не втрачай свій шанс і приєднуйся до тих, хто вже навчається прямо зараз.',
+        'Do not miss your chance: join those who are already learning right now.',
     },
     {
       icon: <FaHandshake className="text-gray-800 dark:text-gray-200 text-5xl" />,
       value: '16+',
-      title: 'Партнерів',
+      title: 'Partners',
       description:
-        'Це провідні компанії, з якими ми тісно співпрацюємо, пропонуючи нашим студентам нові послуги.',
+        'Leading companies we work closely with to offer our students new services.',
     },
   ];
 
@@ -36,12 +36,12 @@ const StatisticsSection = () => {
           className="avoid-emoji font-extrabold text-4xl mb-12 leading-snug text-[#69140E] dark:text-white"
           style={{ fontFamily: 'var(--font-display)', fontWeight: 800 }}
         >
-          Що кажуть цифри?
+          What do the numbers say?
           <div className="mt-4 text-[#69140E] dark:text-white">
             <span className="bg-[#FFD700] text-[#69140E] px-4 py-2 rounded-md shadow-md">
-              Статистика
+              Facts
             </span>{" "}
-            нашої школи
+            about our school
           </div>
         </h2>
 

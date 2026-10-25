@@ -42,11 +42,11 @@ const Slide = ({ slide, index, size, colors }) => {
             </div>
             {isLarge ? (
               <span className="text-[10px] font-extrabold uppercase tracking-widest bg-[#FFD700] text-[#69140E] px-3.5 py-1.5 rounded-full shadow-sm animate-pulse">
-                Найпопулярніший напрямок
+                Most popular track
               </span>
             ) : (
               <span className={`text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full ${colors.bg} ${colors.text}`}>
-                Ціль
+                Goal
               </span>
             )}
           </div>

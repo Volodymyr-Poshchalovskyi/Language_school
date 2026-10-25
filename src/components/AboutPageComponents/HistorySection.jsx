@@ -52,7 +52,7 @@ const HistorySection = () => {
             />
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-md border border-[#69140E]/5 dark:border-white/5">
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#E85F5C] dark:text-[#FFD700]">
-                Крок {i + 1}
+                Step {i + 1}
               </span>
               <h3 className="font-extrabold text-[#69140E] dark:text-white mt-1 mb-1">
                 {m.title}

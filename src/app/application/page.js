@@ -2,13 +2,13 @@ import React, { Suspense } from 'react';
 import ApplicationPage from '../../components/ApplicationPage/ApplicationPage';
 
 export const metadata = {
-  title: "Заявка на пробне заняття - Besondres Deutch",
-  description: "Запишіться на пробне заняття німецької мови в Besondres Deutch.",
+  title: "Trial Lesson Application - Besondres Deutch",
+  description: "Sign up for a trial German lesson at Besondres Deutch.",
 };
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Завантаження...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
       <ApplicationPage />
     </Suspense>
   );

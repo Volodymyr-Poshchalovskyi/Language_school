@@ -10,20 +10,20 @@ const Support = () => {
     <section className="bg-[#69140E]/5 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-5xl md:text-6xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] leading-tight avoid-emoji">
-          Ми завжди на зв'язку
+          We are always here for you
         </h2>
         <p className="mt-4 text-xl text-[#69140E]/80 dark:text-[#FFFFFF]/80 avoid-emoji">
-          Ваші запитання та відгуки важливі для нас.
+          Your questions and feedback matter to us.
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
         <div className="avoid-emoji w-full md:w-1/2 bg-[#FFFFFF] dark:bg-gray-800 rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:rotate-1 hover:-translate-y-2">
           <h3 className="text-3xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] mb-4">
-            Зв'яжіться з нами
+            Contact us
           </h3>
           <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
-            Зателефонуйте нам для швидкої допомоги або консультації.
+            Call us for quick help or a consultation.
           </p>
           <a
             href={`tel:${socialMediaInfo.contactPhone.number}`}
@@ -37,10 +37,10 @@ const Support = () => {
 
         <div className="avoid-emoji w-full md:w-1/2 bg-[#FFFFFF] dark:bg-gray-800 rounded-3xl shadow-lg p-8 group transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-rotate-1 hover:-translate-y-2">
           <h3 className="text-3xl font-extrabold text-[#69140E] dark:text-[#FFFFFF] mb-4">
-            Наші соцмережі
+            Our social media
           </h3>
           <p className="text-lg text-[#69140E]/80 dark:text-[#FFFFFF]/80 mb-6">
-            Підписуйтесь, щоб бути в курсі новин та оновлень.
+            Follow us to stay up to date with news and updates.
           </p>
           <div className="flex justify-center md:justify-start gap-8">
             {socialMediaInfo.platforms.map((social) => (

@@ -13,7 +13,7 @@ const FAQComponent = () => {
   className="avoid-emoji text-4xl font-extrabold mb-12 text-[#69140E] dark:text-white"
   style={{ fontFamily: 'var(--font-display)' }}
 >
-  Часті запитання{' '}
+  Frequently asked questions{' '}
   <span className="inline-block bg-[#FFD700] text-[#69140E] px-3 py-1 rounded-md shadow-md">
     FAQ
   </span>

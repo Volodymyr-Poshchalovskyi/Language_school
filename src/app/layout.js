@@ -2,8 +2,8 @@ import './globals.css';
 import ClientLayout from './client-layout';
 
 export const metadata = {
-  title: "Besondres Deutch - Школа німецької мови",
-  description: "Вивчайте німецьку мову ефективно з Besondres Deutch. Індивідуальні та групові заняття.",
+  title: "Besondres Deutch - German Language School",
+  description: "Learn German effectively with Besondres Deutch. Individual and group lessons.",
 };
 
 export const viewport = {
@@ -29,7 +29,7 @@ const themeScript = `
 export default function RootLayout({ children }) {
   return (
     // suppressHydrationWarning: the theme script adds the "dark" class to <html> before React hydrates.
-    <html lang="uk" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -18,10 +18,10 @@ const GoalSlider = () => {
             className="avoid-emoji font-extrabold text-4xl md:text-5xl mb-4 text-[#69140E] dark:text-white leading-tight"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Німецька мова для ваших{" "}
+            German for your{" "}
             <span className="relative inline-block text-[#69140E] dark:text-white">
               <span className="relative z-10 bg-[#FFD700] text-[#69140E] px-4 py-1 rounded-2xl shadow-md inline-block transform -rotate-1">
-                цілей
+                goals
               </span>
             </span>
           </motion.h2>
@@ -33,7 +33,7 @@ const GoalSlider = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="avoid-emoji text-lg md:text-xl text-[#69140E]/80 dark:text-[#FFFFFF]/80"
           >
-            Оберіть напрямок, який відповідає вашим прагненням, і почніть ефективне навчання з першого дня.
+            Choose the track that matches your aspirations and start learning effectively from day one.
           </motion.p>
         </div>
 
